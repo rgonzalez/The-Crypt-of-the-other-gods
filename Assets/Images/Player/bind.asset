@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: bind
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: body/bodyB
+    localPosition: {x: -0.016719103, y: -0.19162142, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.6285148, w: 0.77779764}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: body/bodyB/headB
+    localPosition: {x: 0.43585268, y: 0.00000002980232, z: 0}
+    localRotation: {x: 0.01023041, y: 0.047437843, z: -0.21056421, w: 0.9763748}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: body/bodyB/footB
+    localPosition: {x: -0.1681879, y: 0.05858189, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.99990773, w: -0.0135828}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: body/bodyB/foot2B
+    localPosition: {x: -0.12060025, y: -0.14709222, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.9646719, w: -0.26345432}
+    localScale: {x: 1, y: 1, z: 1}
