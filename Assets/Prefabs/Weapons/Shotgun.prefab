@@ -46,19 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireCD: 0.5
   muzzleFlashPrefab: {fileID: 100006, guid: b0a227fc2e558f241b1c747820ccc361, type: 3}
-  lineRendererPrefab: {fileID: 5968842818105738113, guid: 7e77780b062c145408bf701136b1d30a,
-    type: 3}
-  numberOfLines: 3
-  distance: 10
   ammo: 7
   maxClip: 30
   bulletsPerShoot: 1
   reloadSconds: 2
+  recoilX: 3
+  recoilY: 0.5
   damage: 2
-  recoilX: 10
-  recoilY: 5
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
+  lineRendererPrefab: {fileID: 5968842818105738113, guid: 7e77780b062c145408bf701136b1d30a,
+    type: 3}
+  numberOfLines: 3
+  distance: 10
 --- !u!82 &4125497990027393113
 AudioSource:
   m_ObjectHideFlags: 0

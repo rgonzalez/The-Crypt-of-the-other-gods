@@ -11,7 +11,8 @@ public class BulletWeapon : AbstractWeapon
 
     public GameObject bulletPrefab;
     public int numberOfBullets = 1;
-
+    public bool usePhysics = false; // if the weapon use physics to push the bullet or not.
+    public float bulletForce = 0f; // if the bullet is physics, how much force is applied
 
     protected override void OnStarting()
     {
@@ -73,17 +74,34 @@ public class BulletWeapon : AbstractWeapon
 
 
                 // now we have to cast a raycast per bullet (lineRenderer) with recoil
-                Vector3 target = worldPosition - transform.position; //original Target position
+                Vector3 target = transform.position - worldPosition; //original Target position
                 for (int i = 0; i < numberOfBullets; i++)
                 {
                     // instantiate a new bullet with the recoil
                     Vector3 newTarget = new Vector3(target.x + Random.Range(-recoilX, +recoilX), target.y + Random.Range(-recoilY, +recoilY), target.z + Random.Range(-recoilX, +recoilX));
                     Quaternion relativeRotation = Quaternion.LookRotation(newTarget, Vector3.up); // get the rotation to the new target
                     GameObject newBullet = Instantiate(bulletPrefab, transform.position, relativeRotation);
+                    if (usePhysics)
+                    {
+                        /* float maxDistance = 1; //distance for grenade to to reach
+                         float hSpeed = bulletForce; // horizontal speed
+
+                         float g = Physics.gravity.magnitude; // get the gravity value
+                                                              //then we calculating other variables to set our "fly" 
+                         float totalTime = maxDistance / hSpeed; //time of fly
+                         float vSpeed = (totalTime * g) / 2;       //vertical speed
+                                                                   //then we "launch" our grenade
+                                                                   // the bullet use the physics system, so apply a initialforce
+                         newBullet.GetComponent<Rigidbody>().velocity = new Vector3(newBullet.transform.forward.x * hSpeed, vSpeed, newBullet.transform.forward.z * hSpeed);
+                         */
+                        newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+                    }
                     
                 }
 
             }
+
+            nextFire = Time.time + fireCD;
         }
     }
 
