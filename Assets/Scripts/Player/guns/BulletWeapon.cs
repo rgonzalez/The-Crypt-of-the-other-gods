@@ -26,18 +26,18 @@ public class BulletWeapon : AbstractWeapon
 
     protected override void Reload()
     {
-        reloading = true;
+       /* reloading = true;
         if (reloadAudio)
         {
             audioSource.PlayOneShot(reloadAudio);
         }
-        StartCoroutine(Completereload());
+        StartCoroutine(Completereload());*/
     }
 
     IEnumerator Completereload()
     {
         yield return new WaitForSecondsRealtime(reloadSconds);
-        reloading = false;
+       // - reloading = false;
         ammo = maxClip; //TODO: reload with real ammo from inventory
     }
 
