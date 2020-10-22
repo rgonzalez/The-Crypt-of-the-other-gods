@@ -60,7 +60,7 @@ public class Explosion : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
         foreach (Collider hitCollider in hitColliders)
         {
-            hitCollider.SendMessage("Damage", damage); //send the message to addDamage to all items/enemys in the range
+            hitCollider.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver); //send the message to addDamage to all items/enemys in the range
             //also add Force of explosion
             if (powerForce != 0)
             {
