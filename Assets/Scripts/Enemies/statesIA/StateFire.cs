@@ -6,12 +6,11 @@ public class StateFire : IStateEnemy
 {
 
     private readonly EnemyIA enemy;
-    private EnemyWeapon weapon;
+    public EnemyWeapon weapon;
 
     public StateFire(EnemyIA enemy)
     {
         this.enemy = enemy;
-        this.weapon = enemy.GetComponent<EnemyWeapon>();
     }
 
     public void ToFiringState()
@@ -45,6 +44,7 @@ public class StateFire : IStateEnemy
                 Vector3 directionTarget = enemy.target.transform.position - enemy.transform.position;
                 if (Physics.Raycast(enemy.transform.position,  enemy.transform.TransformDirection(directionTarget), out hit, Mathf.Infinity))
                 {
+                    weapon.target = enemy.target.transform;
                     //is direct range, shoot
                     weapon.PrepareShoot();
                     weapon.Shoot();
