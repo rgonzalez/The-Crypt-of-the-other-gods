@@ -113,6 +113,7 @@ public class Bullet : MonoBehaviour
                     // enemy damage
 
                 }
+                other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
             }
             if (!keepAfterExplosion)
             {
