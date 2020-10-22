@@ -11,8 +11,8 @@ public class BulletWeapon : AbstractWeapon
 
     public GameObject bulletPrefab;
     public int numberOfBullets = 1;
-    public bool usePhysics = false; // if the weapon use physics to push the bullet or not.
-    public float bulletForce = 0f; // if the bullet is physics, how much force is applied
+    public bool usePhysics = false; // if the weapon use physics to push the bullet or not. (for Grenade cases)
+    public float bulletForce = 0f; // if the bullet is physics, how much force is applied (grenade force)
 
     protected override void OnStarting()
     {

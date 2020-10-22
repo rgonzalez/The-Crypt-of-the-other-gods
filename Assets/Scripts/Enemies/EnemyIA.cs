@@ -14,7 +14,7 @@ public class EnemyIA : MonoBehaviour
     [HideInInspector] public StatePatrol patrolingState;
     // Start is called before the first frame update
 
-
+    private EnemyWeapon weapon;
 
     public bool active = true; //is the IA active?
     public NavMeshAgent agent;
@@ -26,8 +26,7 @@ public class EnemyIA : MonoBehaviour
 
     public float t = 4; // interception time
     public float time;
-    public float actualDistance; // the distance to the target
-
+    public float actualDistance; // the distance to the target 
     void Awake()
     {
         followingState = new StateFollow(this);
@@ -39,6 +38,8 @@ public class EnemyIA : MonoBehaviour
 
     void Start()
     {
+        weapon = GetComponent<EnemyWeapon>();
+        firingState.weapon = weapon;
         //load the agent for load it in the states
         agent = GetComponent<NavMeshAgent>();
         time = Time.time;
@@ -56,8 +57,25 @@ public class EnemyIA : MonoBehaviour
         if (active)
         {
             //all the states wants to know the distance, 
-            this.actualDistance = Vector3.Distance(transform.position, target.transform.position);
+            if (target)
+            {
+                this.actualDistance = Vector3.Distance(transform.position, target.transform.position);
+            } else
+            {
+                this.actualDistance = 0;
+            }
             actualState.UpdateState();
         }
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, followRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, shootRange);
+
     }
 }
