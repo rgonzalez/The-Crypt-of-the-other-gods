@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7620159583077086250}
   m_Layer: 0
   m_Name: PlasmaGrenadeLauncher
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,13 +145,39 @@ MonoBehaviour:
   ammo: 30
   maxClip: 30
   bulletsPerShoot: 1
-  reloadSconds: 2
   recoilX: 0
   recoilY: 0
   damage: 2
+  haveLaserSight: 0
+  laserSightPrefab: {fileID: 0}
+  weaponStatus: 0
+  slider: {fileID: 3492761538595784455, guid: 1c697003309e44c47b84837f9d64f6a8, type: 3}
+  reloadBar: {fileID: 3492761538972332572, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perfectRange: {x: 0, y: 0}
+  activeRange: {x: 0, y: 0}
+  perfectImage: {fileID: 3492761538556071371, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  activeImage: {fileID: 3492761539928509703, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  startBar: {fileID: 3492761538214708184, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  endBar: {fileID: 3492761538860140239, guid: 1c697003309e44c47b84837f9d64f6a8, type: 3}
+  reloadSconds: 4
+  standardReload: 5
+  activeReload: 2.5
+  activeReloadEnd: 3.5
+  perfectReload: 2
+  failedReload: 4
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
-  bulletPrefab: {fileID: 2970268838045224165, guid: 77c43d10069e92e458cb75584826591f,
+  bulletPrefab: {fileID: 2970268838045224165, guid: 65d06a5de6e151c48bed35637993f16f,
     type: 3}
   numberOfBullets: 1
   usePhysics: 1

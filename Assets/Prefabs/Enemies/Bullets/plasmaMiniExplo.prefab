@@ -5164,13 +5164,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fa9d480f3b21744a9ed30ffa97c4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticlesBudget: 0.586
+  ParticlesBudget: 0.288
   UseLightShadows: 1
   UseFastFlatDecals: 0
   UseCustomColor: 0
   EffectColor: {r: 1, g: 0, b: 0, a: 1}
   IsVisible: 1
-  FadeoutTime: 0.5
+  FadeoutTime: 0.1
   UseCollisionDetection: 1
   LimitMaxDistance: 0
   MaxDistnace: -1

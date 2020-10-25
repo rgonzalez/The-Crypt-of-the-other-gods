@@ -26,19 +26,6 @@ public class BulletWeapon : AbstractWeapon
 
     protected override void Reload()
     {
-       /* reloading = true;
-        if (reloadAudio)
-        {
-            audioSource.PlayOneShot(reloadAudio);
-        }
-        StartCoroutine(Completereload());*/
-    }
-
-    IEnumerator Completereload()
-    {
-        yield return new WaitForSecondsRealtime(reloadSconds);
-       // - reloading = false;
-        ammo = maxClip; //TODO: reload with real ammo from inventory
     }
 
     /// <summary>
@@ -67,12 +54,6 @@ public class BulletWeapon : AbstractWeapon
                 worldPosition = ray.GetPoint(distance);
                 worldPosition = new Vector3(worldPosition.x, transform.position.y, worldPosition.z);
 
-                Debug.Log("transform" + transform.position + " worldPosition " + worldPosition);
-                //   transform.LookAt(worldPosition);
-                //  transform.TransformDirection(Vector3.forward) <- 2º parameter raycast
-                RaycastHit hit;
-
-
                 // now we have to cast a raycast per bullet (lineRenderer) with recoil
                 Vector3 target = transform.position - worldPosition; //original Target position
                 for (int i = 0; i < numberOfBullets; i++)
@@ -82,19 +63,19 @@ public class BulletWeapon : AbstractWeapon
                     Quaternion relativeRotation = Quaternion.LookRotation(newTarget, Vector3.up); // get the rotation to the new target
                     GameObject newBullet = Instantiate(bulletPrefab, transform.position, relativeRotation);
                     if (usePhysics)
-                    {
-                        /* float maxDistance = 1; //distance for grenade to to reach
-                         float hSpeed = bulletForce; // horizontal speed
-
-                         float g = Physics.gravity.magnitude; // get the gravity value
-                                                              //then we calculating other variables to set our "fly" 
-                         float totalTime = maxDistance / hSpeed; //time of fly
-                         float vSpeed = (totalTime * g) / 2;       //vertical speed
-                                                                   //then we "launch" our grenade
-                                                                   // the bullet use the physics system, so apply a initialforce
-                         newBullet.GetComponent<Rigidbody>().velocity = new Vector3(newBullet.transform.forward.x * hSpeed, vSpeed, newBullet.transform.forward.z * hSpeed);
-                         */
+                    {    
                         newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+                    }
+                    // we must pass the damage of the weapon to the bullet
+                    Bullet bulletScript = newBullet.GetComponent<Bullet>();
+                    if (perfectAmmo > 0 ) 
+                    {
+                        //is a critical bullet
+                        bulletScript.damage = damage * perfectCritic;
+                        perfectAmmo -= bulletsPerShoot;
+                    } else
+                    {
+                        bulletScript.damage = damage;
                     }
                     
                 }

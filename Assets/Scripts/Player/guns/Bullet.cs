@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
         if (actualBounces < bounces && bounces > 0)
         {
             //is bouncing, change the normal direction
-            Vector3 newDirection = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
+            Vector3 newDirection = Vector3.Reflect(transform.forward, collision.GetContact(0).normal);
             newDirection.y = 0;
             // we keep the same vertical value, with some recoilY, the bounces can be in discontrol bouncing to the ceiling
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -108,18 +108,20 @@ public class Bullet : MonoBehaviour
             else
             {
                 //the bullet dont explode, just hit enemy or walls
-                if (other.CompareTag(Constants.TAG_ENEMY))
-                {
-                    // enemy damage
-
-                }
-                other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
+                //
             }
             if (!keepAfterExplosion)
             {
                 Destroy(gameObject);
             } 
         }
+        if (other.CompareTag(Constants.TAG_ENEMY))
+        {
+            // enemy damage
+            Debug.Log("HIT ENEMY");
+
+        }
+        other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
 
     }
 }

@@ -3,44 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Constants;
 
 public enum RELOADSTATE { READY, RELOADING, FAILED, PERFECT, ACTIVE}; // the status available for the weapon
 
 public  abstract class AbstractWeapon : MonoBehaviour
 {
-
+    public bool active = false; // is the weapon active?
+    public AMMO_TYPE ammoType;
     public float fireCD = 30f;
     public GameObject muzzleFlashPrefab;
     // weapon info
     public int ammo = 30; // actual ammo in the clip
     public int maxClip = 30; //max capacity of the clip
     public int bulletsPerShoot = 1; // how much ammo per shoot
+    protected int perfectAmmo = 0; //the actual Perfect ammo (with critic) for an perfect reload
 
     public float recoilX = 1f;
     public float recoilY = 0.5f;
-    public int damage = 2;
+    public int damage = 2; // normal Damage
+    public int perfectCritic = 150; // the damage for an perfect reload in % (a 150% of the normal damage)
+
+
+    //laserSight logic
+    public bool haveLaserSight = false;
+    public GameObject laserSightPrefab;
+    private LineRenderer laserSight;
 
     public RELOADSTATE weaponStatus = RELOADSTATE.READY;
     // RELOAD LOGIC
     [SerializeField]
-    private SpriteRenderer slider;
+    public SpriteRenderer slider;
 
     [SerializeField]
-    private GameObject reloadBar;
+    public GameObject reloadBar;
 
     [SerializeField]
-    private AnimationCurve curve;
-
+    public SpriteRenderer perfectImage;
     [SerializeField]
-    private Vector2 perfectRange = new Vector2(0,0);
-
-    [SerializeField]
-    private Vector2 activeRange = new Vector2(0, 0);
-
-    [SerializeField]
-    private SpriteRenderer perfectImage;
-    [SerializeField]
-    private SpriteRenderer activeImage;
+    public SpriteRenderer activeImage;
     public Transform startBar;
     public Transform endBar;
 
@@ -84,6 +85,13 @@ public  abstract class AbstractWeapon : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         // Geberal Code for start the weapon
 
+        ConfigWeapon();
+
+        OnStarting(); // specific code Start() for the weapon
+    }
+
+    public void ConfigWeapon()
+    {
         // --> set the activeReloadBar and PerfectReloadBar in the size depending of the weapon
         // the reloadBar is 0-1, so we escalate the 0 - standardReloadTime, and then place the bars
         if (activeReload > 0f && perfectReload > 0 && activeReloadEnd > 0 &&
@@ -97,8 +105,11 @@ public  abstract class AbstractWeapon : MonoBehaviour
             float endActiveRange = activeReloadEnd / standardReload;
             SetReloadRange(startActiveRange, endActiveRange, activeImage);
         }
-
-        OnStarting(); // specific code Start() for the weapon
+        if (haveLaserSight && laserSightPrefab)
+        {
+            GameObject laser = Instantiate(laserSightPrefab, transform);
+            laserSight = laser.GetComponent<LineRenderer>();
+        }
     }
 
     // Update is called once per frame
@@ -106,7 +117,6 @@ public  abstract class AbstractWeapon : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && !reloading)
         {
-
             firing = true;
         }
         else
@@ -126,6 +136,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
             reload = false;
         }
         OnUpdating();
+
     }
 
     private void FixedUpdate()
@@ -141,7 +152,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
         {
             if (!reloading)
             {
-                Debug.Log(" RELOAD!");
+
                 Reload();
                 BeginReload();
                 reload = false; 
@@ -149,12 +160,12 @@ public  abstract class AbstractWeapon : MonoBehaviour
                                                                // just in case the user tries to reload and the weapon is failing
             {
 
-                Debug.Log("MANUAL RELOAD ");
                 //is RELOADING!! is a perfect?
                 ManualReload();
                 reload = false;
             }
         }
+
     }
 
     /// <summary>
@@ -214,15 +225,27 @@ public  abstract class AbstractWeapon : MonoBehaviour
         Debug.Log("endreload");
         reloading = false;
         slider.transform.localPosition = new Vector3(startBar.transform.localPosition.x, slider.transform.localPosition.y, slider.transform.localPosition.z);
-        if (perfect)
+        // Now we are going to extract the leftAmmo from inventory, and add to the actualCLip
+        //NOTE: only the new ammo added will be critic if is a perfect reload (so if we reload with 29/30 ammo, only 1 shoot wil be critical)
+        if (InventoryManager.instance)
         {
-            //IS A PERFECT RELOAD();
-        } else
-        {
-            // IS A NORMAL RELOAD
+            int ammoToFill = maxClip - ammo; // how much to fill the actual clip?
+            int addedAmmo = InventoryManager.instance.ExtractAmmoFromInventory(ammoToFill, ammoType);
+            // maybe the inventory has not enough, so just add how much left
+            ammo = addedAmmo;
+            if (perfect)
+            {
+                //IS A PERFECT RELOAD SO ADD CRITICAL AMMO!!!
+                perfectAmmo = addedAmmo;
+            }
+            else
+            {
+                // IS A NORMAL RELOAD
+                perfectAmmo = 0;
+            }
         }
         weaponStatus = RELOADSTATE.READY;
-        reloadBar.SetActive(false);
+        reloadBar.SetActive(false);       
     }
 
     void PerfectReload(float value)
@@ -242,7 +265,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     void FailedReload(float value)
     {
 
-        slider.GetComponent<Image>().color = Color.red;
+        slider.GetComponent<SpriteRenderer>().color = Color.red;
         float remaining = failedReload - value;
         StartCoroutine(FinishReload(remaining, false));
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5327094822760437088}
   m_Layer: 0
   m_Name: GrenadeLauncher
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,10 +145,32 @@ MonoBehaviour:
   ammo: 30
   maxClip: 30
   bulletsPerShoot: 1
-  reloadSconds: 2
   recoilX: 0
   recoilY: 0
   damage: 2
+  haveLaserSight: 0
+  laserSightPrefab: {fileID: 0}
+  weaponStatus: 0
+  slider: {fileID: 0}
+  reloadBar: {fileID: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perfectRange: {x: 0, y: 0}
+  activeRange: {x: 0, y: 0}
+  perfectImage: {fileID: 0}
+  activeImage: {fileID: 0}
+  startBar: {fileID: 0}
+  endBar: {fileID: 0}
+  reloadSconds: 2
+  standardReload: 3
+  activeReload: 2.25
+  activeReloadEnd: 2.25
+  perfectReload: 1.8
+  failedReload: 4
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
   bulletPrefab: {fileID: 2970268838045224165, guid: 77c43d10069e92e458cb75584826591f,

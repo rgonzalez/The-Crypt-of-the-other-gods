@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4125497990027393113}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,16 +49,39 @@ MonoBehaviour:
   ammo: 7
   maxClip: 30
   bulletsPerShoot: 1
-  reloadSconds: 2
   recoilX: 3
   recoilY: 0.5
   damage: 2
+  haveLaserSight: 0
+  laserSightPrefab: {fileID: 0}
+  weaponStatus: 0
+  slider: {fileID: 0}
+  reloadBar: {fileID: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perfectRange: {x: 0, y: 0}
+  activeRange: {x: 0, y: 0}
+  perfectImage: {fileID: 0}
+  activeImage: {fileID: 0}
+  startBar: {fileID: 0}
+  endBar: {fileID: 0}
+  reloadSconds: 2
+  standardReload: 3
+  activeReload: 2.25
+  activeReloadEnd: 2.25
+  perfectReload: 1.8
+  failedReload: 4
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
   lineRendererPrefab: {fileID: 5968842818105738113, guid: 7e77780b062c145408bf701136b1d30a,
     type: 3}
   numberOfLines: 3
   distance: 10
+  numberOfBounces: 0
 --- !u!82 &4125497990027393113
 AudioSource:
   m_ObjectHideFlags: 0

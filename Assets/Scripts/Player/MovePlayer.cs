@@ -32,11 +32,6 @@ public class MovePlayer : MonoBehaviour
     private void Animate()
     {
 
-        // we need check if the player is moving to the mouse or backward
-        // if the player has the mouse at the left of the character, and move left, is moving "forward", if
-        // he moves right is moving "backward"
-        bool facingMouse = true;
-
         Plane playerPlane = new Plane(Vector3.up, transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float hitdist = 0.0f;
