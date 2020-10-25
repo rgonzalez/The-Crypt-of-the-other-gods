@@ -28,8 +28,11 @@ public class StateFollow : IStateEnemy
 
     public void UpdateState()
     {
-        this.enemy.agent.enabled = true;
-        this.enemy.agent.SetDestination(enemy.target.transform.position);
+        if (enemy.moving && enemy.canMove)
+        {
+            this.enemy.agent.enabled = true;
+            this.enemy.agent.SetDestination(enemy.target.transform.position);
+        }
         if (enemy.actualDistance > enemy.followRange)
         {
             ToPatrolState();

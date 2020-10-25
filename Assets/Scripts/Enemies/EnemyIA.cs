@@ -15,8 +15,14 @@ public class EnemyIA : MonoBehaviour
     // Start is called before the first frame update
 
     private EnemyWeapon weapon;
-
+    private int lookDirection = 1;
     public bool active = true; //is the IA active?
+    public bool canMove = true; // can move? or is a static enemy?
+
+    [HideInInspector]
+    public bool moving = true; //an enemy can be blocked (if canMove = true) in some conditions
+                                //for example, his weapon
+
     public NavMeshAgent agent;
     public GameObject target; //the gameobject target (sure... the player)
 
@@ -25,7 +31,7 @@ public class EnemyIA : MonoBehaviour
     public float coolDownAttack; //time between attacks
 
     public float t = 4; // interception time
-    public float time;
+
     public float actualDistance; // the distance to the target 
     void Awake()
     {
@@ -42,7 +48,7 @@ public class EnemyIA : MonoBehaviour
         firingState.weapon = weapon;
         //load the agent for load it in the states
         agent = GetComponent<NavMeshAgent>();
-        time = Time.time;
+        moving = canMove; // set the state of moving, if the enemy canMove or is a static
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player");
@@ -60,11 +66,26 @@ public class EnemyIA : MonoBehaviour
             if (target)
             {
                 this.actualDistance = Vector3.Distance(transform.position, target.transform.position);
+                if (transform.position.x < target.transform.position.x) //direction of the target in X
+                {
+                    lookDirection = 1;
+                } else
+                {
+                    lookDirection = -1;
+                }
+                transform.localScale =  new Vector3(lookDirection,1,1);
             } else
             {
                 this.actualDistance = 0;
             }
-            actualState.UpdateState();
+            if (actualState != null) //just check in case
+            {
+                actualState.UpdateState();
+            } else
+            {
+                Debug.Log("Error in some state change, REDIRECTING TO PATROL STATE AT " + gameObject.name);
+                actualState = patrolingState;
+            }
         }
     }
 

@@ -1,13 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IStateEnemy
+﻿public interface IStateEnemy
 {
     void UpdateState();
     void ToFiringState();

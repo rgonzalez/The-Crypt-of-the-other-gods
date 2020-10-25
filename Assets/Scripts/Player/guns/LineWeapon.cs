@@ -10,13 +10,9 @@ public class LineWeapon : AbstractWeapon
     public GameObject lineRendererPrefab; // the lineRenderer that will set the config for the múltiple lineRenderers (color, width..)
     public int numberOfLines = 1;   
     public float distance = 10f;
-
+    public int numberOfBounces = 0;
     private List<LineRenderer> lineRenderers;
-
-
-
-
-
+             
     /// <summary>
     /// OnStarting initializes the linerenderers
     /// </summary>
@@ -44,7 +40,7 @@ public class LineWeapon : AbstractWeapon
         yield return new WaitForSeconds(0.1f);
         muzzleFlash.SetActive(false);
         foreach(LineRenderer lr in lineRenderers)
-        lr.positionCount = 0;
+            lr.positionCount = 0;
     }
 
 
@@ -92,12 +88,13 @@ public class LineWeapon : AbstractWeapon
                          Debug.DrawRay(transform.position, newTarget, Color.yellow, 10f);
                         lr.SetPosition(1, hit.point);
                         Debug.Log("Did Hit");
-                        if (hit.collider.CompareTag(Constants.TAG_ENEMY))
+                        int actualDamage = damage;
+                        if (perfectAmmo > 0)
                         {
-                            // try to check if has health to apply damage
-                            HealthScript enemyHealth = hit.collider.GetComponent<HealthScript>();
-                            if (enemyHealth) enemyHealth.Damage(damage);
+                            actualDamage = damage * perfectCritic;
+                            perfectAmmo -= bulletsPerShoot;
                         }
+                        hit.collider.SendMessage("Damage", actualDamage, SendMessageOptions.DontRequireReceiver);
                     }
                     else
                     {
@@ -114,18 +111,6 @@ public class LineWeapon : AbstractWeapon
 
     protected override void Reload()
     {
-        reloading = true;
-        if (reloadAudio)
-        {
-            audioSource.PlayOneShot(reloadAudio);
-        }
-        StartCoroutine(Completereload());
-    }
 
-    IEnumerator Completereload()
-    {
-        yield return new WaitForSecondsRealtime(reloadSconds);
-        reloading = false;
-        ammo = maxClip; //TODO: reload with real ammo from inventory
     }
 }

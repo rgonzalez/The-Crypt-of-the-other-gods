@@ -10,17 +10,28 @@ public class Health : MonoBehaviour
     public int actualHealth = 100;
     public bool alive = true;
     private Animator animator;
+    private MovePlayer movePlayer;
+    private AbstractWeapon playerWeapon;
+    private GameObject actualWeapon;
 
     // Start is called before the first frame update
     void Start()
     {
         actualHealth = maxHealth;
         alive = true;
+        movePlayer = GetComponent<MovePlayer>();
         animator = GetComponent<Animator>();
+        playerWeapon = GetComponentInChildren<AbstractWeapon>();
+        AbstractWeapon w = transform.GetComponentInChildren<AbstractWeapon>();
+        if (w)
+        {
+            actualWeapon = w.gameObject;
+        }
         if (animator)
         {
             animator.SetBool("dead", false);
         }
+
     }
 
     // Update is called once per frame
@@ -41,7 +52,11 @@ public class Health : MonoBehaviour
             if (animator)
             {
                 animator.SetBool("dead", true);
+                animator.SetBool("isMoving", false);
             }
+            if (movePlayer) movePlayer.enabled = false;            
+            if (playerWeapon)  playerWeapon.enabled = false;            
+            if (actualWeapon) actualWeapon.SetActive(false);
         }
     }
 

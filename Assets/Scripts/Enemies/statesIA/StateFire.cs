@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StateFire : IStateEnemy
 {
-
     private readonly EnemyIA enemy;
     public EnemyWeapon weapon;
 
@@ -34,21 +33,28 @@ public class StateFire : IStateEnemy
         // so we are going to pass the shoot to a script based in the enemy weapon
         // this is useful to change the weapon script of the enemy independently of this script
         enemy.agent.enabled = false; // stop moving
-        // is the coolDown ?
-        if (Time.time > enemy.time)
+                                     // is the coolDown ?
+                                     //check Range
+        if (weapon)
         {
-            //check Range
-            if (weapon)
+            RaycastHit hit;
+            Vector3 directionTarget = enemy.target.transform.position - enemy.transform.position;
+            if (weapon != null && weapon is EnemyMeleeWeapon)
             {
-                RaycastHit hit;
-                Vector3 directionTarget = enemy.target.transform.position - enemy.transform.position;
-                if (Physics.Raycast(enemy.transform.position,  enemy.transform.TransformDirection(directionTarget), out hit, Mathf.Infinity))
+                //melee attack doesnt need direct vision
+                weapon.PrepareShoot();
+                weapon.Shoot();
+            }
+            else
+            {
+                // the range attack requires direct shoot vision
+                // Debug.DrawRay(enemy.transform.position, enemy.transform.TransformDirection(directionTarget), Color.red);
+                if (Physics.Raycast(enemy.transform.position, enemy.transform.TransformDirection(directionTarget), out hit, Mathf.Infinity))
                 {
                     weapon.target = enemy.target.transform;
                     //is direct range, shoot
                     weapon.PrepareShoot();
                     weapon.Shoot();
-
                 }
             }
         }
@@ -61,7 +67,5 @@ public class StateFire : IStateEnemy
         {
             ToFollowState(); //alternates between follow and shoot
         }
-
-
     }
 }
