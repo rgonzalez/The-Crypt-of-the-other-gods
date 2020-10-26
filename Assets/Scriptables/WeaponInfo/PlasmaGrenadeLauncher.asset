@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
+  m_Name: PlasmaGrenadeLauncher
+  m_EditorClassIdentifier: 
+  prefabName: PlasmaGrenadeLauncher
+  weaponType: 6
+  weaponPrefab: {fileID: 1701858691476826119, guid: 641073b688fc05a44bf600f17efefdc3,
+    type: 3}
+  pickableWeaponPrefab: {fileID: 7743673138945639933, guid: 70f26b8771ea0f144a0a186f457e4bb8,
+    type: 3}
