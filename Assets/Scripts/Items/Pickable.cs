@@ -9,6 +9,10 @@ using System.Collections;
 public class Pickable : MonoBehaviour
 {
     public Constants.PICKABLE_TYPE itemtype;
+    public GameObject weaponAttached; // the attached weapon can be a prefab (prefabAttached) o a real item inside
+    // this item is in case of the player drops a weapon, is not a prefab, is a instance, with own ammo
+
+
     public GameObject prefabAttached; //sometimes is a weapon, so comes with an attached prefab of weapon
     private bool touching = false; // is the player touching?
     private bool picking = false;
@@ -56,7 +60,15 @@ public class Pickable : MonoBehaviour
     {
         if (InventoryManager.instance)
         {
-            InventoryManager.instance.EquipWeapon(prefabAttached);
+            if (weaponAttached)
+            {
+                //there is a real Weapon attached, use this instead the prefab
+                InventoryManager.instance.EquipWeapon(weaponAttached, false);
+            }
+            else
+            {
+                InventoryManager.instance.EquipWeapon(prefabAttached, true);
+            }
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1701858691476826119
+--- !u!1 &5800786216290889711
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1701858691476826118}
-  - component: {fileID: 1701858691476826123}
-  - component: {fileID: 3377279597605958594}
+  - component: {fileID: 5800786216290889710}
+  - component: {fileID: 5800786216290889699}
+  - component: {fileID: 7620159583077086250}
   m_Layer: 0
-  m_Name: PlasmaShotgun
+  m_Name: PlasmaGrenadeLauncher
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1701858691476826118
+--- !u!4 &5800786216290889710
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701858691476826119}
+  m_GameObject: {fileID: 5800786216290889711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1701858691476826123
+--- !u!82 &5800786216290889699
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701858691476826119}
+  m_GameObject: {fileID: 5800786216290889711}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -128,53 +128,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3377279597605958594
+--- !u!114 &7620159583077086250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701858691476826119}
+  m_GameObject: {fileID: 5800786216290889711}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0967732d29c834498102a06226fad91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireCD: 0.5
+  active: 0
+  ammoType: 1
+  weaponType: 6
+  fireCD: 3
   muzzleFlashPrefab: {fileID: 100006, guid: b0a227fc2e558f241b1c747820ccc361, type: 3}
-  ammo: 30
-  maxClip: 30
+  ammo: 5
+  maxClip: 5
   bulletsPerShoot: 1
-  recoilX: 2
-  recoilY: 0.5
-  damage: 2
+  recoilX: 0
+  recoilY: 0
+  damage: 20
+  perfectCritic: 150
   haveLaserSight: 0
   laserSightPrefab: {fileID: 0}
   weaponStatus: 0
-  slider: {fileID: 0}
-  reloadBar: {fileID: 0}
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  perfectRange: {x: 0, y: 0}
-  activeRange: {x: 0, y: 0}
-  perfectImage: {fileID: 0}
-  activeImage: {fileID: 0}
-  startBar: {fileID: 0}
-  endBar: {fileID: 0}
-  reloadSconds: 2
-  standardReload: 3
-  activeReload: 2.25
-  activeReloadEnd: 2.25
-  perfectReload: 1.8
-  failedReload: 4
+  slider: {fileID: 3492761538595784455, guid: 1c697003309e44c47b84837f9d64f6a8, type: 3}
+  reloadBar: {fileID: 3492761538972332572, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  perfectImage: {fileID: 3492761538556071371, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  activeImage: {fileID: 3492761539928509703, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  startBar: {fileID: 3492761538214708184, guid: 1c697003309e44c47b84837f9d64f6a8,
+    type: 3}
+  endBar: {fileID: 3492761538860140239, guid: 1c697003309e44c47b84837f9d64f6a8, type: 3}
+  standardReload: 5
+  activeReload: 2.5
+  activeReloadEnd: 4
+  perfectReload: 2
+  failedReload: 5
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
-  bulletPrefab: {fileID: 2416640270222668430, guid: d9fd433642a4d4f49a62ae9e940699d2,
+  bulletPrefab: {fileID: 2970268838045224165, guid: 65d06a5de6e151c48bed35637993f16f,
     type: 3}
-  numberOfBullets: 2
-  usePhysics: 0
-  bulletForce: 0
+  numberOfBullets: 1
+  usePhysics: 1
+  bulletForce: 200

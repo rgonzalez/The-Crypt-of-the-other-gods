@@ -11,6 +11,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
 {
     public bool active = false; // is the weapon active?
     public AMMO_TYPE ammoType;
+    public Constants.WEAPON_TYPE weaponType;
     public float fireCD = 30f;
     public GameObject muzzleFlashPrefab;
     // weapon info
@@ -46,7 +47,6 @@ public  abstract class AbstractWeapon : MonoBehaviour
     public Transform endBar;
 
     [Header("ReloadInfo")]
-    public float reloadSconds = 2;
     public float standardReload = 3f;
     public float activeReload = 2.25f;
     public float activeReloadEnd = 2.25f;
@@ -105,67 +105,79 @@ public  abstract class AbstractWeapon : MonoBehaviour
             float endActiveRange = activeReloadEnd / standardReload;
             SetReloadRange(startActiveRange, endActiveRange, activeImage);
         }
-        if (haveLaserSight && laserSightPrefab)
+        if (haveLaserSight) //if have a lasersight attached, can be previously spawned (a droped weapon)
         {
-            GameObject laser = Instantiate(laserSightPrefab, transform);
-            laserSight = laser.GetComponent<LineRenderer>();
+            if (laserSight == null) //so just instantiate in case of have, but not ready
+            {
+                GameObject laser = Instantiate(laserSightPrefab, transform);
+                laserSight = laser.GetComponent<LineRenderer>();
+            }
+            laserSight.gameObject.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && !reloading)
+        if (active)
         {
-            firing = true;
-        }
-        else
-        {
-            firing = false;
-            if (muzzleFlash)
+            if (Input.GetButton("Fire1") && !reloading)
             {
-                //    muzzleFlash.SetActive(false);
+                firing = true;
             }
+            else
+            {
+                firing = false;
+                if (muzzleFlash)
+                {
+                    //    muzzleFlash.SetActive(false);
+                }
+            }
+            if (Input.GetButtonDown("Reload"))
+            {
+                Debug.Log("reloooadd!!");
+                reload = true;
+            }
+            else
+            {
+                //reload = false;
+            }
+            OnUpdating();
         }
-        if (Input.GetButtonDown("Reload"))
-        {
-            reload = true;
-        }
-        else
-        {
-            reload = false;
-        }
-        OnUpdating();
 
     }
 
     private void FixedUpdate()
     {
-        if (firing)
+        if (active)
         {
-            if (ammo > 0)
+            if (firing)
             {
-                Shoot();
+                if (ammo > 0)
+                {
+                    Shoot();
+                }
+            }
+            if (reload)
+            {
+                Debug.Log("PULSED RELOAD " + weaponStatus + " stat" + reloading);
+                if (!reloading)
+                {
+
+                    Reload();
+                    BeginReload();
+                    reload = false;
+                }
+                else if (weaponStatus == RELOADSTATE.RELOADING) // only can re-reload (aply 'active reload') if is reloading
+                                                                // just in case the user tries to reload and the weapon is failing
+                {
+
+                    //is RELOADING!! is a perfect?
+                    ManualReload();
+                    reload = false;
+                }
             }
         }
-        if (reload)
-        {
-            if (!reloading)
-            {
-
-                Reload();
-                BeginReload();
-                reload = false; 
-            } else if (weaponStatus == RELOADSTATE.RELOADING) // only can re-reload (aply 'active reload') if is reloading
-                                                               // just in case the user tries to reload and the weapon is failing
-            {
-
-                //is RELOADING!! is a perfect?
-                ManualReload();
-                reload = false;
-            }
-        }
-
     }
 
     /// <summary>
@@ -232,7 +244,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
             int ammoToFill = maxClip - ammo; // how much to fill the actual clip?
             int addedAmmo = InventoryManager.instance.ExtractAmmoFromInventory(ammoToFill, ammoType);
             // maybe the inventory has not enough, so just add how much left
-            ammo = addedAmmo;
+            ammo += addedAmmo;
             if (perfect)
             {
                 //IS A PERFECT RELOAD SO ADD CRITICAL AMMO!!!

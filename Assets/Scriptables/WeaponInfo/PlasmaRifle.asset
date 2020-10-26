@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
+  m_Name: PlasmaRifle
+  m_EditorClassIdentifier: 
+  prefabName: PlasmaRifle
+  weaponType: 3
+  weaponPrefab: {fileID: 1353245767066647309, guid: 6ed966e49ad3a1346b8a00ec6c89491e,
+    type: 3}
+  pickableWeaponPrefab: {fileID: 4692189623396430372, guid: 6a92caf92d2831740aa403b40e4e8f25,
+    type: 3}

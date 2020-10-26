@@ -5,7 +5,7 @@ using static Constants;
 
 public class InventoryManager : MonoBehaviour
 {
-
+    public GameObject emptyPickable;
     /// <summary>
     /// Actual Ammo in the bag
     /// </summary>
@@ -77,6 +77,7 @@ public class InventoryManager : MonoBehaviour
             {
                 GameObject w = objectSpawner.GetChild(i).gameObject;
                 w.SetActive(false);
+                w.GetComponent<AbstractWeapon>().active = true; // are loaded weapons
                 ConfigReloadBar(w.GetComponent<AbstractWeapon>());
                 equipedWeapons.Add(w);
 
@@ -129,21 +130,37 @@ public class InventoryManager : MonoBehaviour
             if (indexWeapon < 0) indexWeapon = equipedWeapons.Count - 1;
             actualWeapon.SetActive(false);
             indexWeapon = (indexWeapon % equipedWeapons.Count);
-            Debug.Log("atttach " + indexWeapon);
             actualWeapon = equipedWeapons[indexWeapon];
             actualWeapon.SetActive(true);
-                
+            ConfigReloadBar(actualWeapon.GetComponent<AbstractWeapon>());
+
+
         }
     }
 
     #region WEAPON
-    public void EquipWeapon(GameObject weaponPrefab)
+    /// <summary>
+    ///  Add the weapon to the inventory as active weapon, can be a prefab, or instantiated weapon
+    /// </summary>
+    /// <param name="pickerWeapon"> The weapon to add, can be a PREFAB (so we need create a instance) or a real weapon</param>
+    /// <param name="isPrefab">if is true, we need instantiate the new weapon, if not, just attach</param>
+    public void EquipWeapon(GameObject pickerWeapon, bool isPrefab)
     {
 
         if (objectSpawner)
         {
-            GameObject newWeapon = Instantiate(weaponPrefab, objectSpawner);
-
+            GameObject newWeapon = null;
+            if (isPrefab) {
+                newWeapon = Instantiate(pickerWeapon, objectSpawner);
+            } else
+            {
+                newWeapon = pickerWeapon;
+                //pos in the right pos/rot
+                newWeapon.transform.SetParent(objectSpawner);
+                newWeapon.transform.localPosition = Vector3.zero;
+                newWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            }
+            newWeapon.GetComponent<AbstractWeapon>().active = true;
             if (equipedWeapons.Count < maxWeapons)
             {
                 //can pick a weapon keeping the previous!
@@ -157,8 +174,20 @@ public class InventoryManager : MonoBehaviour
             {
                 // the bag is full of weapons... so we must replace the actual
 
-                // TODO: generate a pickable prefab with the actual Weapon, not destroy it
-                Destroy(actualWeapon);
+                // GEnerate a new pickable droping the actual weapon,
+                //drop the actual weapon
+                AbstractWeapon wToDrop = actualWeapon.GetComponent<AbstractWeapon>();
+                wToDrop.active = false; // just to not shoot the droped weapon
+                if (wToDrop.haveLaserSight)
+                {
+                   Transform laserSight = actualWeapon.transform.FindChild("laserSight(Clone)");
+                    if (laserSight)
+                    {
+                        laserSight.gameObject.SetActive(false);
+                    }
+                }
+                WeaponSpawnManager.instance.InstantiateWeapon(objectSpawner, false, wToDrop.weaponType, actualWeapon);
+
                 equipedWeapons[indexWeapon] = newWeapon;
                 actualWeapon = newWeapon;
             }

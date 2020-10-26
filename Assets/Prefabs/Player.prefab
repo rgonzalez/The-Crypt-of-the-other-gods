@@ -729,8 +729,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3492761538556071373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.492, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0984, y: 0, z: 0}
+  m_LocalScale: {x: 0.099999994, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3492761538972332570}
   m_RootOrder: 3
@@ -810,7 +810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3492761538595784505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.492, y: 0.009, z: -0}
+  m_LocalPosition: {x: -0.492, y: 0.009, z: 0.009}
   m_LocalScale: {x: 0.40144, y: 14.289672, z: 1}
   m_Children: []
   m_Father: {fileID: 3492761538972332570}
@@ -856,7 +856,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: db89d92bb06a9964594193fa5e6e024e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1038,8 +1038,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3492761539928509752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.492, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.19999999, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3492761538972332570}
   m_RootOrder: 1
@@ -1106,6 +1106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a0e89648f5a584b9f996569628f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  ammoType: 0
   fireCD: 2
   muzzleFlashPrefab: {fileID: 0}
   ammo: 30
@@ -1114,20 +1116,13 @@ MonoBehaviour:
   recoilX: 1
   recoilY: 0.5
   damage: 100
+  perfectCritic: 150
   haveLaserSight: 1
   laserSightPrefab: {fileID: 5968842818105738113, guid: 6957f0a177da25a4c85d94b31e86056a,
     type: 3}
   weaponStatus: 0
   slider: {fileID: 0}
   reloadBar: {fileID: 0}
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  perfectRange: {x: 0, y: 0}
-  activeRange: {x: 0, y: 0}
   perfectImage: {fileID: 0}
   activeImage: {fileID: 0}
   startBar: {fileID: 0}
