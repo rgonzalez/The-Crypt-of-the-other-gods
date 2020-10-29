@@ -23,7 +23,13 @@ public abstract class AbstractUIAmmo : MonoBehaviour
         OnUpdate();
     }
 
-    public abstract void Reload(int perfectAmmo);
+    /// <summary>
+    ///  Reload the UI 
+    /// </summary>
+    /// <param name="perfectAmmo"> how much is critical ammo? can be represented different</param>
+    /// <param name="actualAmmo"> the full ammo that is loaded (contains the perfectAmmo inside)</param>
+    /// <param name="maxClip"> the max clipe, maybe the full clip is 30, but only can load 15 bullets</param>
+    public abstract void Reload(int perfectAmmo, int actualAmmo, int maxClip);
     public abstract void Shoot(int wasterAmmo);
 
     protected abstract void OnStart();

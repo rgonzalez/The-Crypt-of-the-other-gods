@@ -58,6 +58,12 @@ public class LineWeapon : AbstractWeapon
                 audioSource.PlayOneShot(shootAudio);
             }
             ammo -= bulletsPerShoot;
+            int actualDamage = damage;
+            if (perfectAmmo > 0)
+            {
+                actualDamage = damage * perfectCritic;
+                perfectAmmo -= bulletsPerShoot;
+            }
 
             Plane plane = new Plane(Vector3.up, transform.position);
             float distance;
@@ -87,13 +93,7 @@ public class LineWeapon : AbstractWeapon
                     {
                          Debug.DrawRay(transform.position, newTarget, Color.yellow, 10f);
                         lr.SetPosition(1, hit.point);
-                        Debug.Log("Did Hit");
-                        int actualDamage = damage;
-                        if (perfectAmmo > 0)
-                        {
-                            actualDamage = damage * perfectCritic;
-                            perfectAmmo -= bulletsPerShoot;
-                        }
+                        Debug.Log("Did Hit");                  
                         hit.collider.SendMessage("Damage", actualDamage, SendMessageOptions.DontRequireReceiver);
                     }
                     else
@@ -106,6 +106,7 @@ public class LineWeapon : AbstractWeapon
                 }
             }
             nextFire = Time.time + fireCD;
+            UIManager.instance.Shoot(ammoType, bulletsPerShoot, ammo);
         } 
     }
 
