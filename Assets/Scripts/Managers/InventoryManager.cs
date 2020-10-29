@@ -5,6 +5,7 @@ using static Constants;
 
 public class InventoryManager : MonoBehaviour
 {
+    public Constants.WEAPON_TYPE basicWeapon; // the basic weapon equiped if the user starts empty
     public GameObject emptyPickable;
     /// <summary>
     /// Actual Ammo in the bag
@@ -53,8 +54,8 @@ public class InventoryManager : MonoBehaviour
         slider = reloadBar.transform.Find("SlideSprite").GetComponent<SpriteRenderer>();
         activeRange = reloadBar.transform.Find("activeSprite").GetComponent<SpriteRenderer>();
         perfectRange = reloadBar.transform.Find("perfectSprite").GetComponent<SpriteRenderer>();
-        
-        ConfigInitialWeapons();
+        ConfigInitialWeapons(); //configure initial weapons and systems
+        EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
 
     }
 
@@ -139,6 +140,20 @@ public class InventoryManager : MonoBehaviour
     }
 
     #region WEAPON
+
+
+    public void EquipBasicWeapon()
+    {
+        //if the player doesnt have weapon... equip a rifle
+        if (actualWeapon == null)
+        {
+            GameObject prefab = WeaponSpawnManager.instance.GetWeaponPrefab(basicWeapon);
+            if (prefab != null)
+            {
+                EquipWeapon(prefab, true);
+            }
+        }
+    }
     /// <summary>
     ///  Add the weapon to the inventory as active weapon, can be a prefab, or instantiated weapon
     /// </summary>
@@ -165,7 +180,8 @@ public class InventoryManager : MonoBehaviour
             {
                 //can pick a weapon keeping the previous!
                 // so add to the list, and move the actualWeapon to the new;
-                actualWeapon.SetActive(false);
+                if (actualWeapon != null)
+                    actualWeapon.SetActive(false);
                 equipedWeapons.Add(newWeapon);
                 indexWeapon = equipedWeapons.Count - 1;
                 actualWeapon = equipedWeapons[indexWeapon];

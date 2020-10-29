@@ -8,7 +8,8 @@ public class WeaponSpawnManager : MonoBehaviour
     public static WeaponSpawnManager instance;
     // a list of weapon info scriptable objects
     public List<WeaponInfoScriptable> weaponInfoList = new List<WeaponInfoScriptable>();
-
+    // a list of ammo info scriptable object to be informed
+    public List<AmmoInfoScriptable> ammoInfoList = new List<AmmoInfoScriptable>();
 
     // Use this for initialization
     void Start()
@@ -23,11 +24,7 @@ public class WeaponSpawnManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 
     /// <summary>
     ///  Instantiate a new Pickable item weapon in the World, in the transform position/rotation
@@ -75,5 +72,41 @@ public class WeaponSpawnManager : MonoBehaviour
             newPickable.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
             // now with the pickable push it into the real world
         }
+    }
+
+    /// <summary>
+    /// Get a prefab from the passed weaponType
+    /// </summary>
+    /// <param name="weaponType"></param>
+    /// <returns></returns>
+    public GameObject GetWeaponPrefab(Constants.WEAPON_TYPE weaponType)
+    {
+        GameObject prefab = null;
+        foreach(WeaponInfoScriptable w in weaponInfoList)
+        {
+            if (w.weaponType == weaponType)
+            {
+                prefab = w.weaponPrefab;
+            }
+        }
+        return prefab;
+    }
+
+
+    /// <summary>
+    /// Get the info scriptable about the ammo demanded
+    /// </summary>
+    /// <param name="ammoType">the type of ammo asked</param>
+    /// <returns></returns>
+    public AmmoInfoScriptable GetAmmoInfo(Constants.AMMO_TYPE ammoType)
+    {
+        foreach(AmmoInfoScriptable ammo in ammoInfoList)
+        {
+            if (ammo.ammoType == ammoType)
+            {
+                return ammo;
+            }
+        }
+        return null;
     }
 }
