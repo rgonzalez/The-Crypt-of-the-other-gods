@@ -81,7 +81,7 @@ public class BulletWeapon : AbstractWeapon
                 }
 
             }
-
+            UIManager.instance.Shoot(ammoType, bulletsPerShoot, ammo);
             nextFire = Time.time + fireCD;
         }
     }

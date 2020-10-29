@@ -8,8 +8,10 @@ public class Ammo
 {
     public int ammo = 0;
     public AmmoInfoScriptable info;
-    public Text text; //the textcomponent with the ammo info
+    public Text text; //the textcomponent with the ammo info (general TOP LEFT)
+    public Text equipedAmmoText; // The equiped ammo (BOTTOM RIGHT)
     public GameObject ammoUIEquiped; // the actual instance of the equiped ammo
+    public AbstractUIAmmo ammoUI; // the ammoUI script that keeps the clip icon/animations
     public GameObject ammoIcon; // the actual instance of the ammo little icon
 }
 
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
             // Start Health Config
             ConfigureMaxHealth();
             ConfigureHealth();
+            PrepareAmmoUI();
 
             //Ammo Config
         } else
@@ -124,9 +127,12 @@ public class UIManager : MonoBehaviour
                     // create the instances of the icon and equiped ammo in the canvas
                     ammoInfo.ammoIcon = Instantiate(ammoInfo.info.ammoIcon, allAmmoPanel.transform);
                     ammoInfo.text = ammoInfo.ammoIcon.GetComponent<Text>();
-                    ammoInfo.text.text = "0";
+                    ammoInfo.text.text = InventoryManager.instance.GetAvailableAmmo(ammoInfo.info.ammoType).ToString();
                     ammoInfo.ammoUIEquiped = Instantiate(ammoInfo.info.ammoUIPrefab, equipedAmmoPanel.transform);
+                    ammoInfo.equipedAmmoText = ammoInfo.ammoUIEquiped.GetComponent<Text>();
+                    ammoInfo.ammoUI = ammoInfo.ammoUIEquiped.GetComponent<AbstractUIAmmo>();
                     ammoInfo.ammoUIEquiped.SetActive(false); //disable the equiped ammo, later active the actual Weapon
+                    ammoList.Add(ammoInfo);
                 }
             }
         }
@@ -141,7 +147,7 @@ public class UIManager : MonoBehaviour
         {
             if (ammo.info.ammoType == ammoType)
             {
-                ammo.ammoUIEquiped.SetActive(false);
+                ammo.ammoUIEquiped.SetActive(true);
                 actualAmmo = ammo;
             } else
             {
@@ -159,12 +165,42 @@ public class UIManager : MonoBehaviour
         {
             if (ammo.info.ammoType == ammoType)
             {
-                ammo.text = ammount;
+                ammo.text.text = ammount.ToString();
             }
         }
     }
 
-    //ADD THE SHOOT AND RELOAD
+    /// <summary>
+    /// Set to the equiped ammo display, start shoot animation
+    /// </summary>
+    /// <param name="ammoType">the kind of ammo used</param>
+    /// <param name="ammountWasted">the ammount to extract</param>
+    /// <param name="ammount">How much left in the clip</param>
+
+    public void Shoot(Constants.AMMO_TYPE ammoType, int ammountWasted, int ammountLeft)
+    {
+        foreach(Ammo ammo in ammoList)
+        {
+            if (ammo.info.ammoType == ammoType)
+            {
+                ammo.equipedAmmoText.text = ammountLeft.ToString(); // update the ammount in the clip info
+                if (ammountWasted > 0) 
+                    ammo.ammoUI.Shoot(ammountWasted);
+            }
+        }
+    }
+
+    public void ReloadAmmo(Constants.AMMO_TYPE ammoType,  int maxClip, int actualAmmo, int perfectAmmo)
+    {
+        foreach (Ammo ammo in ammoList)
+        {
+            if (ammo.info.ammoType == ammoType)
+            {
+                ammo.equipedAmmoText.text = actualAmmo.ToString(); // update the ammount in the clip info
+                ammo.ammoUI.Reload(perfectAmmo, actualAmmo, maxClip);
+            }
+        }
+    }
 
     #endregion AMMO
 }

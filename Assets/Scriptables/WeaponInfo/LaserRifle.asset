@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: LaserRifle
   weaponType: 11
+  ammoType: 3
   weaponPrefab: {fileID: 212177662981016187, guid: d7a4d9685bc585343b86ec98f1799f6c,
     type: 3}
   pickableWeaponPrefab: {fileID: 4203824643158213583, guid: d1600034b8da1ab4d889c551eb21067b,

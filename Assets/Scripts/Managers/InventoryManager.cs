@@ -208,8 +208,19 @@ public class InventoryManager : MonoBehaviour
                 actualWeapon = newWeapon;
             }
             actualWeapon.SetActive(true);
-            ConfigReloadBar(actualWeapon.GetComponent<AbstractWeapon>());
+            AbstractWeapon weapon = actualWeapon.GetComponent<AbstractWeapon>();
+            ConfigReloadBar(weapon);
+            //we must wait to the instance of UI is created, to this is in a coroutine
+            StartCoroutine(EquipWeaponUI(weapon));
         }
+    }
+
+    IEnumerator EquipWeaponUI(AbstractWeapon weapon)
+    {
+        yield return new WaitForEndOfFrame();
+        UIManager.instance.EquipAmmo(weapon.ammoType);
+        //load the clip, maybe is changed (new weapon for example)
+        UIManager.instance.ReloadAmmo(weapon.ammoType, weapon.maxClip, weapon.ammo, weapon.perfectAmmo);
     }
     #endregion WEAPON
 
@@ -250,6 +261,7 @@ public class InventoryManager : MonoBehaviour
         int actualAmmo = GetAvailableAmmo(ammoType);
         actualAmmo += ammo;
         SetAvailableAmmo(ammoType, actualAmmo);
+        UIManager.instance.UpdateAmmoBagInfo(ammoType, actualAmmo);
     }
 
 
@@ -288,6 +300,8 @@ public class InventoryManager : MonoBehaviour
                 laser = ammo;
                 break;
         }
+
+        UIManager.instance.UpdateAmmoBagInfo(ammoType, ammo);
     }
     #endregion AMMO
 }

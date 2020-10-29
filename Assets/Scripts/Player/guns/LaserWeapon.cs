@@ -67,6 +67,8 @@ public class LaserWeapon : AbstractWeapon
             ActiveLasers(); 
             StartCoroutine(DisableLasers());
             nextFire = Time.time + fireCD;
+
+            UIManager.instance.Shoot(ammoType, bulletsPerShoot, ammo);
         }
     }
 

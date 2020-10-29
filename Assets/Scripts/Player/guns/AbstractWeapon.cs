@@ -18,7 +18,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     public int ammo = 30; // actual ammo in the clip
     public int maxClip = 30; //max capacity of the clip
     public int bulletsPerShoot = 1; // how much ammo per shoot
-    protected int perfectAmmo = 0; //the actual Perfect ammo (with critic) for an perfect reload
+    public int perfectAmmo = 0; //the actual Perfect ammo (with critic) for an perfect reload
 
     public float recoilX = 1f;
     public float recoilY = 0.5f;
@@ -257,6 +257,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
             }
         }
         weaponStatus = RELOADSTATE.READY;
+        UIManager.instance.ReloadAmmo(ammoType, maxClip, ammo, perfectAmmo);
         reloadBar.SetActive(false);       
     }
 
