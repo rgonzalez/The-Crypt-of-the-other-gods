@@ -58,9 +58,10 @@ public class Health : MonoBehaviour
             if (playerWeapon)  playerWeapon.enabled = false;            
             if (actualWeapon) actualWeapon.SetActive(false);
         }
+        UpdateHealth();
     }
 
-    public bool Heal(int heal)
+    public void Heal(int heal)
     {
         if (actualHealth < maxHealth)
         {
@@ -69,9 +70,19 @@ public class Health : MonoBehaviour
             {
                 actualHealth = maxHealth;
             }
-            return true;
         }
-        return false; // isnt healed, because was full HP
+        UpdateHealth();
+    }
+
+
+    private void UpdateHealth()
+    {
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.maxHealth = maxHealth;
+            UIManager.instance.actualHealth = actualHealth;
+            UIManager.instance.ConfigureHealth();
+        }
     }
 
     /// <summary>
