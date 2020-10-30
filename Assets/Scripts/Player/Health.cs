@@ -14,15 +14,20 @@ public class Health : MonoBehaviour
     private AbstractWeapon playerWeapon;
     private GameObject actualWeapon;
 
+    public RoomManager room; // in case of enemy, must notify in case of dead
+
     // Start is called before the first frame update
     void Start()
     {
         actualHealth = maxHealth;
         alive = true;
+        //player config
         movePlayer = GetComponent<MovePlayer>();
         animator = GetComponent<Animator>();
         playerWeapon = GetComponentInChildren<AbstractWeapon>();
         AbstractWeapon w = transform.GetComponentInChildren<AbstractWeapon>();
+
+
         if (w)
         {
             actualWeapon = w.gameObject;
@@ -47,16 +52,29 @@ public class Health : MonoBehaviour
     public void Damage(int damage)
     {
         actualHealth -= damage;
-        if (actualHealth <= 0)
+        if (actualHealth <= 0) //DEAD CASE!
         {
             if (animator)
             {
                 animator.SetBool("dead", true);
                 animator.SetBool("isMoving", false);
             }
-            if (movePlayer) movePlayer.enabled = false;            
-            if (playerWeapon)  playerWeapon.enabled = false;            
-            if (actualWeapon) actualWeapon.SetActive(false);
+            if (gameObject.CompareTag(Constants.TAG_PLAYER))
+            {
+                // Player Config
+                if (movePlayer) movePlayer.enabled = false;
+                if (playerWeapon) playerWeapon.enabled = false;
+                if (actualWeapon) actualWeapon.SetActive(false);
+            }
+            if (gameObject.CompareTag(Constants.TAG_ENEMY))
+            {
+                //EnemyConfig
+                if (room)
+                {
+                    //the room must be set by the room itself
+                    room.NotifyDead();
+                }
+            }
         }
         UpdateHealth();
     }
@@ -71,7 +89,11 @@ public class Health : MonoBehaviour
                 actualHealth = maxHealth;
             }
         }
-        UpdateHealth();
+        //if player update UI
+        if (gameObject.CompareTag(Constants.TAG_PLAYER))
+        {
+            UpdateHealth();
+        }
     }
 
 

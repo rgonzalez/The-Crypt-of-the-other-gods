@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4310804882260133147}
   - component: {fileID: 4310804882260133148}
   - component: {fileID: 4310804882260133146}
+  - component: {fileID: 186191825858582780}
   m_Layer: 0
   m_Name: MeleeZombie
   m_TagString: Untagged
@@ -221,13 +222,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
+  canMove: 1
+  moving: 1
   agent: {fileID: 0}
   target: {fileID: 0}
   shootRange: 0.87
   followRange: 2
   coolDownAttack: 3
   t: 4
-  time: 0
   actualDistance: 0
 --- !u!195 &4310804882260133148
 NavMeshAgent:
@@ -273,3 +275,19 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   shootAudio: {fileID: 0}
   timeActiveAttack: 5
+--- !u!114 &186191825858582780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310804882260133153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5163951e9dd21fb48a52c6d6f3d48fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  actualHealth: 100
+  alive: 1
+  room: {fileID: 0}

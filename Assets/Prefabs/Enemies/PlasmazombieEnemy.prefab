@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8737893999592068367}
   - component: {fileID: 8737893999592068366}
   - component: {fileID: 8737893999592068361}
+  - component: {fileID: 1353833049689235667}
   m_Layer: 0
   m_Name: PlasmazombieEnemy
   m_TagString: Untagged
@@ -200,6 +201,22 @@ MonoBehaviour:
   numberOfBullets: 1
   usePhysics: 0
   bulletForce: 0
+--- !u!114 &1353833049689235667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8737893999592068369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5163951e9dd21fb48a52c6d6f3d48fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  actualHealth: 100
+  alive: 1
+  room: {fileID: 0}
 --- !u!1 &8737894000741642706
 GameObject:
   m_ObjectHideFlags: 0
