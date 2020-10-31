@@ -148,6 +148,7 @@ MonoBehaviour:
   ammo: 2
   maxClip: 2
   bulletsPerShoot: 1
+  perfectAmmo: 0
   recoilX: 1
   recoilY: 3
   damage: 80
@@ -169,6 +170,7 @@ MonoBehaviour:
   failedReload: 5
   shootAudio: {fileID: 0}
   reloadAudio: {fileID: 0}
+  equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
   laserPrefab: {fileID: 1959126674990218, guid: 9b5060b1ff53e1d4595d1b1343aaf52d,
     type: 3}
   numberOfLasers: 3

@@ -18,7 +18,8 @@ public class RoomManager : MonoBehaviour
 
     private WaveConfiguration actualConfiguration;
 
-    private bool activeRoom = true; // if the room is work
+    private bool activeRoom = true; // if the room is work, so the room can spawn
+    private bool spawningRoom = false; //just a check var, maybe by error the user can enter twice in the trigger
 
     public List<GameObject> doors = new List<GameObject>();
 
@@ -46,9 +47,13 @@ public class RoomManager : MonoBehaviour
         // move the doors instead of activate
         if (activeRoom && other.CompareTag(Constants.TAG_PLAYER))
         {
-            CloseRoom();
-            // start spawn ticks until all enemies or the actual wave is dead
-            ConfigWave();
+            if (!spawningRoom)
+            {
+                spawningRoom = true;
+                CloseRoom();
+                // start spawn ticks until all enemies or the actual wave is dead
+                ConfigWave();
+            }
         }
     }
 
@@ -57,7 +62,7 @@ public class RoomManager : MonoBehaviour
         if (roomConfig.waves.Count > actualWave)
         {
             Debug.Log("config wave " + actualWave);
-            actualConfiguration = roomConfig.waves[actualWave];
+            actualConfiguration = roomConfig.waves[actualWave].Clone(); //clone the scriptable
             enemiesLeft = 0;
             //get the total of enemies
             foreach (EnemyConfig enemyConfig in actualConfiguration.enemies)
@@ -79,6 +84,7 @@ public class RoomManager : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
+        Debug.Log("SPAWN WAVE!");
         int indexSpawn = 0;
         int enemiesSpawned = 0;
         yield return new WaitForSecondsRealtime(secondBetweenSpawns);
@@ -93,7 +99,7 @@ public class RoomManager : MonoBehaviour
                 //spawn each type of enemy until is 0
                 if (enemyConfig.ammount > 0)
                 {
-                    GameObject enemy = Instantiate(enemyConfig.enemy, spawns[indexSpawn].transform, true);
+                    GameObject enemy = Instantiate(enemyConfig.enemy, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
                     Health healthEnemy = enemy.GetComponent<Health>();
                     healthEnemy.room = this;
                     Debug.Log("SPAWNED AT " + indexSpawn);

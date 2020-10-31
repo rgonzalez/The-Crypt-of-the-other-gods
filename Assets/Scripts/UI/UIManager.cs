@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     private GameObject healthPanel; //the GameObjectPanelHealth that is filled with Hearts
     [SerializeField]
     private GameObject heartPrefab; // the Heart, is a sprite with 2 layers (red and gray)
+    [SerializeField]
+    private Image equipedWeaponIcon; // the bottom right icon of weapon equiped
 
     /// <summary>
     /// AMMO CONFIGURATION
@@ -203,4 +205,12 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion AMMO
+
+    #region WEAPON
+    public void SetEquipedWeapon(Constants.WEAPON_TYPE weaponType)
+    {
+        WeaponInfoScriptable info =  WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
+        equipedWeaponIcon.sprite = info.equipedWeaponIcon;
+    }
+    #endregion WEAPON
 }

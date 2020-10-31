@@ -148,6 +148,7 @@ MonoBehaviour:
   ammo: 5
   maxClip: 5
   bulletsPerShoot: 1
+  perfectAmmo: 0
   recoilX: 0
   recoilY: 0
   damage: 50
@@ -168,6 +169,7 @@ MonoBehaviour:
   failedReload: 4
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
+  equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
   bulletPrefab: {fileID: 2970268838045224165, guid: 77c43d10069e92e458cb75584826591f,
     type: 3}
   numberOfBullets: 1

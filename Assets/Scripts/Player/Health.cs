@@ -51,6 +51,7 @@ public class Health : MonoBehaviour
     /// <param name="damage">The damage to apply to the current gameObject</param>
     public void Damage(int damage)
     {
+        Debug.Log("DAMAGE OF " + damage + " AT " + gameObject.name + " HAS " + actualHealth);
         actualHealth -= damage;
         if (actualHealth <= 0) //DEAD CASE!
         {
@@ -68,18 +69,29 @@ public class Health : MonoBehaviour
             }
             if (gameObject.CompareTag(Constants.TAG_ENEMY))
             {
+
                 //EnemyConfig
                 if (room)
-                {
-                    //the room must be set by the room itself
+                {                
                     room.NotifyDead();
                 }
+                //the room must be set by the room itself
+                Die();
             }
         }
-        UpdateHealth();
+        //if player update UI
+        if (gameObject.CompareTag(Constants.TAG_PLAYER))
+        {
+            UpdateHealth();
+        }
     }
 
-    public void Heal(int heal)
+    /// <summary>
+    ///  Heal the actual gameobject if the actual life is < max
+    /// </summary>
+    /// <param name="heal"> ammount of health to add</param>
+    /// <returns>TRUE if the gameObject has been healed, FALSE if was maxhealth</returns>
+    public bool Heal(int heal)
     {
         if (actualHealth < maxHealth)
         {
@@ -88,12 +100,16 @@ public class Health : MonoBehaviour
             {
                 actualHealth = maxHealth;
             }
+       
+            //if player update UI
+            if (gameObject.CompareTag(Constants.TAG_PLAYER))
+            {
+                UpdateHealth();
+            }
+
+            return true;
         }
-        //if player update UI
-        if (gameObject.CompareTag(Constants.TAG_PLAYER))
-        {
-            UpdateHealth();
-        }
+        return false;
     }
 
 
@@ -114,6 +130,6 @@ public class Health : MonoBehaviour
     /// <returns></returns>
     public void Die()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

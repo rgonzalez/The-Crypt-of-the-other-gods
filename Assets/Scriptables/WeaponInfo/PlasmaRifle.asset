@@ -19,3 +19,4 @@ MonoBehaviour:
     type: 3}
   pickableWeaponPrefab: {fileID: 4692189623396430372, guid: 6a92caf92d2831740aa403b40e4e8f25,
     type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: a09506623e95ebc4991228e51233cc2b, type: 3}

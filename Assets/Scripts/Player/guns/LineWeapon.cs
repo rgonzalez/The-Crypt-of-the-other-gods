@@ -73,8 +73,6 @@ public class LineWeapon : AbstractWeapon
             {
                 worldPosition = ray.GetPoint(distance);
                 worldPosition = new Vector3(worldPosition.x, transform.position.y, worldPosition.z);
-
-                Debug.Log("transform" + transform.position + " worldPosition " + worldPosition);
                 //   transform.LookAt(worldPosition);
                 //  transform.TransformDirection(Vector3.forward) <- 2º parameter raycast
                 RaycastHit hit;
@@ -91,14 +89,14 @@ public class LineWeapon : AbstractWeapon
 
                     if (Physics.Raycast(transform.position, newTarget, out hit, distance))
                     {
-                         Debug.DrawRay(transform.position, newTarget, Color.yellow, 10f);
+                       //  Debug.DrawRay(transform.position, newTarget, Color.yellow, 10f);
                         lr.SetPosition(1, hit.point);
-                        Debug.Log("Did Hit");                  
+                        Debug.Log("Did Hit at " + hit.collider.name);                  
                         hit.collider.SendMessage("Damage", actualDamage, SendMessageOptions.DontRequireReceiver);
                     }
                     else
                     {
-                          Debug.DrawRay(transform.position, newTarget, Color.white, 10f);
+                         // Debug.DrawRay(transform.position, newTarget, Color.white, 10f);
                         Debug.Log("Did not Hit " + hit.point);
                         Vector3 pos = (newTarget) * distance;
                         lr.SetPosition(1, pos);

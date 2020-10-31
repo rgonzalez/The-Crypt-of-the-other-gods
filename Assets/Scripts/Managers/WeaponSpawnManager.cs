@@ -92,6 +92,18 @@ public class WeaponSpawnManager : MonoBehaviour
         return prefab;
     }
 
+    public WeaponInfoScriptable GetWeaponInfo(Constants.WEAPON_TYPE weaponType)
+    {
+        foreach (WeaponInfoScriptable w in weaponInfoList)
+        {
+            if (w.weaponType == weaponType)
+            {
+                return w;
+            }
+        }
+        return null;
+    }
+
 
     /// <summary>
     /// Get the info scriptable about the ammo demanded

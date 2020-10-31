@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1353833049689235667}
   m_Layer: 0
   m_Name: PlasmazombieEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8737893999592068369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.61, y: 1.891, z: -7.23}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children:
   - {fileID: 3507168525683980195}
@@ -118,8 +118,8 @@ MonoBehaviour:
   moving: 1
   agent: {fileID: 0}
   target: {fileID: 0}
-  shootRange: 4
-  followRange: 4
+  shootRange: 5.63
+  followRange: 7.04
   coolDownAttack: 0
   t: 4
   actualDistance: 0
@@ -171,9 +171,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &8737893999592068361
 MonoBehaviour:
