@@ -133,7 +133,11 @@ public class InventoryManager : MonoBehaviour
             indexWeapon = (indexWeapon % equipedWeapons.Count);
             actualWeapon = equipedWeapons[indexWeapon];
             actualWeapon.SetActive(true);
-            ConfigReloadBar(actualWeapon.GetComponent<AbstractWeapon>());
+            AbstractWeapon weaponScript = actualWeapon.GetComponent<AbstractWeapon>();
+            weaponScript.EquipAudio();
+
+            UIManager.instance.SetEquipedWeapon(weaponScript.weaponType);
+            ConfigReloadBar(weaponScript);
 
 
         }
@@ -175,7 +179,10 @@ public class InventoryManager : MonoBehaviour
                 newWeapon.transform.localPosition = Vector3.zero;
                 newWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
             }
-            newWeapon.GetComponent<AbstractWeapon>().active = true;
+            AbstractWeapon weaponScript = newWeapon.GetComponent<AbstractWeapon>();
+            weaponScript.active = true;
+            weaponScript.EquipAudio();
+            //set the icon
             if (equipedWeapons.Count < maxWeapons)
             {
                 //can pick a weapon keeping the previous!
@@ -196,7 +203,7 @@ public class InventoryManager : MonoBehaviour
                 wToDrop.active = false; // just to not shoot the droped weapon
                 if (wToDrop.haveLaserSight)
                 {
-                   Transform laserSight = actualWeapon.transform.FindChild("laserSight(Clone)");
+                   Transform laserSight = actualWeapon.transform.Find("laserSight(Clone)");
                     if (laserSight)
                     {
                         laserSight.gameObject.SetActive(false);
@@ -210,8 +217,10 @@ public class InventoryManager : MonoBehaviour
             actualWeapon.SetActive(true);
             AbstractWeapon weapon = actualWeapon.GetComponent<AbstractWeapon>();
             ConfigReloadBar(weapon);
+
             //we must wait to the instance of UI is created, to this is in a coroutine
             StartCoroutine(EquipWeaponUI(weapon));
+
         }
     }
 
@@ -221,7 +230,13 @@ public class InventoryManager : MonoBehaviour
         UIManager.instance.EquipAmmo(weapon.ammoType);
         //load the clip, maybe is changed (new weapon for example)
         UIManager.instance.ReloadAmmo(weapon.ammoType, weapon.maxClip, weapon.ammo, weapon.perfectAmmo);
+
+        UIManager.instance.SetEquipedWeapon(weapon.weaponType);
     }
+
+
+
+ 
     #endregion WEAPON
 
     #region AMMO

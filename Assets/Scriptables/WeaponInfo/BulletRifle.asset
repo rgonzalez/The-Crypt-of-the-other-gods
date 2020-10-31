@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: Rifle
   weaponType: 0
+  ammoType: 0
   weaponPrefab: {fileID: 982397820929034534, guid: 6d3672497f7b8a642bd8d617c78636d3,
     type: 3}
   pickableWeaponPrefab: {fileID: 5941216718098609064, guid: f5801dea9234dd94b986b556fa452641,
     type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 3b0398c74c10a1041936eed9832ca629, type: 3}

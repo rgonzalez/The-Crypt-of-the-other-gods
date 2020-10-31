@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+using UnityEngine.UI;
+
 [CreateAssetMenu(fileName = "WeaponInfo", menuName = "ScriptableObjects/WeaponInfo")]
 public class WeaponInfoScriptable : ScriptableObject
 {
@@ -11,5 +12,5 @@ public class WeaponInfoScriptable : ScriptableObject
     public Constants.AMMO_TYPE ammoType;
     public GameObject weaponPrefab;
     public GameObject pickableWeaponPrefab;
-
+    public Sprite equipedWeaponIcon;
 }

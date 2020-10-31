@@ -15,17 +15,17 @@ MonoBehaviour:
   difficult: 0
   waves:
   - enemies:
-    - ammount: 5
+    - ammount: 2
       enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
         type: 3}
-    - ammount: 3
+    - ammount: 2
       enemy: {fileID: 8737893999592068369, guid: 97e871d4de8865043a1d94c7a55db72c,
         type: 3}
   - enemies:
-    - ammount: 3
-      enemy: {fileID: 8737893999592068369, guid: 97e871d4de8865043a1d94c7a55db72c,
+    - ammount: 2
+      enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
         type: 3}
   - enemies:
-    - ammount: 3
-      enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
+    - ammount: 1
+      enemy: {fileID: 8737893999592068369, guid: 97e871d4de8865043a1d94c7a55db72c,
         type: 3}

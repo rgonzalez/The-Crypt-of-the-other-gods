@@ -61,6 +61,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     // Audios
     public AudioClip shootAudio;
     public AudioClip reloadAudio;
+    public AudioClip equipAudio;
 
     //internal variables
     protected GameObject muzzleFlash;
@@ -82,12 +83,22 @@ public  abstract class AbstractWeapon : MonoBehaviour
             muzzleFlash = Instantiate(muzzleFlashPrefab, transform);
             muzzleFlash.SetActive(false);
         }
-        audioSource = GetComponent<AudioSource>();
+        if (!audioSource)
+            audioSource = GetComponent<AudioSource>();
         // Geberal Code for start the weapon
 
         ConfigWeapon();
 
         OnStarting(); // specific code Start() for the weapon
+    }
+
+    public void EquipAudio()
+    {
+        //maybe is a new instantiated weapon (not start() executed)
+        if (!audioSource)
+            audioSource = GetComponent<AudioSource>();
+        if (audioSource && equipAudio)
+            this.audioSource.PlayOneShot(equipAudio);
     }
 
     public void ConfigWeapon()

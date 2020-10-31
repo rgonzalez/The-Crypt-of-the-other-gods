@@ -121,6 +121,7 @@ public class Bullet : MonoBehaviour
             Debug.Log("HIT ENEMY");
 
         }
+        Debug.Log("hit other:" + other.name);
         other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
 
     }
