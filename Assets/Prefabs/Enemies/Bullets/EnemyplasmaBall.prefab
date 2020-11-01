@@ -9685,8 +9685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206175b0ae02c9143b2e72fa6b0ef839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  speed: 2
-  bounces: 0
+  damage: 5
+  speed: 4
+  bounces: 3
   explosionPrefab: {fileID: 167520, guid: 5d1d90cc4eadb2c4c93c3841acf72166, type: 3}
   keepAfterExplosion: 0

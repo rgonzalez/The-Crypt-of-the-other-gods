@@ -47,13 +47,13 @@ MonoBehaviour:
   active: 0
   ammoType: 0
   weaponType: 2
-  fireCD: 0.5
+  fireCD: 0.1
   muzzleFlashPrefab: {fileID: 100006, guid: b0a227fc2e558f241b1c747820ccc361, type: 3}
   ammo: 30
   maxClip: 30
   bulletsPerShoot: 1
   perfectAmmo: 0
-  recoilX: 0.8
+  recoilX: 0.2
   recoilY: 0.1
   damage: 10
   perfectCritic: 150

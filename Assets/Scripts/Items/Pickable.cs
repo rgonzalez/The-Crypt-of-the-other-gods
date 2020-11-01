@@ -23,35 +23,45 @@ public class Pickable : MonoBehaviour
     public Constants.AMMO_TYPE ammoType; //if is ammo, what type?
 
     private GameObject player;
+    private bool active = false; // is pickable?
+    public float secondsToActive = 1f;
 
     // Use this for initialization
     void Start()
     {
+        StartCoroutine(ActiveItem());
+    }
 
+    IEnumerator ActiveItem()
+    {
+        yield return new WaitForSecondsRealtime(secondsToActive);
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!autoPick) // only with items that must USE to pick
-        { 
-            if (Input.GetButtonDown("Use") && touching)
+        if (active)
+        {
+            if (!autoPick) // only with items that must USE to pick
             {
-                picking = true;
-            }
-            else
-            {
-                picking = false;
+                if (Input.GetButtonDown("Use") && touching)
+                {
+                    picking = true;
+                }
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (picking)
+        if (active)
         {
-
-            PickItem();
+            if (picking)
+            {
+                picking = false;
+                PickItem();
+            }
         }
     }
 
@@ -70,6 +80,7 @@ public class Pickable : MonoBehaviour
                     break;
                 case Constants.PICKABLE_TYPE.WEAPON:
                     EquipWeapon();
+                    UIManager.instance.ClearWeaponInfo();
                     break;
             }
         }
@@ -117,7 +128,7 @@ public class Pickable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constants.TAG_PLAYER))
+        if (other.CompareTag(Constants.TAG_PLAYER) && active)
         {
             player = other.gameObject;
             touching = true;
@@ -125,15 +136,30 @@ public class Pickable : MonoBehaviour
             {
                 PickItem();
             }
+            //in case of weapon, show the info in the UI
+            if (itemtype == Constants.PICKABLE_TYPE.WEAPON)
+            {
+                Constants.WEAPON_TYPE weaponType = Constants.WEAPON_TYPE.BULLET_RIFLE;
+                if (weaponAttached)
+                {
+                    weaponType = weaponAttached.GetComponent<AbstractWeapon>().weaponType;
+                } else
+                {
+                    weaponType = prefabAttached.GetComponent<AbstractWeapon>().weaponType;
+                }
+                UIManager.instance.ShowWeaponInfo(weaponType);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(Constants.TAG_PLAYER))
+        if (other.CompareTag(Constants.TAG_PLAYER) && active)
         {
             player = null;
             touching = false;
+            if (itemtype == Constants.PICKABLE_TYPE.WEAPON)
+                UIManager.instance.ClearWeaponInfo();
         }
     }
 

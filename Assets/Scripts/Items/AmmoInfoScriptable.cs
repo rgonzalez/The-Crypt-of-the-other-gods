@@ -8,4 +8,5 @@ public class AmmoInfoScriptable : ScriptableObject {
     public string ammoName;
     public GameObject ammoIcon; //little icon for all ammos info, is a prefab
     public GameObject ammoUIPrefab;// the actual Ammo Equiped Prefab  - botom right
+    public GameObject pickableAmmoPrefab;
 }

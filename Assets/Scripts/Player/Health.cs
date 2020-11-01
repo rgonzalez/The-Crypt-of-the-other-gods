@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
         playerWeapon = GetComponentInChildren<AbstractWeapon>();
         AbstractWeapon w = transform.GetComponentInChildren<AbstractWeapon>();
 
+        Time.timeScale = 1f;
 
         if (w)
         {
@@ -66,6 +67,8 @@ public class Health : MonoBehaviour
                 if (movePlayer) movePlayer.enabled = false;
                 if (playerWeapon) playerWeapon.enabled = false;
                 if (actualWeapon) actualWeapon.SetActive(false);
+                //stop the time
+                StartCoroutine(ShowDeadPanel());
             }
             if (gameObject.CompareTag(Constants.TAG_ENEMY))
             {
@@ -131,5 +134,12 @@ public class Health : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator ShowDeadPanel()
+    {
+        yield return new WaitForSeconds(2f);
+        Time.timeScale = 0.0f;
+        UIManager.instance.ShowDeadPanel();
     }
 }

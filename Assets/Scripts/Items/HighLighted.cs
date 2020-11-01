@@ -6,21 +6,17 @@ public class HighLighted : MonoBehaviour
 {
 
     Material m_Material;
+    public bool disabled = false;
     // Use this for initialization
     void Start()
     {
         m_Material = GetComponent<Renderer>().material;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constants.TAG_PLAYER))
+        if (other.CompareTag(Constants.TAG_PLAYER) && !disabled)
         {
             //change to visible
             if (m_Material)
@@ -36,10 +32,21 @@ public class HighLighted : MonoBehaviour
     {
         if (other.CompareTag(Constants.TAG_PLAYER))
         {
-            if (m_Material)
-            {
-                m_Material.SetColor("_EmissiveColor", Color.black);
-            }
+            SetNormalColor();
         }
+    }
+
+    private void SetNormalColor()
+    {
+        if (m_Material)
+        {
+            m_Material.SetColor("_EmissiveColor", Color.black);
+        }
+    }
+
+    public void Disable()
+    {
+        disabled = true;
+        SetNormalColor();
     }
 }

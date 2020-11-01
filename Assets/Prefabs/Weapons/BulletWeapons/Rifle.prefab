@@ -53,8 +53,8 @@ MonoBehaviour:
   maxClip: 20
   bulletsPerShoot: 1
   perfectAmmo: 0
-  recoilX: 2
-  recoilY: 2
+  recoilX: 0
+  recoilY: 0
   damage: 30
   perfectCritic: 200
   haveLaserSight: 1

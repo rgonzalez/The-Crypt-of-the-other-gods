@@ -143,12 +143,13 @@ MonoBehaviour:
   active: 0
   ammoType: 1
   weaponType: 5
-  fireCD: 0.5
+  fireCD: 0.3
   muzzleFlashPrefab: {fileID: 100006, guid: b0a227fc2e558f241b1c747820ccc361, type: 3}
   ammo: 30
   maxClip: 30
   bulletsPerShoot: 1
-  recoilX: 2
+  perfectAmmo: 0
+  recoilX: 0.8
   recoilY: 0.5
   damage: 20
   perfectCritic: 150
@@ -168,6 +169,7 @@ MonoBehaviour:
   failedReload: 4
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
   reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
+  equipAudio: {fileID: 0}
   bulletPrefab: {fileID: 2416640270222668430, guid: 615e8e0f7849afe4da54d54563018484,
     type: 3}
   numberOfBullets: 1

@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   ammoUIPrefab: {fileID: 1044393935265575557, guid: f738d507c46ae2d40aa78379877f7495,
     type: 3}
+  pickableAmmoPrefab: {fileID: 7623053837458846029, guid: a51528bb1f225024f9e776aeb52e18e5,
+    type: 3}

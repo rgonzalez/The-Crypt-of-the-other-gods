@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+
 public class LaserWeapon : AbstractWeapon
 {
     [Header("Laser config")]
@@ -22,7 +24,7 @@ public class LaserWeapon : AbstractWeapon
             l.SetActive(false);
             lasers.Add(l);
             // if bounces on this weapon, then generate the bouncing lasers
-            for (i = 0; i < numberOfBounces; i++)
+            for (int j = 0; j < numberOfBounces; j++)
             {
 
                 GameObject bl = Instantiate(laserPrefab, transform);
@@ -36,7 +38,7 @@ public class LaserWeapon : AbstractWeapon
     {
       if (lasersActivated)
         {
-            ActiveLasers();
+            ActiveLasers(false);
         }
     }
 
@@ -64,7 +66,7 @@ public class LaserWeapon : AbstractWeapon
             {
                 actualDamage = damage;
             }
-            ActiveLasers(); 
+            ActiveLasers(true); 
             StartCoroutine(DisableLasers());
             nextFire = Time.time + fireCD;
 
@@ -72,26 +74,44 @@ public class LaserWeapon : AbstractWeapon
         }
     }
 
-    private void ActiveLasers()
+    /// <summary>
+    /// The active lasers is trigered by shoot or keeping the lasers active,
+    /// 
+    /// </summary>
+    /// <param name="addRecoil">Says if add recoil random to the lasers, true when is a new shoot, false when usually in update(9</param>
+    private void ActiveLasers(bool addRecoil)
     {
         for (int i = 0; i < numberOfLasers; i++)
         {
             int index = i * numberOfBounces;
-            GenerateLaser(index, numberOfBounces, transform.position, transform.forward, true);
+            GenerateLaser(index, numberOfBounces, transform.position, transform.forward, addRecoil, true);
         }
     }
-    private void GenerateLaser(int index, int bouncesLeft, Vector3 startPos, Vector3 direction, bool addRecoil)
+    private void GenerateLaser(int index, int bouncesLeft, Vector3 startPos, Vector3 direction, bool addRecoil, bool firstLaser)
     {
         GameObject l = lasers[index];
         l.transform.position = startPos;
 
         RaycastHit hit;
-        Vector3 newTarget = Quaternion.Euler(recoilX, recoilY, 0) * direction;
+        if (addRecoil)
+        {
+            Vector3 newTarget = Quaternion.Euler(Random.Range(-recoilX, recoilX), Random.Range(-recoilY, recoilY), 0) * direction;
 
-        l.transform.rotation = Quaternion.LookRotation(newTarget);
+            l.transform.rotation = Quaternion.LookRotation(newTarget);
+            // l.transform.rotation = Quaternion.Euler(Random.Range(-recoilX, recoilX)*90, Random.Range(-recoilY, recoilY)*90, 0);
+            // l.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-recoilX, recoilX) * 90, Random.Range(-recoilY, recoilY) * 90, 0));
 
+        }
+        else
+        {
+            if (!firstLaser)
+            {
+                l.transform.rotation = Quaternion.LookRotation(direction);
+            }
+        }
+        Debug.Log("laser " + index + " ->" + l.transform.rotation.ToString());
         l.SetActive(true);
-        if (Physics.Raycast(startPos, newTarget, out hit, Mathf.Infinity))
+        if (Physics.Raycast(startPos, l.transform.forward, out hit, Mathf.Infinity))
         {
 
             hit.collider.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
@@ -99,10 +119,10 @@ public class LaserWeapon : AbstractWeapon
             {
                 //hit something, bounce
                 Vector3 incoming = hit.point - startPos;
-                Vector3 reflectVec = Vector3.Reflect(incoming, hit.normal);
+                Vector3 reflectVec = Vector3.Reflect(l.transform.forward, hit.normal);
 
                 //there is left bounces, so calculate the new direction
-                GenerateLaser(++index, --bouncesLeft, hit.point, reflectVec, false);
+                GenerateLaser(++index, --bouncesLeft, hit.point, reflectVec, false, false);
             }
         }
     }
