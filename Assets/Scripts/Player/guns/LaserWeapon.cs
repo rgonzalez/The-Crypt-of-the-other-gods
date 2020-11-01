@@ -95,12 +95,14 @@ public class LaserWeapon : AbstractWeapon
         RaycastHit hit;
         if (addRecoil)
         {
-            Vector3 newTarget = Quaternion.Euler(Random.Range(-recoilX, recoilX), Random.Range(-recoilY, recoilY), 0) * direction;
+            
+                // Vector3 newTarget = Quaternion.Euler(Random.Range(-recoilX, recoilX), Random.Range(-recoilY, recoilY), 0) * direction;
 
-            l.transform.rotation = Quaternion.LookRotation(newTarget);
-            // l.transform.rotation = Quaternion.Euler(Random.Range(-recoilX, recoilX)*90, Random.Range(-recoilY, recoilY)*90, 0);
-            // l.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-recoilX, recoilX) * 90, Random.Range(-recoilY, recoilY) * 90, 0));
+                //                l.transform.rotation = Quaternion.LookRotation(newTarget);
+                // l.transform.rotation = Quaternion.Euler(Random.Range(-recoilX, recoilX)*90, Random.Range(-recoilY, recoilY)*90, 0);
+                l.transform.rotation = Quaternion.Euler(0, 0, 0);
 
+          
         }
         else
         {
