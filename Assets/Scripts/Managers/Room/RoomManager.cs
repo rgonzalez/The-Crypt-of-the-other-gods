@@ -29,6 +29,10 @@ public class RoomManager : MonoBehaviour
     private int maxEnemiesWave = 0;
     private int enemiesLeft = 0;
 
+    //is a chest when the waves ends? must be a child inside the room, so we can configure it
+    //must be disabled at start
+    public GameObject chest;
+
     // Use this for initialization
     void Start()
     {
@@ -141,6 +145,10 @@ public class RoomManager : MonoBehaviour
         {
             //TODO: animate door
             door.SetActive(false);
+        }
+        if (chest != null)
+        {
+            chest.SetActive(true);
         }
     }
 

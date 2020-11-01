@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     private GameObject heartPrefab; // the Heart, is a sprite with 2 layers (red and gray)
     [SerializeField]
     private Image equipedWeaponIcon; // the bottom right icon of weapon equiped
+    [SerializeField]
+    private GameObject deadPanel;
 
     /// <summary>
     /// AMMO CONFIGURATION
@@ -48,6 +50,14 @@ public class UIManager : MonoBehaviour
     private GameObject equipedAmmoPanel;
     private Ammo actualAmmo; // the actual Ammo equiped
 
+
+    /// <summary>
+    /// Centered info in screen
+    /// </summary>
+    [SerializeField]
+    private Text centeredText;
+    [SerializeField]
+    private Image centeredImage;
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +117,14 @@ public class UIManager : MonoBehaviour
                 int leftHeart = (actualHealth - (i * heartHealth));
                 heart.GetComponent<Image>().fillAmount = (float)leftHeart  / (float)heartHealth; // set the % of the heart image
             }
+        }
+    }
+
+    public void ShowDeadPanel()
+    {
+        if (deadPanel)
+        {
+            deadPanel.SetActive(true);
         }
     }
     #endregion HEALTH
@@ -207,10 +225,45 @@ public class UIManager : MonoBehaviour
     #endregion AMMO
 
     #region WEAPON
+    /// <summary>
+    /// Show in the actual equip weapon the icon
+    /// </summary>
+    /// <param name="weaponType"></param>
     public void SetEquipedWeapon(Constants.WEAPON_TYPE weaponType)
     {
         WeaponInfoScriptable info =  WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
         equipedWeaponIcon.sprite = info.equipedWeaponIcon;
+    }
+
+    /// <summary>
+    /// Show a pickable weapon info in the center of screen
+    /// </summary>
+    /// <param name="weaponType"></param>
+    public void ShowWeaponInfo(Constants.WEAPON_TYPE weaponType)
+    {
+        if (WeaponSpawnManager.instance)
+        {
+            WeaponInfoScriptable info = WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
+            if (info)
+            {
+                if (info.equipedWeaponIcon)
+                {
+                    centeredImage.sprite = info.equipedWeaponIcon;
+                    centeredImage.gameObject.SetActive(true);
+                }
+                if (info.name != null)
+                {
+                    centeredText.text = info.name;
+                }
+            }
+        }
+    }
+
+    public void ClearWeaponInfo()
+    {
+        centeredImage.sprite = null;
+        centeredImage.gameObject.SetActive(false);
+        centeredText.text = "";
     }
     #endregion WEAPON
 }

@@ -13,21 +13,23 @@ public class Constants
     public enum AMMO_TYPE { BULLET, PLASMA, ROCKET, LASER };
     public enum PICKABLE_TYPE { AMMO, WEAPON, HEALTH};
     // TODO: change to a combination of weapon/ammo types
-    public enum WEAPON_TYPE { BULLET_RIFLE,
+    public enum WEAPON_TYPE {
+        BULLET_RIFLE,
         BULLET_SHOTGUN,
         BULLET_MCHGUN,
         PLASMA_RIFLE,
         PLASMA_SHOTGUN,
         PLASMA_MCHGUN,
         PLASMA_GRENADE,
-        ROCKET_LAUNCHER,
-        ROCKET_SHOTGUN,
-        ROCKET_MCHGUN,
+       // ROCKET_LAUNCHER,
+       // ROCKET_SHOTGUN,
+       // ROCKET_MCHGUN,
         ROCKET_GRENADE,
         LASER_RIFLE,
         LASER_SHOTGUN,
-        LASER_MCHGUN,
-        LASER_GRENADE};
+        //  LASER_MCHGUN,
+        //  LASER_GRENADE
+    };
 }
 
 

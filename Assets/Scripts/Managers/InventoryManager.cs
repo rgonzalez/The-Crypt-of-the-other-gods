@@ -125,7 +125,7 @@ public class InventoryManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (changingWeapon !=0)
+        if (changingWeapon !=0 && equipedWeapons.Count > 1)
         {
             indexWeapon += changingWeapon;
             if (indexWeapon < 0) indexWeapon = equipedWeapons.Count - 1;
@@ -135,8 +135,7 @@ public class InventoryManager : MonoBehaviour
             actualWeapon.SetActive(true);
             AbstractWeapon weaponScript = actualWeapon.GetComponent<AbstractWeapon>();
             weaponScript.EquipAudio();
-
-            UIManager.instance.SetEquipedWeapon(weaponScript.weaponType);
+            StartCoroutine(EquipWeaponUI(weaponScript));
             ConfigReloadBar(weaponScript);
 
 
