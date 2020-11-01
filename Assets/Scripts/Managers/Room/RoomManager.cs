@@ -33,6 +33,8 @@ public class RoomManager : MonoBehaviour
     //must be disabled at start
     public GameObject chest;
 
+    public GameObject SpawnEffect; //special effect for every spawn, can be changed to a list (random or by spawn) in a future
+
     // Use this for initialization
     void Start()
     {
@@ -103,6 +105,10 @@ public class RoomManager : MonoBehaviour
                 //spawn each type of enemy until is 0
                 if (enemyConfig.ammount > 0)
                 {
+                    if (SpawnEffect)
+                    {
+                        GameObject effect = Instantiate(SpawnEffect, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
+                    }
                     GameObject enemy = Instantiate(enemyConfig.enemy, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
                     Health healthEnemy = enemy.GetComponent<Health>();
                     healthEnemy.room = this;
