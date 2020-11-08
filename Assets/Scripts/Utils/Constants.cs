@@ -13,20 +13,22 @@ public class Constants
     public enum AMMO_TYPE { BULLET, PLASMA, ROCKET, LASER };
     public enum PICKABLE_TYPE { AMMO, WEAPON, HEALTH};
     // TODO: change to a combination of weapon/ammo types
+
+        // THE INT VALUE IS USED IN THE BUTTONS SHOP
     public enum WEAPON_TYPE {
-        BULLET_RIFLE,
-        BULLET_SHOTGUN,
-        BULLET_MCHGUN,
-        PLASMA_RIFLE,
-        PLASMA_SHOTGUN,
-        PLASMA_MCHGUN,
-        PLASMA_GRENADE,
+        BULLET_RIFLE, //0
+        BULLET_SHOTGUN, // 1
+        BULLET_MCHGUN, // 2
+        PLASMA_RIFLE, // 3
+        PLASMA_SHOTGUN, // 4
+        PLASMA_MCHGUN, // 5
+        PLASMA_GRENADE, // 6
        // ROCKET_LAUNCHER,
        // ROCKET_SHOTGUN,
        // ROCKET_MCHGUN,
-        ROCKET_GRENADE,
-        LASER_RIFLE,
-        LASER_SHOTGUN,
+        ROCKET_GRENADE, // 7
+        LASER_RIFLE, // 8
+        LASER_SHOTGUN, // 9
         //  LASER_MCHGUN,
         //  LASER_GRENADE
     };

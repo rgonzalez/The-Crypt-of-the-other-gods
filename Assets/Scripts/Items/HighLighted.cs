@@ -20,8 +20,8 @@ public class HighLighted : MonoBehaviour
         {
             //change to visible
             if (m_Material)
-            {
-                Debug.Log("SET COLOR");
+            { 
+                Debug.Log("SET COLOR " + m_Material.name);
                 //GLOW!! seems pickable!
                 m_Material.SetColor("_EmissiveColor", Color.green);
             }

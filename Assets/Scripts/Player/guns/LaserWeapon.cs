@@ -100,7 +100,7 @@ public class LaserWeapon : AbstractWeapon
 
                 //                l.transform.rotation = Quaternion.LookRotation(newTarget);
                 // l.transform.rotation = Quaternion.Euler(Random.Range(-recoilX, recoilX)*90, Random.Range(-recoilY, recoilY)*90, 0);
-                l.transform.rotation = Quaternion.Euler(0, 0, 0);
+              //  l.transform.rotation = Quaternion.Euler(0, 0, 0);
 
           
         }

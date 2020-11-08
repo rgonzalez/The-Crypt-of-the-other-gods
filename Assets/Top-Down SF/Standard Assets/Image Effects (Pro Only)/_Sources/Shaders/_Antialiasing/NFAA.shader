@@ -128,8 +128,6 @@ SubShader {
 		#pragma vertex vert
 		#pragma fragment frag
 		#pragma fragmentoption ARB_precision_hint_fastest 
-		#pragma exclude_renderers d3d11_9x
-		#pragma glsl
 		
 		ENDCG
 	}
@@ -141,9 +139,7 @@ SubShader {
 	
 		#pragma vertex vert
 		#pragma fragment fragDebug
-		#pragma fragmentoption ARB_precision_hint_fastest
-		#pragma exclude_renderers d3d11_9x
-		#pragma glsl
+		#pragma fragmentoption ARB_precision_hint_fastest 
 		
 		ENDCG
 	}

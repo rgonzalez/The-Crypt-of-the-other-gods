@@ -34,7 +34,7 @@ public class WeaponSpawnManager : MonoBehaviour
     /// <param name="pointToSpawn"> The position in the world where drop the weapon, is the transform of the spawnPoint</param>
     /// <param name="instantiateNew"> if FALSE: the new pickableWeapon contains an GameObject of weapon, if TRUE contains a PREFAB</param>
     /// <param name="weaponType"> The Kind of weapon, to search in the list of weaponlist</param>
-    /// <param name="weapon">The GameObject of an instantiated weapon, in case of not creating a prefab</param>
+    /// <param name="weapon">The GameObject of an instantiated weapon, in case of not creating a prefab. ONLY NECESARY IF 'instantiateNew' is FALSE</param>
     public void InstantiateWeapon( Transform pointToSpawn, bool instantiateNew, Constants.WEAPON_TYPE weaponType, GameObject weapon )
     {
         WeaponInfoScriptable weaponInstantiate = null;
