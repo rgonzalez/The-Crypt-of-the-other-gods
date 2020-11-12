@@ -20,3 +20,4 @@ MonoBehaviour:
   pickableWeaponPrefab: {fileID: 7601438203157947612, guid: f649eb30905edd943a8ae4bacbc77b31,
     type: 3}
   equipedWeaponIcon: {fileID: 21300000, guid: 8eaab1d9baff79847876efe2582b6761, type: 3}
+  price: 20

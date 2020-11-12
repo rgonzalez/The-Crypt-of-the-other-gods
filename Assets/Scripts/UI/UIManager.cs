@@ -232,7 +232,8 @@ public class UIManager : MonoBehaviour
     public void SetEquipedWeapon(Constants.WEAPON_TYPE weaponType)
     {
         WeaponInfoScriptable info =  WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
-        equipedWeaponIcon.sprite = info.equipedWeaponIcon;
+        if (info && equipedWeaponIcon)
+            equipedWeaponIcon.sprite = info.equipedWeaponIcon;
     }
 
     /// <summary>
