@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    public float maxTimeAlive = 15f; //times to explode if not impact
     public int damage = 1;
     public float speed = 10;
     public int bounces = 0;
@@ -19,9 +19,10 @@ public class Bullet : MonoBehaviour
     // this package use custom collision system, we must add it to our script
 
     private bool hasExploded = false; // with explosions in long time that keeps the grenade active 
-                                        // this script disables itself, but sometimes multiple updates are fired before
-                                        //so this bullet keeps instantiating explosions, this var controls this situation
+                                      // this script disables itself, but sometimes multiple updates are fired before
+                                      //so this bullet keeps instantiating explosions, this var controls this situation
 
+    private float timeToExplode;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +31,25 @@ public class Bullet : MonoBehaviour
 
         var raycastCollision = GetComponentInChildren<RFX4_RaycastCollision>(true);
         if (raycastCollision != null) raycastCollision.CollisionEnter += CollisionEnter;
+        if (maxTimeAlive > 0)
+        {
+            timeToExplode = Time.time + maxTimeAlive;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position -= transform.forward * Time.deltaTime * speed;
+        if (Time.time > timeToExplode)
+        {
+            // the time to explode has come, maybe the grenade, rocket, bullet didnt impacted
+            actualBounces = bounces; //not more bounces, just collide to explode
+            Collide(null, null);
+        }
+        else
+        {
+            transform.position -= transform.forward * Time.deltaTime * speed;
+        }
     }
 
     //normal collision
@@ -115,14 +129,8 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             } 
         }
-        if (other.CompareTag(Constants.TAG_ENEMY))
-        {
-            // enemy damage
-            Debug.Log("HIT ENEMY");
-
-        }
-        Debug.Log("hit other:" + other.name);
-        other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
+        if (other) // maybe the explosion was created by time, not by collition
+            other.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
 
     }
 }

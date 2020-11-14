@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrenadeLauncher
   m_EditorClassIdentifier: 
   prefabName: GrenadeLauncher
-  weaponType: 7
+  weaponType: 8
   ammoType: 2
   weaponPrefab: {fileID: 8119165582113001125, guid: 5d573028f6f92294e959203def2bb30d,
     type: 3}

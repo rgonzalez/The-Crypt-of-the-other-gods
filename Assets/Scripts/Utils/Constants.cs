@@ -23,12 +23,12 @@ public class Constants
         PLASMA_SHOTGUN, // 4
         PLASMA_MCHGUN, // 5
         PLASMA_GRENADE, // 6
-       // ROCKET_LAUNCHER,
+        ROCKET_LAUNCHER, // 7
        // ROCKET_SHOTGUN,
        // ROCKET_MCHGUN,
-        ROCKET_GRENADE, // 7
-        LASER_RIFLE, // 8
-        LASER_SHOTGUN, // 9
+        ROCKET_GRENADE, // 8
+        LASER_RIFLE, // 9
+        LASER_SHOTGUN, // 10
         //  LASER_MCHGUN,
         //  LASER_GRENADE
     };
