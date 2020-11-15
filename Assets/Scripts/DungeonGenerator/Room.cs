@@ -5,7 +5,13 @@ public class Room : MonoBehaviour
 	public Doorway[] doorways;
 	public MeshCollider meshCollider;
 
-	public Bounds RoomBounds {
+    // the walls ordered by side to clean the mesh
+    public GameObject[] topWalls; 
+    public GameObject[] botWalls; 
+    public GameObject[] leftWalls; 
+    public GameObject[] rightWalls;
+
+    public Bounds RoomBounds {
 		get {      
             //calculate the bounds about the most left, most right, most bot and most top colliders, so we can have the max 
             // size of the room
@@ -34,4 +40,47 @@ public class Room : MonoBehaviour
 
         }
 	}
+
+    public void ClearWalls()
+    {
+        // clear the mesh depending the rotation of the room
+        if (transform.rotation.eulerAngles.y > -0.1 && transform.rotation.eulerAngles.y < 0.1)
+        {
+            //the room is in default position
+            foreach(GameObject wall in botWalls)
+            {
+                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
+                if (rendered)
+                    rendered.enabled = false;
+            }
+        } else if (transform.rotation.eulerAngles.y > 85 && transform.rotation.eulerAngles.y < 100)
+        {
+            //rotate 1/4 to right, right walls must dessapear
+            foreach (GameObject wall in rightWalls)
+            {
+                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
+                if (rendered)
+                    rendered.enabled = false;
+            }
+        } else if (transform.rotation.eulerAngles.y > 150 && transform.rotation.eulerAngles.y < 200)
+        {
+            // the room is full rotated
+            foreach (GameObject wall in topWalls)
+            {
+                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
+                if (rendered)
+                    rendered.enabled = false;
+            }
+        } else if (transform.rotation.eulerAngles.y > 200 && transform.rotation.eulerAngles.y < 300)
+        {
+            //rotated to left
+            foreach (GameObject wall in leftWalls)
+            {
+                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
+                if (rendered)
+                    rendered.enabled = false;
+            }
+        }
+    }
+
 }

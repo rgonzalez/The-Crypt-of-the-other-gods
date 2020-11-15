@@ -76,6 +76,7 @@ public class LevelBuilder : MonoBehaviour
 		// Position room
 		startRoom.transform.position = Vector3.zero;
 		startRoom.transform.rotation = Quaternion.identity;
+        ClearWalls(startRoom);
 	}
 
 	void AddDoorwaysToList (Room room, ref List<Doorway> list)
@@ -111,13 +112,16 @@ public class LevelBuilder : MonoBehaviour
 
 				// Check room overlaps
 				if (CheckRoomOverlap (currentRoom)) {
+                    //restart if overlap
 					continue;
 				}
 
 				roomPlaced = true;
 
-				// Add room to list
-				placedRooms.Add (currentRoom);
+                // Add room to list
+
+                ClearWalls(currentRoom);
+                placedRooms.Add (currentRoom);
 
 				// Remove occupied doorways
 				currentDoorway.gameObject.SetActive (false);
@@ -125,7 +129,6 @@ public class LevelBuilder : MonoBehaviour
 
 				availableDoorway.gameObject.SetActive (false);
 				availableDoorways.Remove (availableDoorway);
-
 				// Exit loop if room has been placed
 				break;
 			}
@@ -143,7 +146,14 @@ public class LevelBuilder : MonoBehaviour
 		}
 	}
 
-	void PositionRoomAtDoorway (ref Room room, Doorway roomDoorway, Doorway targetDoorway)
+    //clear the walls so the user can see the walls
+    void ClearWalls(Room room)
+    {
+        room.ClearWalls();
+    }
+
+
+    void PositionRoomAtDoorway (ref Room room, Doorway roomDoorway, Doorway targetDoorway)
 	{
 		// Reset room position and rotation
 		room.transform.position = Vector3.zero;
@@ -161,6 +171,11 @@ public class LevelBuilder : MonoBehaviour
 		room.transform.position = targetDoorway.transform.position - roomPositionOffset;
 	}
 
+    /// <summary>
+    /// Check if a room is overlaping with other rooms, extract the bounds of the room (with all Gameobjects), and use overlap
+    /// </summary>
+    /// <param name="room"></param>
+    /// <returns>TRUE if overlap, FALSE if is a OK room</returns>
 	bool CheckRoomOverlap (Room room)
 	{
 		Bounds bounds = room.RoomBounds;
@@ -202,13 +217,15 @@ public class LevelBuilder : MonoBehaviour
 
 			// Check room overlaps
 			if (CheckRoomOverlap (endRoom)) {
+                // if the checkroomOverlap returns true, exit the loop and restart the system
 				continue;
 			}
 
 			roomPlaced = true;
 
-			// Remove occupied doorways
-			doorway.gameObject.SetActive (false);
+            ClearWalls(room);
+            // Remove occupied doorways
+            doorway.gameObject.SetActive (false);
 			availableDoorways.Remove (doorway);
 
 			availableDoorway.gameObject.SetActive (false);

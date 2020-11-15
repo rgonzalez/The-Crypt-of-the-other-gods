@@ -26,5 +26,12 @@ public class LookMouse : MonoBehaviour
         // in the same Y axis
         Vector3 pos = new Vector3(worldPosition.x, transform.position.y, worldPosition.z);
         transform.LookAt(pos);
+
+        Vector3 lookDirection = new Vector3(Input.GetAxisRaw("RightHoriz"), 0, Input.GetAxisRaw("RightVert"));
+        if (lookDirection.x > 0.1f || lookDirection.x <- 0.1f || lookDirection.z < -0.1f || lookDirection.z > 0.1f)
+        {
+            lookDirection.z = -lookDirection.z;
+            transform.rotation = Quaternion.LookRotation(lookDirection);
+        }
     }
 }

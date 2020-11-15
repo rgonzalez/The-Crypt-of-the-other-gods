@@ -111,6 +111,15 @@ public class InventoryManager : MonoBehaviour
             usingObject = false;
         }
         float changWeaponDir = Input.GetAxis("Mouse ScrollWheel");
+        // maybe is by joystick or button
+        if (Input.GetButtonDown("NextWeapon"))
+        {
+            changWeaponDir = 1;
+        } else if (Input.GetButtonDown("PrevWeapon"))
+        {
+            changWeaponDir = -1;
+        }
+
         if (changWeaponDir > 0)
         {
             changingWeapon = 1;
@@ -137,7 +146,7 @@ public class InventoryManager : MonoBehaviour
             weaponScript.EquipAudio();
             StartCoroutine(EquipWeaponUI(weaponScript));
             ConfigReloadBar(weaponScript);
-
+            changingWeapon = 0;
 
         }
     }
