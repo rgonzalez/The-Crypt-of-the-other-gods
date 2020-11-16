@@ -77,6 +77,7 @@ public class LevelBuilder : MonoBehaviour
 
         // Place player
         endRoom.nextLevel = this.nextLevel;
+
         //generate all NavMesh
         foreach(Room room in placedRooms)
         {
