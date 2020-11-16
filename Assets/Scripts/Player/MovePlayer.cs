@@ -143,12 +143,14 @@ public class MovePlayer : MonoBehaviour
     { 
         animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-     
+       
+        // Cursor.visible = false;
         // The actual player will only move in horizontal, but we extract the grounded in case
 
         groundedPlayer = controller.isGrounded;

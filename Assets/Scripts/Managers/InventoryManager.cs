@@ -35,28 +35,42 @@ public class InventoryManager : MonoBehaviour
     private SpriteRenderer activeRange;
 
     public static InventoryManager instance;
+
+
+    //key configuration
+    public int maxKey = 0;
+    public int actualKeys = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         if (InventoryManager.instance != null)
         {
             Destroy(this);
-        } else
+        }
+        else
         {
             InventoryManager.instance = this;
-        }
-        // create space for weapons
-        player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
-        //get the reloadBar Graphs
-        reloadBar = player.transform.Find("reloadBar").gameObject;
-        startBar = reloadBar.transform.Find("StartBar");
-        endBar = reloadBar.transform.Find("endBar");
-        slider = reloadBar.transform.Find("SlideSprite").GetComponent<SpriteRenderer>();
-        activeRange = reloadBar.transform.Find("activeSprite").GetComponent<SpriteRenderer>();
-        perfectRange = reloadBar.transform.Find("perfectSprite").GetComponent<SpriteRenderer>();
-        ConfigInitialWeapons(); //configure initial weapons and systems
-        EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
 
+            // create space for weapons
+            player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+            //get the reloadBar Graphs
+            reloadBar = player.transform.Find("reloadBar").gameObject;
+            startBar = reloadBar.transform.Find("StartBar");
+            endBar = reloadBar.transform.Find("endBar");
+            slider = reloadBar.transform.Find("SlideSprite").GetComponent<SpriteRenderer>();
+            activeRange = reloadBar.transform.Find("activeSprite").GetComponent<SpriteRenderer>();
+            perfectRange = reloadBar.transform.Find("perfectSprite").GetComponent<SpriteRenderer>();
+            ConfigInitialWeapons(); //configure initial weapons and systems
+            EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
+    //every loaded level, just refresh the UI with the actual weapon
+    private void OnLevelWasLoaded(int level)
+    {
+        StartCoroutine(EquipWeaponUI(actualWeapon.GetComponent<AbstractWeapon>()));
     }
 
     /// <summary>
@@ -234,7 +248,10 @@ public class InventoryManager : MonoBehaviour
 
     IEnumerator EquipWeaponUI(AbstractWeapon weapon)
     {
-        yield return new WaitForEndOfFrame();
+        while (UIManager.instance == null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         UIManager.instance.EquipAmmo(weapon.ammoType);
         //load the clip, maybe is changed (new weapon for example)
         UIManager.instance.ReloadAmmo(weapon.ammoType, weapon.maxClip, weapon.ammo, weapon.perfectAmmo);
@@ -327,4 +344,13 @@ public class InventoryManager : MonoBehaviour
         UIManager.instance.UpdateAmmoBagInfo(ammoType, ammo);
     }
     #endregion AMMO
+
+
+    #region KEY
+
+    public void PickKey(string id)
+    {
+        actualKeys++;
+    }
+    #endregion KEY
 }

@@ -20,6 +20,7 @@ public class WeaponSpawnManager : MonoBehaviour
         } else
         {
             WeaponSpawnManager.instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
     }

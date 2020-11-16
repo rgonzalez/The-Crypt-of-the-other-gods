@@ -1,7 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {
+
+    public GameObject key;
+    public GameObject keySpawn;
 	public Doorway[] doorways;
 	public MeshCollider meshCollider;
 
@@ -10,6 +15,9 @@ public class Room : MonoBehaviour
     public GameObject[] botWalls; 
     public GameObject[] leftWalls; 
     public GameObject[] rightWalls;
+
+    //THE SURFACES TO MOVE
+    public NavMeshSurface[] surfaces;
 
     public Bounds RoomBounds {
 		get {      
@@ -80,6 +88,29 @@ public class Room : MonoBehaviour
                 if (rendered)
                     rendered.enabled = false;
             }
+        }
+    }
+    // place the key in this room
+    public void PlaceKey()
+    {
+        Debug.Log("PLACE KEY AT " + gameObject.name);
+        if (keySpawn && key)
+        {
+            Instantiate(key, keySpawn.transform);
+            Debug.Log("PLACED KEY " + gameObject.name);
+        }
+    }
+
+
+    /// <summary>
+    /// Generate the NavMesh in the room
+    /// </summary>
+    public void BuildNavMesh()
+    {
+       
+        foreach(NavMeshSurface surface in surfaces)
+        {
+            surface.BuildNavMesh();
         }
     }
 
