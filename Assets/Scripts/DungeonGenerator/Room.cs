@@ -2,6 +2,9 @@
 
 public class Room : MonoBehaviour
 {
+
+    public GameObject key;
+    public GameObject keySpawn;
 	public Doorway[] doorways;
 	public MeshCollider meshCollider;
 
@@ -80,6 +83,16 @@ public class Room : MonoBehaviour
                 if (rendered)
                     rendered.enabled = false;
             }
+        }
+    }
+    // place the key in this room
+    public void PlaceKey()
+    {
+        Debug.Log("PLACE KEY AT " + gameObject.name);
+        if (keySpawn && key)
+        {
+            Instantiate(key, keySpawn.transform);
+            Debug.Log("PLACED KEY " + gameObject.name);
         }
     }
 

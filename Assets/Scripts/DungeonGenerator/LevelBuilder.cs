@@ -2,25 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class RoomDistance
+{
+    public float distance = 0f;
+    public Room room;
+}
+
 public class LevelBuilder : MonoBehaviour
 {
+
+    public int keysToFinish = 1; //the number of keys to finish
 	public Room startRoomPrefab, endRoomPrefab;
 	public List<Room> roomPrefabs = new List<Room> ();
 	public Vector2 iterationRange = new Vector2 (3, 10);
-	public Player playerPrefab;
+	public MovePlayer playerPrefab;    
 
+    //CONFIGURATION FOR START GAME
+    public InventoryManager inventoryManager;
+    public Canvas gameCanvas;
+    public UIManager uiManager;
+    public ShopMenuScript shopCameraManager;
+    public WeaponSpawnManager weaponManager;
 	List<Doorway> availableDoorways = new List<Doorway> ();
+    public string nextLevel = ""; //the name of the next Level
 
-	StartRoom startRoom;
+    public static LevelBuilder instance;
+
+
+    StartRoom startRoom;
 	EndRoom endRoom;
 	List<Room> placedRooms = new List<Room> ();
 
 	LayerMask roomLayerMask;
 
-	Player player;
+    MovePlayer player;
+
+    int pickedKeys = 0;
+
 
 	void Start ()
 	{
+        LevelBuilder.instance = this; //each level smash the instance
 		roomLayerMask = LayerMask.GetMask ("Room");
 		StartCoroutine ("GenerateLevel");
 	}
@@ -53,16 +76,13 @@ public class LevelBuilder : MonoBehaviour
 		Debug.Log ("Level generation finished");
 
         // Place player
-        if (playerPrefab)
-        {
-            player = Instantiate(playerPrefab) as Player;
-            player.transform.position = startRoom.playerStart.position;
-            player.transform.rotation = startRoom.playerStart.rotation;
-        }
+        endRoom.nextLevel = this.nextLevel;
+        PlaceKey();
+        StartCoroutine(StartGame());
         //regeneration for testing
-		yield return new WaitForSeconds (3);
-		ResetLevelGenerator ();
-	}
+        //yield return new WaitForSeconds (3);
+        //ResetLevelGenerator ();
+    }
 
 	void PlaceStartRoom ()
 	{
@@ -267,4 +287,127 @@ public class LevelBuilder : MonoBehaviour
 		// Reset coroutine
 		StartCoroutine ("GenerateLevel");
 	}
+
+    //to finish the level, a key must be found, so place the key in the most far (from start) room
+    void PlaceKey()
+    {
+        // we calculate the distances into a new array to just calculate once (not in a sorter system..)
+        List<RoomDistance> distances = new List<RoomDistance>();
+        foreach(Room room in placedRooms)
+        {
+            RoomDistance distance = new RoomDistance();
+            distance.room = room;
+            distance.distance = Vector3.Distance(startRoom.gameObject.transform.position, room.gameObject.transform.position);
+            distances.Add(distance);
+        }
+        distances.Sort(SortByDistance);
+        //now we have the most far room in the [0]
+        distances[0].room.PlaceKey();
+        //clear from the list this room (not put 2 keys in the same room)
+        distances.RemoveAt(0);
+        //if max key to unlock is bigger than 1, place more keys
+        if (keysToFinish > 1) {
+            int keysPlaced = 1;
+            while (keysPlaced < keysToFinish)
+            {
+                if (distances.Count > 0)
+                {
+                    int pos = Random.Range(0, distances.Count - 1);
+                    RoomDistance room = distances[pos];
+                    //check not place a key in the start or end room!!
+                    if ((room.GetType() == typeof(StartRoom)) || (room.GetType() == typeof(EndRoom)))
+                    {
+                        // is a start or end room, just delete it
+                        distances.RemoveAt(pos);
+                    }
+                    else
+                    {
+                        room.room.PlaceKey();
+                        keysPlaced++;
+                        distances.RemoveAt(pos);
+                    }
+                } else
+                {
+                    keysPlaced = keysToFinish;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// sort from most far distance to nearest
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    int SortByDistance(RoomDistance a, RoomDistance b)
+    {
+        if (a.distance > 0 && b.distance > 0)
+        {
+            if (a.distance > b.distance)
+            {
+                return -1;
+            } else if (a.distance < b.distance)
+            {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    IEnumerator StartGame()
+    {
+        //Maybe the player is already in the game (from previous scene with DontDestroy..)
+        GameObject prevPlayer = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+        if (prevPlayer)
+        {
+            prevPlayer.transform.position = startRoom.playerStart.position;
+            prevPlayer.transform.rotation = startRoom.playerStart.rotation;
+        }
+        else if (playerPrefab)
+        {
+            player = Instantiate(playerPrefab) as MovePlayer;
+            player.transform.position = startRoom.playerStart.position;
+            player.transform.rotation = startRoom.playerStart.rotation;
+        }
+        yield return new WaitForEndOfFrame();
+
+        if (weaponManager)
+            weaponManager.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+
+        if (inventoryManager)
+            inventoryManager.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+        if (uiManager)
+            uiManager.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+
+        if (gameCanvas)
+            gameCanvas.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+        if (shopCameraManager)
+            shopCameraManager.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+
+ 
+    }
+
+    public void PickKey()
+    {
+        pickedKeys++;
+    }
+    /// <summary>
+    /// Check if all the keys of this level are picked by the player
+    /// </summary>
+    /// <returns></returns>
+    public bool AllKeysPicked()
+    {
+        if (keysToFinish > 0)
+        {
+            return (pickedKeys >= keysToFinish);
+        } else
+        {
+            return true;
+        }
+    }
 }

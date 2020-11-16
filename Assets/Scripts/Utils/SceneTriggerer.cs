@@ -4,12 +4,31 @@ using System.Collections;
 public class SceneTriggerer : MonoBehaviour
 {
     public string nextScene;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.TAG_PLAYER))
         {
-           SceneUtils sceneUtils = GetComponent<SceneUtils>();
-            sceneUtils.ChangeScene(nextScene);
+            //keys picked to unlock next Level?
+            if (LevelBuilder.instance != null)
+            {
+                if (LevelBuilder.instance.AllKeysPicked())
+                {
+                    LoadLevel();
+                }
+            } else
+            {
+                LoadLevel();
+            }
         }
+    }
+
+    private void LoadLevel()
+    {
+        if (LevelBuilder.instance)
+        {
+            nextScene = LevelBuilder.instance.nextLevel;
+        }
+        GetComponent<SceneUtils>().ChangeScene(nextScene);
     }
 }
