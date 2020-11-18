@@ -58,17 +58,21 @@ public class RoomManager : MonoBehaviour
                 spawningRoom = true;
                 CloseRoom();
                 // start spawn ticks until all enemies or the actual wave is dead
-                ConfigWave();
+                ConfigWave(true);
             }
         }
     }
 
-    private void ConfigWave()
+    /// <summary>
+    /// Create a new wave of enemies
+    /// </summary>
+    /// <param name="inmediate">if TRUE, the next wave doesnt wait the usual time, is a instaspawn</param>
+    private void ConfigWave(bool inmediate)
     {
         if (roomConfig.waves.Count > actualWave)
         {
             Debug.Log("config wave " + actualWave);
-            actualConfiguration = roomConfig.waves[actualWave].Clone(); //clone the scriptable
+            actualConfiguration = roomConfig.waves[actualWave].Clone(); //clone the scriptable, so we dont edit the original
             enemiesLeft = 0;
             //get the total of enemies
             foreach (EnemyConfig enemyConfig in actualConfiguration.enemies)
@@ -77,7 +81,7 @@ public class RoomManager : MonoBehaviour
             }
             maxEnemiesWave = enemiesLeft;
             Debug.Log("Ready to spawn " + maxEnemiesWave);
-            StartCoroutine(SpawnWave());
+            StartCoroutine(SpawnWave(inmediate));
         } else
         {
             // now waves left, open the room
@@ -88,12 +92,20 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnWave()
+    /// <summary>
+    /// Spawns a wave of enemies
+    /// </summary>
+    /// <param name="inmediate"> if TRUE, doesnt wait for the initialTime</param>
+    /// <returns></returns>
+    IEnumerator SpawnWave(bool inmediate)
     {
         Debug.Log("SPAWN WAVE!");
         int indexSpawn = 0;
         int enemiesSpawned = 0;
-        yield return new WaitForSecondsRealtime(secondBetweenSpawns);
+        if (!inmediate)
+        {
+            yield return new WaitForSecondsRealtime(secondBetweenSpawns);
+        }
         //just spawn enemies as many spawn points
         //iterate of each type of enemy
         while (enemiesSpawned < maxEnemiesWave) {
@@ -138,7 +150,7 @@ public class RoomManager : MonoBehaviour
         if (enemiesLeft <= 0)
         {
             actualWave++;
-            ConfigWave();
+            ConfigWave(false);
             //the wave is finished, spawn other wave (the wave checks itself)
 
         }

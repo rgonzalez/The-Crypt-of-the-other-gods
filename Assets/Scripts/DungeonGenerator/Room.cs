@@ -8,7 +8,6 @@ public class Room : MonoBehaviour
     public GameObject key;
     public GameObject keySpawn;
 	public Doorway[] doorways;
-	public MeshCollider meshCollider;
 
     // the walls ordered by side to clean the mesh
     public GameObject[] topWalls; 

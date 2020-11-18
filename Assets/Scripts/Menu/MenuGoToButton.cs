@@ -7,7 +7,7 @@ public class MenuGoToButton : MonoBehaviour
 
     public PlayableDirector director;
     public PlayableAsset playable;
-
+    public MoveBetweenPoints follow;
     public int direction = 1;
     // Use this for initialization
     void Start()
@@ -27,7 +27,8 @@ public class MenuGoToButton : MonoBehaviour
             {
                 if (hit.collider.name == gameObject.name)
                 {
-                    
+                    if (follow)
+                        follow.direction = direction;
                     director.Play(playable);
                 }
             }

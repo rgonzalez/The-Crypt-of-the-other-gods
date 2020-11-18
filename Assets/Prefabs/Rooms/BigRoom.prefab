@@ -325,7 +325,6 @@ GameObject:
   - component: {fileID: 1201536469744331554}
   - component: {fileID: 2703917676806865385}
   - component: {fileID: 5975975443834087243}
-
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -423,7 +422,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-
 --- !u!114 &5975975443834087243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +788,6 @@ MonoBehaviour:
   doorways:
   - {fileID: 1201536470942645773}
   - {fileID: 1201536471044249655}
-  meshCollider: {fileID: 0}
   topWalls:
   - {fileID: 1201536469909344706}
   botWalls:

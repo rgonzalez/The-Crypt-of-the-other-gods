@@ -51,9 +51,10 @@ public class LevelBuilder : MonoBehaviour
 	IEnumerator GenerateLevel ()
 	{
 		WaitForSeconds startup = new WaitForSeconds (1);
-		WaitForFixedUpdate interval = new WaitForFixedUpdate ();
+        // WaitForFixedUpdate interval = new WaitForFixedUpdate ();
+        WaitForEndOfFrame interval = new WaitForEndOfFrame();
 
-		yield return startup;
+        yield return startup;
 
 		// Place start room
 		PlaceStartRoom ();
@@ -64,8 +65,9 @@ public class LevelBuilder : MonoBehaviour
 
 		for (int i = 0; i < iterations; i++) {
 			// Place random room from list
-			PlaceRoom ();
-			yield return interval;
+			bool placed = PlaceRoom ();
+            yield return interval;
+           
 		}
 
 		// Place end room
@@ -113,64 +115,96 @@ public class LevelBuilder : MonoBehaviour
 		}
 	}
 
-	void PlaceRoom ()
+    /// <summary>
+    /// place a room if can be placed
+    /// </summary>
+    /// <returns>TRUE if placed, FALSE if there is not available rooms to place</returns>
+	bool PlaceRoom ()
 	{
-		// Instantiate room
-		Room currentRoom = Instantiate (roomPrefabs [Random.Range (0, roomPrefabs.Count)]) as Room;
-		currentRoom.transform.parent = this.transform;
+        List<int> usedRooms = new List<int>(); // list of used rooms to dont pick again, keep the list of index used this iteration
+        List<int> availableIndexes = new List<int>(); // is a list of index (in the roomPrefabs) to USE
+        bool roomPlaced = false;
+        bool finishedPlacing = false;
+        for (int i = 0; i < roomPrefabs.Count; i++)
+        {
+            availableIndexes.Add(i);
+        }
+        while (availableIndexes.Count > 0)
+        {
+           
+            int actualIndex = Random.Range(0, availableIndexes.Count);
+            int actualRoomPrefabIndex = availableIndexes[actualIndex]; // initially the array can be 0,1,2,3,4,5,6... but when the rooms are being extracted, will be [0,4,6,7] for example
+                                                                        // so if in an array [0,4,6,7] we get random 2, is 4 in the array (the 2 was wrong placed before..)
 
-		// Create doorway lists to loop over
-		List<Doorway> allAvailableDoorways = new List<Doorway> (availableDoorways);
-		List<Doorway> currentRoomDoorways = new List<Doorway> ();
-		AddDoorwaysToList (currentRoom, ref currentRoomDoorways);
+            Room currentRoom = Instantiate(roomPrefabs[actualRoomPrefabIndex]) as Room;
+            currentRoom.transform.parent = this.transform;
 
-		// Get doorways from current room and add them randomly to the list of available doorways
-		AddDoorwaysToList (currentRoom, ref availableDoorways);
+            // Create doorway lists to loop over
+            List<Doorway> allAvailableDoorways = new List<Doorway>(availableDoorways);
+            List<Doorway> currentRoomDoorways = new List<Doorway>();
+            AddDoorwaysToList(currentRoom, ref currentRoomDoorways);
 
-		bool roomPlaced = false;
+            // Get doorways from current room and add them randomly to the list of available doorways
+            // AddDoorwaysToList(currentRoom, ref availableDoorways);
+            Doorway doorWayconnected = null;
+            // Try all available doorways
+            foreach (Doorway availableDoorway in allAvailableDoorways)
+            {
+                // Try all available doorways in current room
+                foreach (Doorway currentDoorway in currentRoomDoorways)
+                {
+                    // Position room
+                    PositionRoomAtDoorway(ref currentRoom, currentDoorway, availableDoorway);
 
-		// Try all available doorways
-		foreach (Doorway availableDoorway in allAvailableDoorways) {
-			// Try all available doorways in current room
-			foreach (Doorway currentDoorway in currentRoomDoorways) {
-				// Position room
-				PositionRoomAtDoorway (ref currentRoom, currentDoorway, availableDoorway);
+                    // Check room overlaps
+                    if (CheckRoomOverlap(currentRoom))
+                    {
+                        //restart if overlap
+                        continue;
+                    }
 
-				// Check room overlaps
-				if (CheckRoomOverlap (currentRoom)) {
-                    //restart if overlap
-					continue;
-				}
+                    roomPlaced = true;
 
-				roomPlaced = true;
+                    // Add room to list
 
-                // Add room to list
+                    ClearWalls(currentRoom);
+                    placedRooms.Add(currentRoom);
+                    doorWayconnected = currentDoorway;
 
-                ClearWalls(currentRoom);
-                placedRooms.Add (currentRoom);
+                    availableDoorway.gameObject.SetActive(false);
+                    availableDoorways.Remove(availableDoorway);
+                    // Exit loop if room has been placed
+                    break;
+                }
 
-				// Remove occupied doorways
-				currentDoorway.gameObject.SetActive (false);
-				availableDoorways.Remove (currentDoorway);
+                // Exit loop if room has been placed
+                if (roomPlaced)
+                {
+                    // Get doorways from current room and add them randomly to the list of available doorways
+                    AddDoorwaysToList(currentRoom, ref availableDoorways);
+                    // Remove occupied doorways
+                    doorWayconnected.gameObject.SetActive(false);
+                    availableDoorways.Remove(doorWayconnected);
+                    return true;                       
+                }
+            }
 
-				availableDoorway.gameObject.SetActive (false);
-				availableDoorways.Remove (availableDoorway);
-				// Exit loop if room has been placed
-				break;
-			}
 
-			// Exit loop if room has been placed
-			if (roomPlaced) {
-				break;
-			}
-		}
-
-		// Room couldn't be placed. Restart generator and try again
-		if (!roomPlaced) {
-			Destroy (currentRoom.gameObject);
-			ResetLevelGenerator ();
-		}
-	}
+            // Room couldn't be placed. Restart generator and try again
+            if (!roomPlaced)
+            {
+                Destroy(currentRoom.gameObject);
+                usedRooms.Add(actualRoomPrefabIndex);
+                availableIndexes.RemoveAt(actualIndex);
+                //ResetLevelGenerator ();
+            }
+        }
+        if (!roomPlaced)
+        {
+            ResetLevelGenerator();
+        }
+        return false;
+    }
 
     //clear the walls so the user can see the walls
     void ClearWalls(Room room)
