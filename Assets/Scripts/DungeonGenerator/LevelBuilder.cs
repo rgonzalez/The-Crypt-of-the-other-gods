@@ -84,6 +84,7 @@ public class LevelBuilder : MonoBehaviour
         foreach(Room room in placedRooms)
         {
             room.BuildNavMesh();
+            room.CleanDoorWays();
         }
         PlaceKey();
         StartCoroutine(StartGame());

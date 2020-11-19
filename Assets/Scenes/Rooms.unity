@@ -1273,7 +1273,10 @@ MonoBehaviour:
     type: 3}
   roomPrefabs:
   - {fileID: 7467958780783478720, guid: e9cc83bb95d36d74f9f8bea8fc99bfec, type: 3}
-  iterationRange: {x: 5, y: 5}
+  - {fileID: 3305067242635689296, guid: a1a5763160605e641a50d0478655cb2d, type: 3}
+  - {fileID: 8440471114019674756, guid: 209363ba5b2389c4d8a41ad188678c76, type: 3}
+  - {fileID: 2569480011278164512, guid: 780e77202018a5e4e8ab10397d8aaa8c, type: 3}
+  iterationRange: {x: 5, y: 10}
   playerPrefab: {fileID: 3225265309814140804, guid: 1c697003309e44c47b84837f9d64f6a8,
     type: 3}
   inventoryManager: {fileID: 265146205}

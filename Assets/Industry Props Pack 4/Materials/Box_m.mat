@@ -243,7 +243,7 @@ Material:
     - _MaterialID: 1
     - _MetallContrast: 1
     - _MetallDesaturate: 0
-    - _Metallic: 1
+    - _Metallic: 0.523
     - _Metallness: 0.8
     - _Mode: 0
     - _NormalMapSpace: 0

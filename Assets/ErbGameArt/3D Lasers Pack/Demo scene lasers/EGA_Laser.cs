@@ -29,7 +29,8 @@ public class EGA_Laser : MonoBehaviour
         //Get LineRender and ParticleSystem components from current prefab;  
         Laser = GetComponent<LineRenderer>();
         Effects = GetComponentsInChildren<ParticleSystem>();
-        Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
+        if (HitEffect)
+            Hit = HitEffect.GetComponentsInChildren<ParticleSystem>();
         //if (Laser.material.HasProperty("_SpeedMainTexUVNoiseZW")) LaserStartSpeed = Laser.material.GetVector("_SpeedMainTexUVNoiseZW");
         //Save [1] and [3] textures speed
         //{ DISABLED AFTER UPDATE}
@@ -52,9 +53,12 @@ public class EGA_Laser : MonoBehaviour
             {
                 //End laser position if collides with object
                 Laser.SetPosition(1, hit.point);
-                HitEffect.transform.position = hit.point + hit.normal * HitOffset;
-                //Hit effect zero rotation
-                HitEffect.transform.rotation = Quaternion.identity;
+                if (HitEffect)
+                {
+                    HitEffect.transform.position = hit.point + hit.normal * HitOffset;
+                    //Hit effect zero rotation
+                    HitEffect.transform.rotation = Quaternion.identity;
+                }
                 foreach (var AllPs in Effects)
                 {
                     if (!AllPs.isPlaying) AllPs.Play();
@@ -71,7 +75,8 @@ public class EGA_Laser : MonoBehaviour
                 //End laser position if doesn't collide with object
                 var EndPos = transform.position + transform.forward * MaxLength;
                 Laser.SetPosition(1, EndPos);
-                HitEffect.transform.position = EndPos;
+                if (HitEffect)
+                    HitEffect.transform.position = EndPos;
                 foreach (var AllPs in Hit)
                 {
                     if (AllPs.isPlaying) AllPs.Stop();

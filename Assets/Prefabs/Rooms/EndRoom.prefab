@@ -342,19 +342,11 @@ MonoBehaviour:
   doorways:
   - {fileID: 5493164074039019185}
   - {fileID: 5493164073878691979}
-  meshCollider: {fileID: 0}
-  topWalls:
-  - {fileID: 5493164074887899518}
-  botWalls:
-  - {fileID: 5493164075596846066}
-  leftWalls:
-  - {fileID: 5493164075894111322}
-  - {fileID: 5493164075019982863}
-  - {fileID: 5493164073878691977}
-  rightWalls:
-  - {fileID: 5493164075483476298}
-  - {fileID: 5493164075391414915}
-  - {fileID: 5493164074039019183}
+  topWalls: []
+  botWalls: []
+  leftWalls: []
+  rightWalls: []
+  surfaces: []
   nextLevel: 
 --- !u!1 &5493164074887899518
 GameObject:

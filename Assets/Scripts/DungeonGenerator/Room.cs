@@ -10,10 +10,10 @@ public class Room : MonoBehaviour
 	public Doorway[] doorways;
 
     // the walls ordered by side to clean the mesh
-    public GameObject[] topWalls; 
-    public GameObject[] botWalls; 
-    public GameObject[] leftWalls; 
-    public GameObject[] rightWalls;
+    public MeshRenderer[] topWalls; 
+    public MeshRenderer[] botWalls; 
+    public MeshRenderer[] leftWalls; 
+    public MeshRenderer[] rightWalls;
 
     //THE SURFACES TO MOVE
     public NavMeshSurface[] surfaces;
@@ -54,38 +54,30 @@ public class Room : MonoBehaviour
         if (transform.rotation.eulerAngles.y > -0.1 && transform.rotation.eulerAngles.y < 0.1)
         {
             //the room is in default position
-            foreach(GameObject wall in botWalls)
+            foreach(MeshRenderer wall in botWalls)
             {
-                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
-                if (rendered)
-                    rendered.enabled = false;
+                wall.enabled = false;
             }
         } else if (transform.rotation.eulerAngles.y > 85 && transform.rotation.eulerAngles.y < 100)
         {
             //rotate 1/4 to right, right walls must dessapear
-            foreach (GameObject wall in rightWalls)
+            foreach (MeshRenderer wall in rightWalls)
             {
-                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
-                if (rendered)
-                    rendered.enabled = false;
+                wall.enabled = false;
             }
         } else if (transform.rotation.eulerAngles.y > 150 && transform.rotation.eulerAngles.y < 200)
         {
             // the room is full rotated
-            foreach (GameObject wall in topWalls)
+            foreach (MeshRenderer wall in topWalls)
             {
-                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
-                if (rendered)
-                    rendered.enabled = false;
+                wall.enabled = false;
             }
         } else if (transform.rotation.eulerAngles.y > 200 && transform.rotation.eulerAngles.y < 300)
         {
             //rotated to left
-            foreach (GameObject wall in leftWalls)
+            foreach (MeshRenderer wall in leftWalls)
             {
-                MeshRenderer rendered = wall.GetComponent<MeshRenderer>();
-                if (rendered)
-                    rendered.enabled = false;
+                wall.enabled = false;
             }
         }
     }
@@ -110,6 +102,28 @@ public class Room : MonoBehaviour
         foreach(NavMeshSurface surface in surfaces)
         {
             surface.BuildNavMesh();
+        }
+    }
+
+    //if a room keeps doorways (not connected to other room) we must clean the DoorWay, but not the child, that can be a fake Wall or Door
+    public void CleanDoorWays()
+    {
+        foreach (Doorway doorway in doorways)
+        {
+            if (doorway.gameObject.active == true)
+            {
+                //is an active Doorway, enable the child if exists
+                doorway.gameObject.SetActive(false);
+                if (doorway.transform.childCount > 0)
+                {
+                    for (int i = 0; i < doorway.transform.childCount; i++)
+                    {
+                        GameObject fakeWall = doorway.transform.GetChild(i).gameObject;
+                        fakeWall.transform.parent = null;
+                        fakeWall.gameObject.SetActive(true);
+                    }
+                }
+            }
         }
     }
 
