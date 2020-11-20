@@ -252,6 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5493164074623409133}
   - component: {fileID: 4808217674277803730}
+  - component: {fileID: 7546866350951912384}
   m_Layer: 0
   m_Name: StartRoom
   m_TagString: Untagged
@@ -299,12 +300,26 @@ MonoBehaviour:
   doorways:
   - {fileID: 5493164074039019185}
   - {fileID: 5493164073878691979}
-  meshCollider: {fileID: 0}
   topWalls: []
   botWalls: []
   leftWalls: []
   rightWalls: []
+  connectedRooms: []
+  surfaces: []
   playerStart: {fileID: 6109093082159925250}
+--- !u!65 &7546866350951912384
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493164074623409132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.33628, y: 1, z: 4.6182203}
+  m_Center: {x: 0.023493767, y: 0, z: -0.18795824}
 --- !u!1 &5493164074887899518
 GameObject:
   m_ObjectHideFlags: 0

@@ -85,7 +85,10 @@ public class LevelBuilder : MonoBehaviour
         {
             room.BuildNavMesh();
             room.CleanDoorWays();
+            room.gameObject.SetActive(false);
         }
+        //reactivate the startRoom
+        startRoom.gameObject.SetActive(true);
         PlaceKey();
         StartCoroutine(StartGame());
         //regeneration for testing
@@ -171,7 +174,13 @@ public class LevelBuilder : MonoBehaviour
                     ClearWalls(currentRoom);
                     placedRooms.Add(currentRoom);
                     doorWayconnected = currentDoorway;
-
+                    //connect the list of rooms between them
+                    Room availableRoom = availableDoorway.transform.GetComponentInParent<Room>();
+                    if (availableRoom != null)
+                    {
+                        currentRoom.connectedRooms.Add(availableRoom);
+                        availableRoom.connectedRooms.Add(currentRoom);
+                    }
                     availableDoorway.gameObject.SetActive(false);
                     availableDoorways.Remove(availableDoorway);
                     // Exit loop if room has been placed

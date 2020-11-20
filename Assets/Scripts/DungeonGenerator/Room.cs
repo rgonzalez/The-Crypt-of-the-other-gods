@@ -15,6 +15,10 @@ public class Room : MonoBehaviour
     public MeshRenderer[] leftWalls; 
     public MeshRenderer[] rightWalls;
 
+
+    public List<Room> connectedRooms = new List<Room>(); // the connected Rooms to this room directly
+    // used to activate o disable the rooms
+
     //THE SURFACES TO MOVE
     public NavMeshSurface[] surfaces;
 
@@ -119,12 +123,55 @@ public class Room : MonoBehaviour
                     for (int i = 0; i < doorway.transform.childCount; i++)
                     {
                         GameObject fakeWall = doorway.transform.GetChild(i).gameObject;
-                        fakeWall.transform.parent = null;
+                        fakeWall.transform.parent = this.transform;
                         fakeWall.gameObject.SetActive(true);
                     }
                 }
             }
         }
     }
+
+
+    /// <summary>
+    /// hide or enable all the rooms connected EXCEPT the 'exception' room if exists
+    /// </summary>
+    /// <param name="enabled"></param>
+    /// <param name="exception"></param>
+    private void ChangeStatusConnected(bool enabled, Room exception)
+    {
+        foreach(Room room in connectedRooms)
+        {
+            if (exception != room)
+                room.gameObject.SetActive(enabled);
+        }
+    }
+
+    //enable all neighbour rooms, except the 'exception' room
+    public void ShowConnectedRooms(Room exception)
+    {
+        ChangeStatusConnected(true, exception);
+    }
+    //hide all neighbour rooms, except the 'exception' room
+    public void HideConnectedRooms(Room exception)
+    {
+        ChangeStatusConnected(false, exception);
+    }
+
+    //if there is a trigger in this room, it will hide the 2º grade rooms, to optimize:
+
+   // we have rooms: A->B->C->D
+   // when the user enters in C, it will say to B and D hide rooms, so A is hide 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.TAG_PLAYER))
+        {
+            foreach(Room room in connectedRooms)
+            {
+                room.gameObject.SetActive(true);
+                room.HideConnectedRooms(this);
+            }
+        }
+    }
+
 
 }
