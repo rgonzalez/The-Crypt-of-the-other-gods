@@ -227,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3225265311272469582}
   m_LocalRotation: {x: 0.044707622, y: -0, z: 0.0000000016880222, w: 0.9990002}
-  m_LocalPosition: {x: -0.23, y: -0.01, z: 0.3}
+  m_LocalPosition: {x: 0.012, y: -0.015, z: 0.357}
   m_LocalScale: {x: 1.6000001, y: 1.6000001, z: 1.6}
   m_Children: []
   m_Father: {fileID: 7584020937110748303}
@@ -1001,7 +1001,7 @@ GameObject:
   m_Layer: 0
   m_Name: LightPivot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1046,7 +1046,7 @@ GameObject:
   m_Layer: 0
   m_Name: GunSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1057,13 +1057,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7584020937782904781}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.231, y: -0.008, z: 0.504}
+  m_LocalRotation: {x: 0.0016755385, y: -0.000004152653, z: 0.0024783881, w: 0.9999955}
+  m_LocalPosition: {x: 0, y: -0.013, z: 0.558}
   m_LocalScale: {x: 1.6000001, y: 1.6000001, z: 1.6}
   m_Children: []
   m_Father: {fileID: 7584020937110748303}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.192, y: 0, z: 0.284}
 --- !u!1 &7871438099053844596
 GameObject:
   m_ObjectHideFlags: 0

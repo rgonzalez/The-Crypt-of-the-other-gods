@@ -36,7 +36,7 @@ public  abstract class EnemyWeapon : MonoBehaviour
     }
 
     public abstract void Shoot();
-    public abstract void PrepareShoot();
+    public abstract void PrepareShoot(); //the var for animator
     protected abstract void OnStarting();
     protected abstract void OnUpdating();
 

@@ -16,13 +16,16 @@ public class EnemyIA : MonoBehaviour
 
     private EnemyWeapon weapon;
     private int lookDirection = 1;
+    private Animator animator;
     public bool active = true; //is the IA active?
     public bool canMove = true; // can move? or is a static enemy?
 
     [HideInInspector]
     public bool moving = true; //an enemy can be blocked (if canMove = true) in some conditions
-                                //for example, his weapon
-
+                               //for example, his weapon
+    [HideInInspector]
+    public bool attacking = false; //an enemy can be blocked (if canMove = true) in some conditions
+                               //for example, his weapon
     public NavMeshAgent agent;
     public GameObject target; //the gameobject target (sure... the player)
 
@@ -44,6 +47,7 @@ public class EnemyIA : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         weapon = GetComponent<EnemyWeapon>();
         firingState.weapon = weapon;
         //load the agent for load it in the states
@@ -76,6 +80,7 @@ public class EnemyIA : MonoBehaviour
                 transform.localScale =  new Vector3(lookDirection,1,1);
             } else
             {
+                target = GameObject.FindGameObjectWithTag("Player");
                 this.actualDistance = 0;
             }
             if (actualState != null) //just check in case
@@ -86,6 +91,10 @@ public class EnemyIA : MonoBehaviour
                 Debug.Log("Error in some state change, REDIRECTING TO PATROL STATE AT " + gameObject.name);
                 actualState = patrolingState;
             }
+
+            animator.SetBool("run", moving);           
+            animator.SetBool("attack", attacking);
+
         }
     }
 

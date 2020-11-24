@@ -72,7 +72,7 @@ public class LineWeapon : AbstractWeapon
             if (plane.Raycast(ray, out distance))
             {
                 worldPosition = ray.GetPoint(distance);
-                worldPosition = new Vector3(worldPosition.x, transform.position.y, worldPosition.z);
+                worldPosition = new Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
                 //   transform.LookAt(worldPosition);
                 //  transform.TransformDirection(Vector3.forward) <- 2º parameter raycast
                 RaycastHit hit;

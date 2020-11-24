@@ -15,23 +15,32 @@ public class LookMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Plane plane = new Plane(Vector3.up, 0);
-
+        Plane plane = new Plane(Vector3.up, transform.position);
+        
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (plane.Raycast(ray, out distance))
         {
             worldPosition = ray.GetPoint(distance);
         }
+        
         // in the same Y axis
-        Vector3 pos = new Vector3(worldPosition.x, transform.position.y, worldPosition.z);
+        Vector3 pos = new Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
         transform.LookAt(pos);
 
-        Vector3 lookDirection = new Vector3(Input.GetAxisRaw("RightHoriz"), 0, Input.GetAxisRaw("RightVert"));
-        if (lookDirection.x > 0.1f || lookDirection.x <- 0.1f || lookDirection.z < -0.1f || lookDirection.z > 0.1f)
-        {
-            lookDirection.z = -lookDirection.z;
-            transform.rotation = Quaternion.LookRotation(lookDirection);
-        }
     }
+
+   /* void OnDrawGizmos()
+    {
+        Ray ray = new Ray(transform.position, transform.rotation * Vector3.forward);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawRay(ray);
+        Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Gizmos.DrawRay(ray2);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(new Vector3(worldPosition.x, worldPosition.y, worldPosition.z), 0.2f);
+       // Gizmos.DrawCube(transform.position, new Vector3(5, 0.1f, 5));
+    }*/
 }

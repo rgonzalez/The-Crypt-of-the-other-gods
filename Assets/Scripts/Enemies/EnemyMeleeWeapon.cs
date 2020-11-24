@@ -54,11 +54,12 @@ public class EnemyMeleeWeapon : EnemyWeapon
     ///  create a script in that child with the logic to hurt
     /// </summary>
     //
-    public override void Shoot()
+    public override void Shoot() // the attack for animator
     {
         //only attack if the actual attack finished (endAttack) and the CD is ok
         if (Time.time > nextFire && Time.time > endAttack)
         {
+            if (enemyIa) this.enemyIa.attacking = true;
             if (shootAudio && audioSource)
             {
                 audioSource.PlayOneShot(shootAudio);
@@ -71,6 +72,7 @@ public class EnemyMeleeWeapon : EnemyWeapon
             }
             if (this.enemyIa && this.enemyIa.canMove)
             {
+                Debug.Log("MOVE FALSE");
                 this.enemyIa.moving = false; //while attacking cant move (if is a moving enemy)
             }
             endAttack = Time.time + timeActiveAttack; // the time when this attack finishes
@@ -91,8 +93,13 @@ public class EnemyMeleeWeapon : EnemyWeapon
         nextFire = Time.time + fireCD;
         Debug.Log("next in " + nextFire);
         //end the attack, can move again
-        if (enemyIa && enemyIa.canMove) enemyIa.moving = true; // is is a moving enemy, re-activate the moving skill
+        if (enemyIa && enemyIa.canMove)
+        {
+            Debug.Log("MOVE TRUE");
+            enemyIa.moving = true; // is is a moving enemy, re-activate the moving skill
+        }
         Debug.Log("END ATTACK");
+        if (enemyIa) this.enemyIa.attacking = false;
     }
 
     protected override void OnStarting()

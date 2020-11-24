@@ -83,7 +83,8 @@ public class LevelBuilder : MonoBehaviour
         //generate all NavMesh
         foreach(Room room in placedRooms)
         {
-            room.BuildNavMesh();
+            // room.BuildNavMesh(); // the floors has surfaceNavMesh, but now the floors has NavMeshSourceTag
+            //is more efficient for the routes
             room.CleanDoorWays();
             room.gameObject.SetActive(false);
         }

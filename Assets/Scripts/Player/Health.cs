@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Health : MonoBehaviour
     private GameObject actualWeapon;
 
     public RoomManager room; // in case of enemy, must notify in case of dead
+
+    public Image healthBar; //health bar in case of enemy healthBar
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +57,12 @@ public class Health : MonoBehaviour
     {
         Debug.Log("DAMAGE OF " + damage + " AT " + gameObject.name + " HAS " + actualHealth);
         actualHealth -= damage;
+        if (healthBar)
+        {
+            //calculate the actual life in 0-1 fill
+            float actualbarHealth = (float)actualHealth / (float)maxHealth;
+            healthBar.fillAmount = actualbarHealth;
+        }
         if (actualHealth <= 0) //DEAD CASE!
         {
             if (animator)
