@@ -17,7 +17,7 @@ public class ExperienceManager : MonoBehaviour
     /// </summary>
 
     public int actualExp = 0;
-    public int defaultExp = 999; //start experience 
+    public int defaultExp = 0; //start experience 
 
     public static ExperienceManager instance;
 

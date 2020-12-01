@@ -260,11 +260,38 @@ public class UIManager : MonoBehaviour
         }
     }
 
+ 
     public void ClearWeaponInfo()
+    {
+        this.CleanPanel();
+    }
+    #endregion WEAPON
+
+    #region KEYS
+
+    /// <summary>
+    /// Show a panel with the info of the keys for the user
+    /// </summary>
+    /// <param name="status"></param>
+    public void ShowKeysInfo(bool status)
+    {
+        if (status)
+        {
+            // the door is going to be open
+            centeredText.text = "Abriendo puerta..";
+        }
+        else
+        {
+
+            centeredText.text = "No se tienen todas las llaves para poder acceder";
+        }
+    }
+
+    public void CleanPanel()
     {
         centeredImage.sprite = null;
         centeredImage.gameObject.SetActive(false);
         centeredText.text = "";
     }
-    #endregion WEAPON
+    #endregion KEYS
 }

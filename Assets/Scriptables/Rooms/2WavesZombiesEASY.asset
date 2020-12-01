@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54a49c6e8bf02204395f699c45e8bd25, type: 3}
-  m_Name: RoomEasy
+  m_Name: 2WavesZombiesEASY
   m_EditorClassIdentifier: 
   difficult: 0
   waves:
   - enemies:
-    - ammount: 2
+    - ammount: 1
       enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
         type: 3}
-    - ammount: 2
-      enemy: {fileID: 8737893999592068369, guid: 97e871d4de8865043a1d94c7a55db72c,
-        type: 3}
-  - enemies:
-    - ammount: 2
-      enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
+    - ammount: 1
+      enemy: {fileID: 4310804882260133153, guid: 40354efe8ae8fae419973952cec8ed8c,
         type: 3}
   - enemies:
     - ammount: 1
-      enemy: {fileID: 8737893999592068369, guid: 97e871d4de8865043a1d94c7a55db72c,
+      enemy: {fileID: 4310804882260133153, guid: 709ec39c1e9b2614bbdfdfd178057246,
+        type: 3}
+    - ammount: 1
+      enemy: {fileID: 4310804882260133153, guid: 40354efe8ae8fae419973952cec8ed8c,
         type: 3}

@@ -21,17 +21,18 @@ public class BulletUI : AbstractUIAmmo
             bullets.Clear();
         }
 
-         //add normal bullets
-         for (int i = 0; i < (actualAmmo - perfectAmmo); i++)
-        {
-            GameObject bullet = Instantiate(normalBulletPrefab, clipSPawn.transform);
-            bullets.Add(bullet);
-        }
+  
         //now the perfect Ammo in case, then the normal Ammo
         for (int i = 0; i < perfectAmmo; i++)
         {
             GameObject perfectBullet = Instantiate(perfectBulletPrefab, clipSPawn.transform);
             bullets.Add(perfectBullet);
+        }
+        //add normal bullets
+        for (int i = 0; i < (actualAmmo - perfectAmmo); i++)
+        {
+            GameObject bullet = Instantiate(normalBulletPrefab, clipSPawn.transform);
+            bullets.Add(bullet);
         }
     }
 
@@ -42,9 +43,19 @@ public class BulletUI : AbstractUIAmmo
         {
             for (int i = 0; i < wastedAmmo; i++)
             {
-                int pos = bullets.Count - 1;
-                Destroy(bullets[pos]);
+                //  int pos = bullets.Count - 1;
+                int pos = 0;
+                //Destroy(bullets[pos]);
+                ClipUI clip = bullets[pos].GetComponent<ClipUI>();
+                if (clip)
+                {
+                    clip.Unload();
+                } else
+                {
+                    Destroy(bullets[pos]);
+                }
                 bullets.RemoveAt(pos);
+
             }
         }
     }

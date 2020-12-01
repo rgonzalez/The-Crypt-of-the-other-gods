@@ -122,7 +122,7 @@ public class RoomManager : MonoBehaviour
                         GameObject effect = Instantiate(SpawnEffect, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
                     }
                     GameObject enemy = Instantiate(enemyConfig.enemy, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
-                    Health healthEnemy = enemy.GetComponent<Health>();
+                    EnemyHealth healthEnemy = enemy.GetComponent<EnemyHealth>();
                     healthEnemy.room = this;
                     Debug.Log("SPAWNED AT " + indexSpawn);
                     indexSpawn++;

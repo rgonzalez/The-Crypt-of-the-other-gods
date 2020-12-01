@@ -29,6 +29,7 @@ public class LevelBuilder : MonoBehaviour
 
     public static LevelBuilder instance;
 
+    private GameObject prevPlayer = null;
 
     StartRoom startRoom;
 	EndRoom endRoom;
@@ -36,7 +37,7 @@ public class LevelBuilder : MonoBehaviour
 
 	LayerMask roomLayerMask;
 
-    MovePlayer player;
+    MovePlayer player = null;
 
     int pickedKeys = 0;
 
@@ -44,6 +45,15 @@ public class LevelBuilder : MonoBehaviour
 	void Start ()
 	{
         LevelBuilder.instance = this; //each level smash the instance
+        // NOTE:
+
+        // Maybe this levelBuilder comes from another map, so the Player is already instantiated...
+        //Search the player and if exists, disable it, to place it later...
+        prevPlayer = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+        if (prevPlayer)
+        {
+            prevPlayer.SetActive(false);
+        }
 		roomLayerMask = LayerMask.GetMask ("Room");
 		StartCoroutine ("GenerateLevel");
 	}
@@ -80,8 +90,9 @@ public class LevelBuilder : MonoBehaviour
         // Place player
         endRoom.nextLevel = this.nextLevel;
 
+        PlaceKey();
         //generate all NavMesh
-        foreach(Room room in placedRooms)
+        foreach (Room room in placedRooms)
         {
             // room.BuildNavMesh(); // the floors has surfaceNavMesh, but now the floors has NavMeshSourceTag
             //is more efficient for the routes
@@ -90,7 +101,7 @@ public class LevelBuilder : MonoBehaviour
         }
         //reactivate the startRoom
         startRoom.gameObject.SetActive(true);
-        PlaceKey();
+        endRoom.gameObject.SetActive(false);
         StartCoroutine(StartGame());
         //regeneration for testing
         //yield return new WaitForSeconds (3);
@@ -203,7 +214,7 @@ public class LevelBuilder : MonoBehaviour
 
             // Room couldn't be placed. Restart generator and try again
             if (!roomPlaced)
-            {
+            {                
                 Destroy(currentRoom.gameObject);
                 usedRooms.Add(actualRoomPrefabIndex);
                 availableIndexes.RemoveAt(actualIndex);
@@ -256,7 +267,8 @@ public class LevelBuilder : MonoBehaviour
 		if (colliders.Length > 0) {
 			// Ignore collisions with current room
 			foreach (Collider c in colliders) {
-				if (c.transform.parent.gameObject.Equals (room.gameObject)) {
+				// if (c.transform.parent.gameObject.Equals (room.gameObject)) {
+                if (SomeParentIsSameRoom(c.transform.gameObject, room.gameObject)) { 
 					continue;
 				} else {
 					Debug.LogError ("Overlap detected");
@@ -267,6 +279,31 @@ public class LevelBuilder : MonoBehaviour
 
 		return false;
 	}
+
+    //detect if the actual object 'c' or a parent, is in the same gameObject 'room'
+    // so basically checks if 'C' is child of 'room'
+    bool SomeParentIsSameRoom(GameObject c, GameObject room)
+    {
+        GameObject parent = c;
+        while (parent != null)
+        {
+            if (parent.Equals(room))
+            {
+                return true;
+            }
+            else
+            {
+                if (parent.transform.parent != null)
+                {
+                    parent = parent.transform.parent.gameObject;
+                } else
+                {
+                    parent = null;
+                }
+            }
+        }
+        return false;
+    }
 
 	void PlaceEndRoom ()
 	{
@@ -302,6 +339,10 @@ public class LevelBuilder : MonoBehaviour
 			availableDoorway.gameObject.SetActive (false);
 			availableDoorways.Remove (availableDoorway);
 
+            Room availableRoom = availableDoorway.transform.GetComponentInParent<Room>();
+
+            room.connectedRooms.Add(availableRoom);
+            availableRoom.connectedRooms.Add(room);
 			// Exit loop if room has been placed
 			break;
 		}
@@ -408,11 +449,13 @@ public class LevelBuilder : MonoBehaviour
     IEnumerator StartGame()
     {
         //Maybe the player is already in the game (from previous scene with DontDestroy..)
-        GameObject prevPlayer = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+     
         if (prevPlayer)
         {
             prevPlayer.transform.position = startRoom.playerStart.position;
             prevPlayer.transform.rotation = startRoom.playerStart.rotation;
+
+            prevPlayer.SetActive(true);
         }
         else if (playerPrefab)
         {

@@ -55,14 +55,7 @@ public class Health : MonoBehaviour
     /// <param name="damage">The damage to apply to the current gameObject</param>
     public void Damage(int damage)
     {
-        Debug.Log("DAMAGE OF " + damage + " AT " + gameObject.name + " HAS " + actualHealth);
-        actualHealth -= damage;
-        if (healthBar)
-        {
-            //calculate the actual life in 0-1 fill
-            float actualbarHealth = (float)actualHealth / (float)maxHealth;
-            healthBar.fillAmount = actualbarHealth;
-        }
+       actualHealth -= damage;
         if (actualHealth <= 0) //DEAD CASE!
         {
             if (animator)
@@ -78,17 +71,6 @@ public class Health : MonoBehaviour
                 if (actualWeapon) actualWeapon.SetActive(false);
                 //stop the time
                 StartCoroutine(ShowDeadPanel());
-            }
-            if (gameObject.CompareTag(Constants.TAG_ENEMY))
-            {
-
-                //EnemyConfig
-                if (room)
-                {                
-                    room.NotifyDead();
-                }
-                //the room must be set by the room itself
-                Die();
             }
         }
         //if player update UI
@@ -127,8 +109,7 @@ public class Health : MonoBehaviour
 
     private void UpdateHealth()
     {
-        if (UIManager.instance != null)
-        {
+        if (UIManager.instance != null)        {
             UIManager.instance.maxHealth = maxHealth;
             UIManager.instance.actualHealth = actualHealth;
             UIManager.instance.ConfigureHealth();

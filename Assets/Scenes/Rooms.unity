@@ -988,6 +988,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1125584970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125584971}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125584971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125584970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1216627622}
+  m_Father: {fileID: 1395418534}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1173390546 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 229243244, guid: c59521e409c2bda4a9877200c3fe004e,
@@ -1010,6 +1041,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1216627621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216627622}
+  - component: {fileID: 1216627623}
+  - component: {fileID: 1216627624}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216627622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216627621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 188.8, y: -182.6, z: -53.7}
+  m_LocalScale: {x: 1751.8329, y: 13.0304, z: 1007.6409}
+  m_Children: []
+  m_Father: {fileID: 1125584971}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1216627623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216627621}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1216627624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216627621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5b250d34af5904cb1de8158e238566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1223636075
@@ -1251,7 +1339,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1125584971}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1268,16 +1357,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keysToFinish: 1
-  startRoomPrefab: {fileID: 4808217674277803730, guid: f9c6bbad1b69b704f8f6d6d7d2817e83,
+  startRoomPrefab: {fileID: 1048617586436294434, guid: 1fc2ff13b1db8db4ab5e6eb15e724357,
     type: 3}
-  endRoomPrefab: {fileID: 3059626244891979501, guid: 0559835510ecba9469520fead3819310,
+  endRoomPrefab: {fileID: 7758021359873610235, guid: 53b5f1921a8de7a4b844774501cb34ef,
     type: 3}
   roomPrefabs:
   - {fileID: 7467958780783478720, guid: e9cc83bb95d36d74f9f8bea8fc99bfec, type: 3}
   - {fileID: 3305067242635689296, guid: a1a5763160605e641a50d0478655cb2d, type: 3}
   - {fileID: 8440471114019674756, guid: 209363ba5b2389c4d8a41ad188678c76, type: 3}
   - {fileID: 2569480011278164512, guid: 780e77202018a5e4e8ab10397d8aaa8c, type: 3}
-  iterationRange: {x: 5, y: 10}
+  iterationRange: {x: 10, y: 10}
   playerPrefab: {fileID: 3225265309814140804, guid: 1c697003309e44c47b84837f9d64f6a8,
     type: 3}
   inventoryManager: {fileID: 265146205}

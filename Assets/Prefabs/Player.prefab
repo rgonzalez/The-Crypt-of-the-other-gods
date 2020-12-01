@@ -68,10 +68,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.32539624
-  m_Height: 1.6177864
+  m_Radius: 0.31120962
+  m_Height: 1.2857606
   m_Direction: 1
-  m_Center: {x: 3.833864e-10, y: 0.19110692, z: 4.404776e-11}
+  m_Center: {x: -0.06560885, y: 0.025093734, z: 7.334245e-10}
 --- !u!95 &3225265309814140862
 Animator:
   serializedVersion: 3
@@ -152,7 +152,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.7
+  m_Height: 1.34
   m_Radius: 0.22
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -201,6 +201,7 @@ MonoBehaviour:
   actualHealth: 100
   alive: 1
   room: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &3225265311272469582
 GameObject:
   m_ObjectHideFlags: 0
