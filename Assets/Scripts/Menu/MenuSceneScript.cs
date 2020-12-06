@@ -64,12 +64,12 @@ public class MenuSceneScript : MonoBehaviour
             else
             {
                 if (zombie)
-                 zombie.SetActive(true);
+                    zombie.SetActive(true);
                 if (light == null)
                     return;
 
                 // pop off an item if too big
-                if (smoothQueue != null && smoothing !=null)
+                if (smoothQueue != null && smoothing != null)
                 {
                     while (smoothQueue.Count >= smoothing)
                     {
@@ -79,11 +79,14 @@ public class MenuSceneScript : MonoBehaviour
 
                 // Generate random new item, calculate new average
                 float newVal = Random.Range(minIntensity, maxIntensity);
-                smoothQueue.Enqueue(newVal);
-                lastSum += newVal;
+                if (smoothQueue != null)
+                {
+                    smoothQueue.Enqueue(newVal);
+                    lastSum += newVal;
 
-                // Calculate new smoothed average
-                light.intensity = lastSum / (float)smoothQueue.Count;
+                    // Calculate new smoothed average
+                    light.intensity = lastSum / (float)smoothQueue.Count;
+                }
             }
         } else
         {

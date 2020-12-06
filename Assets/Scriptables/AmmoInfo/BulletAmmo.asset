@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletAmmo
   m_EditorClassIdentifier: 
   ammoType: 0
-  ammoName: bullets
+  ammoName: Balas
   ammoIcon: {fileID: 2172561091410566306, guid: 8d256a0db1099fe448d89fd12c386702,
     type: 3}
   ammoUIPrefab: {fileID: 1044393935265575557, guid: f738d507c46ae2d40aa78379877f7495,

@@ -194,6 +194,9 @@ MonoBehaviour:
   ammo: 10
   ammoType: 0
   secondsToActive: 1
+  iconPrefab: {fileID: 5652297280732016189, guid: f283060e2dcda344b8d980e57fd626ec,
+    type: 3}
+  iconHeight: 2
 --- !u!114 &4203824643158246774
 MonoBehaviour:
   m_ObjectHideFlags: 0

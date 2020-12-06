@@ -89,7 +89,8 @@ public class ShopMenuScript : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        SetShopMenu(false);
+           SetShopMenu(false);
+        shopOpen = false;
     }
 
     /// <summary>
@@ -116,6 +117,7 @@ public class ShopMenuScript : MonoBehaviour
         UpdateChargeText();
         DisableButtons();
         SetShopMenu(true);
+        shopOpen = true;
     }
 
 

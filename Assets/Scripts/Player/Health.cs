@@ -19,6 +19,11 @@ public class Health : MonoBehaviour
 
     public Image healthBar; //health bar in case of enemy healthBar
 
+    public AudioClip hurtAudio;
+    public AudioClip dieAudio;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +34,7 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
         playerWeapon = GetComponentInChildren<AbstractWeapon>();
         AbstractWeapon w = transform.GetComponentInChildren<AbstractWeapon>();
-
+        audioSource = GetComponent<AudioSource>();
         Time.timeScale = 1f;
 
         if (w)
@@ -71,7 +76,17 @@ public class Health : MonoBehaviour
                 if (playerWeapon) playerWeapon.enabled = false;
                 if (actualWeapon) actualWeapon.SetActive(false);
                 //stop the time
+                if (audioSource && dieAudio)
+                {
+                    audioSource.PlayOneShot(dieAudio);
+                }
                 StartCoroutine(ShowDeadPanel());
+            }
+        } else
+        {
+            if (audioSource && hurtAudio)
+            {
+                audioSource.PlayOneShot(hurtAudio);
             }
         }
         //if player update UI

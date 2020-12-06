@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: LaserAmmo
   m_EditorClassIdentifier: 
   ammoType: 3
-  ammoName: laser
+  ammoName: Laser
   ammoIcon: {fileID: 2618485502882783312, guid: 8dd61baa960d2934cb5b29a21137c624,
     type: 3}
-  ammoUIPrefab: {fileID: 1044393935265575557, guid: f738d507c46ae2d40aa78379877f7495,
+  ammoUIPrefab: {fileID: 1044393935265575557, guid: f5021ffdfa0fe7a4aa76e2868288103c,
     type: 3}
   pickableAmmoPrefab: {fileID: 7623053837458846029, guid: 961ded21500c3db41ad717e44180376c,
     type: 3}

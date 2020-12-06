@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: BulletShotgun
   m_EditorClassIdentifier: 
-  prefabName: Shotgun
+  prefabName: Escopeta
   weaponType: 1
   ammoType: 0
   weaponPrefab: {fileID: 4125497990027393109, guid: 8a07834ff30d73e4792d3b9901701a45,
     type: 3}
   pickableWeaponPrefab: {fileID: 4203824643158213583, guid: 5ca1739539d0015409c00eb81d94b7ad,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: 706fdf373848a814293ff5f7c592066d, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: f45d5d15e1da8284380ad8ebc579f129, type: 3}
   price: 30

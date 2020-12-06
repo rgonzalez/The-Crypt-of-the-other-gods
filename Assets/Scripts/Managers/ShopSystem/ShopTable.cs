@@ -8,6 +8,7 @@ public class ShopTable : MonoBehaviour
     private bool active = true; // is this table active
     private bool touching = false;
     private bool picking = false;
+    private GameObject player;
 
     // Use this for initialization
     void Start()
@@ -40,6 +41,7 @@ public class ShopTable : MonoBehaviour
     {
         if (other.CompareTag(Constants.TAG_PLAYER) && active)
         {
+            player = other.gameObject;
             touching = true;
         }
     }

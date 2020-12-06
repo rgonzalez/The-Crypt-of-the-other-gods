@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: PlasmaShotgun
   m_EditorClassIdentifier: 
-  prefabName: PLasmaShoggun
+  prefabName: Escopeta Plasma
   weaponType: 4
   ammoType: 1
   weaponPrefab: {fileID: 1701858691476826119, guid: 641073b688fc05a44bf600f17efefdc3,
     type: 3}
   pickableWeaponPrefab: {fileID: 2948738889367374563, guid: 74c3dac32e29e8a41954fdf0f3ef0ae0,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: 327ba6c177ef91b448bb0616b9e37b05, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 1996e3d63160d8a49a784aa19a96999e, type: 3}
   price: 100

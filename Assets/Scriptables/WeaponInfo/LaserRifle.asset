@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: LaserRifle
   m_EditorClassIdentifier: 
-  prefabName: LaserRifle
+  prefabName: Rifle Laser
   weaponType: 9
   ammoType: 3
   weaponPrefab: {fileID: 212177662981016187, guid: d7a4d9685bc585343b86ec98f1799f6c,
     type: 3}
   pickableWeaponPrefab: {fileID: 4203824643158213583, guid: d1600034b8da1ab4d889c551eb21067b,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: a3ebf9318519d83499b577aa99482f8c, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 67b8a5d3920e51046ba653137edddf8d, type: 3}
   price: 50

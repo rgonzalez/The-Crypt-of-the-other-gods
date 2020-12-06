@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: PlasmaRifle
   m_EditorClassIdentifier: 
-  prefabName: PlasmaRifle
+  prefabName: Rifle Plasma
   weaponType: 3
   ammoType: 1
   weaponPrefab: {fileID: 1353245767066647309, guid: 6ed966e49ad3a1346b8a00ec6c89491e,
     type: 3}
   pickableWeaponPrefab: {fileID: 4692189623396430372, guid: 6a92caf92d2831740aa403b40e4e8f25,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: a09506623e95ebc4991228e51233cc2b, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 38147c77c3eb48248b5ea47975314196, type: 3}
   price: 80

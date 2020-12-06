@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: BulletMchGun
   m_EditorClassIdentifier: 
-  prefabName: MachineGun
+  prefabName: Metralleta
   weaponType: 2
   ammoType: 0
   weaponPrefab: {fileID: 982397820929034534, guid: 7bd3760bd9b397742b2944c116057993,
     type: 3}
   pickableWeaponPrefab: {fileID: 2170365883493423865, guid: 7d9af0a27ad7f4048ba74a1d6599d111,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: 283ad9c7f39e9784887f21da042f8cdf, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 28d732d35466f5c48911a18642024923, type: 3}
   price: 20

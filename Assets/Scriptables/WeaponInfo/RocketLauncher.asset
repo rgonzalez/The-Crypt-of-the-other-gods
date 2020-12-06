@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: RocketLauncher
   m_EditorClassIdentifier: 
-  prefabName: RocketLauncher
+  prefabName: LanzaCohetes
   weaponType: 7
   ammoType: 2
   weaponPrefab: {fileID: 8119165582113001125, guid: 1c90cac269b26b94a9b17e98dccad8b4,
     type: 3}
   pickableWeaponPrefab: {fileID: 7601438203157947612, guid: 29ab57d9d9aacbc48b7fbbb1cd63a3f4,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: 8eaab1d9baff79847876efe2582b6761, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: fcf02d5db0d743541b964ab8c6be6d6b, type: 3}
   price: 30

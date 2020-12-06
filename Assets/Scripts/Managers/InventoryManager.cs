@@ -117,32 +117,34 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Use"))
-        {
-            usingObject = true;
-        } else
-        {
-            usingObject = false;
-        }
-        float changWeaponDir = Input.GetAxis("Mouse ScrollWheel");
-        // maybe is by joystick or button
-        if (Input.GetButtonDown("NextWeapon"))
-        {
-            changWeaponDir = 1;
-        } else if (Input.GetButtonDown("PrevWeapon"))
-        {
-            changWeaponDir = -1;
-        }
+        if (ShopMenuScript.instance != null && ShopMenuScript.instance.shopOpen == false) {
+            if (Input.GetButtonDown("Use"))
+            {
+                usingObject = true;
+            } else
+            {
+                usingObject = false;
+            }
+            float changWeaponDir = Input.GetAxis("Mouse ScrollWheel");
+            // maybe is by joystick or button
+            if (Input.GetButtonDown("NextWeapon"))
+            {
+                changWeaponDir = 1;
+            } else if (Input.GetButtonDown("PrevWeapon"))
+            {
+                changWeaponDir = -1;
+            }
 
-        if (changWeaponDir > 0)
-        {
-            changingWeapon = 1;
-        } else if (changWeaponDir < 0)
-        {
-            changingWeapon = -1;
-        } else
-        {
-            changingWeapon = 0;
+            if (changWeaponDir > 0)
+            {
+                changingWeapon = 1;
+            } else if (changWeaponDir < 0)
+            {
+                changingWeapon = -1;
+            } else
+            {
+                changingWeapon = 0;
+            }
         }
     }
 

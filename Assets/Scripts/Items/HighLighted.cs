@@ -10,7 +10,9 @@ public class HighLighted : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_Material = GetComponent<Renderer>().material;
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer)
+            m_Material = renderer.material;
     }
  
 

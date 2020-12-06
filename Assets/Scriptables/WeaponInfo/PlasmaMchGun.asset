@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020141d36a6548243a9a11de323c92ae, type: 3}
   m_Name: PlasmaMchGun
   m_EditorClassIdentifier: 
-  prefabName: PlasmaMachineGun
+  prefabName: Metralleta Plasma
   weaponType: 5
   ammoType: 1
   weaponPrefab: {fileID: 1796694567065564460, guid: 78f2fcc0004ea024cac517aa022edd04,
     type: 3}
   pickableWeaponPrefab: {fileID: 272881297092432900, guid: f991b25dc27408f469f40c8b31c466b1,
     type: 3}
-  equipedWeaponIcon: {fileID: 21300000, guid: 1172987f5a0d9904488c617487f0e126, type: 3}
+  equipedWeaponIcon: {fileID: 21300000, guid: 5c3ac0fb14d67a14ebc145f7af44865b, type: 3}
   price: 90

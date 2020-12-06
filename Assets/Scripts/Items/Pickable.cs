@@ -26,6 +26,10 @@ public class Pickable : MonoBehaviour
     private bool active = false; // is pickable?
     public float secondsToActive = 1f;
 
+    public GameObject iconPrefab;
+    private GameObject icon;
+    public float iconHeight = 5f;
+
     // Use this for initialization
     void Start()
     {
@@ -36,6 +40,13 @@ public class Pickable : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(secondsToActive);
         active = true;
+        if (iconPrefab)
+        {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + iconHeight, transform.position.z);
+            icon = Instantiate(iconPrefab, pos, Quaternion.identity);
+            icon.GetComponent<IconPickable>().attachment = this.transform;
+            icon.GetComponent<IconPickable>().iconHeight = this.iconHeight;
+        }
     }
 
     // Update is called once per frame
@@ -121,6 +132,10 @@ public class Pickable : MonoBehaviour
             else
             {
                 InventoryManager.instance.EquipWeapon(prefabAttached, true);
+            }
+            if (icon)
+            {
+                Destroy(icon);
             }
             Destroy(gameObject);
         }

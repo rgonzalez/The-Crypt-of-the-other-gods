@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RocketAmmo
   m_EditorClassIdentifier: 
   ammoType: 2
-  ammoName: rocket
+  ammoName: Cohetes
   ammoIcon: {fileID: 304889863912094045, guid: b59580cd758930e49a67f4a50ce77a31, type: 3}
-  ammoUIPrefab: {fileID: 1044393935265575557, guid: f738d507c46ae2d40aa78379877f7495,
+  ammoUIPrefab: {fileID: 1044393935265575557, guid: 01189a991910bfa43886a9c9a190a737,
     type: 3}
   pickableAmmoPrefab: {fileID: 7623053837458846029, guid: 8718a7697fc307f47a439d6e5d2b2e74,
     type: 3}

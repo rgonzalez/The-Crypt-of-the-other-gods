@@ -212,9 +212,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7046762849283226604}
+  - component: {fileID: 8428947426982893721}
   - component: {fileID: 7141163611110260876}
   - component: {fileID: 7142535912348790058}
+  - component: {fileID: 5051451744599783030}
+  - component: {fileID: 3259979956239996305}
   m_Layer: 0
   m_Name: FX_Electricity
   m_TagString: Untagged
@@ -222,20 +224,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7046762849283226604
-Transform:
+--- !u!224 &8428947426982893721
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7052420580106959456}
   m_LocalRotation: {x: -0.84204334, y: -0, z: -0, w: 0.5394099}
-  m_LocalPosition: {x: 0, y: 0.59, z: -8.99}
+  m_LocalPosition: {x: 0, y: 0, z: -8.99}
   m_LocalScale: {x: 17.567, y: 17.566998, z: 17.566998}
   m_Children: []
   m_Father: {fileID: 3851448348657133655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -114.713, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.59}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &7141163611110260876
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -311,7 +318,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -319,8 +326,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 0.6
+      minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -408,7 +415,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.5801887, b: 0.5801887, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -878,7 +885,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0.51
     randomPositionAmount: 0
     radius:
-      value: 1.12
+      value: 1.38
       mode: 0
       spread: 0
       speed:
@@ -1180,8 +1187,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.47141477
-          value: 0.9979686
+          time: 0.2809393
+          value: 0.9027309
           inSlope: 0.1274358
           outSlope: 0.1274358
           tangentMode: 0
@@ -4807,7 +4814,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7052420580106959456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4863,6 +4870,34 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!222 &5051451744599783030
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052420580106959456}
+  m_CullTransparentMesh: 0
+--- !u!114 &3259979956239996305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052420580106959456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f85388e938d9e4599afc6d9441ed57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: fe3fbcea8e93fec468be670c547e0aa1, type: 2}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  fixedTime: 1
+  use3dRotation: 0
 --- !u!1 &9029976310963929474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4895,7 +4930,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7046762849283226604}
+  - {fileID: 8428947426982893721}
   - {fileID: 8047080595087931623}
   m_Father: {fileID: 0}
   m_RootOrder: 0

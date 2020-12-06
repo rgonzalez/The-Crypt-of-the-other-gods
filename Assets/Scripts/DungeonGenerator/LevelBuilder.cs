@@ -41,6 +41,9 @@ public class LevelBuilder : MonoBehaviour
 
     int pickedKeys = 0;
 
+    private AudioSource audioSource;
+    public AudioClip musicLevel;
+
 
 	void Start ()
 	{
@@ -55,6 +58,7 @@ public class LevelBuilder : MonoBehaviour
             Destroy(prevPlayer);
             prevPlayer = null;
         }
+        audioSource = GetComponent<AudioSource>();
 		roomLayerMask = LayerMask.GetMask ("Room");
 		StartCoroutine ("GenerateLevel");
 	}
@@ -492,6 +496,12 @@ public class LevelBuilder : MonoBehaviour
         if (loading)
         {
             Destroy(loading);
+        }
+        if (audioSource && musicLevel)
+        {
+            audioSource.clip = musicLevel;
+            audioSource.Play();
+            audioSource.loop = true;
         }
  
     }

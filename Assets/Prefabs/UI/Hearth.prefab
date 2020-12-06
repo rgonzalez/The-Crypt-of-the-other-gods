@@ -87,10 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e822831fd73a254094c69c278c7ecc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigScale: 1.1
+  bigScale: 1.2
   minScale: 1
-  secondsToBig: 0.5
-  secondsToMin: 0.1
+  secondsToBig: 0.3
+  secondsToMin: 0.5
   isActive: 1
 --- !u!1 &9213443486367608985
 GameObject:

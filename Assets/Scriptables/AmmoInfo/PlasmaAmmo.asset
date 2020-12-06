@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlasmaAmmo
   m_EditorClassIdentifier: 
   ammoType: 1
-  ammoName: plasma
+  ammoName: Plasma
   ammoIcon: {fileID: 1257033800774613141, guid: eb34c9394a5e4bf47b7de95fc8b38e14,
     type: 3}
   ammoUIPrefab: {fileID: 1044393935265575557, guid: 2d155d4267a5d1d41885d2bc54c26423,

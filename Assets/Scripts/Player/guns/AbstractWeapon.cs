@@ -130,7 +130,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        if (active && ShopMenuScript.instance != null && ShopMenuScript.instance.shopOpen == false)
         {
             if (Input.GetButton("Fire1") && !reloading)
             {
@@ -171,7 +171,6 @@ public  abstract class AbstractWeapon : MonoBehaviour
             }
             if (reload)
             {
-                Debug.Log("PULSED RELOAD " + weaponStatus + " stat" + reloading);
                 if (!reloading)
                 {
 
@@ -213,26 +212,21 @@ public  abstract class AbstractWeapon : MonoBehaviour
     public void ManualReload()
     {
 
-        Debug.Log("stop reloading");
         // float value = slider.rectTransform.anchoredPosition.x;
         float value = actualTimeInReload;
         if (value >= perfectReload && value <= activeReload)
         {
-            Debug.Log("PERFECT!!!");
             weaponStatus = RELOADSTATE.PERFECT;
             PerfectReload(value);
             
         } else if (value >= activeReload && value <= activeReloadEnd)
         {
-
-            Debug.Log("ACTIVE!!!");
             weaponStatus = RELOADSTATE.ACTIVE;
             ActiveReload(value);
         } else
         {
 
             weaponStatus = RELOADSTATE.FAILED;
-            Debug.Log("FAIL!!!");
             FailedReload(value);
         }
         if (reloadRoutine != null)
@@ -243,10 +237,8 @@ public  abstract class AbstractWeapon : MonoBehaviour
 
     IEnumerator FinishReload(float duration, bool perfect)
     {
-        Debug.Log("reload -> " + perfect + " wait: " + duration);
-        yield return new WaitForSeconds(duration);
-        Debug.Log("endreload");
-        reloading = false;
+         yield return new WaitForSeconds(duration);
+         reloading = false;
         slider.transform.localPosition = new Vector3(startBar.transform.localPosition.x, slider.transform.localPosition.y, slider.transform.localPosition.z);
         // Now we are going to extract the leftAmmo from inventory, and add to the actualCLip
         //NOTE: only the new ammo added will be critic if is a perfect reload (so if we reload with 29/30 ammo, only 1 shoot wil be critical)
@@ -302,6 +294,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
         actualTimeInReload = 0f;
         slider.color = Color.white;
         reloadBar.SetActive(true);
+        if (reloadAudio) audioSource.PlayOneShot(reloadAudio);
         reloadRoutine = StartCoroutine(Reloading());
     }
 

@@ -23,7 +23,8 @@ public class KeyLevel : MonoBehaviour
         {
             active = false;
             LevelBuilder.instance.PickKey();
-            Destroy(gameObject);
+            //the keycard is child of a prefab with lights, icons... destory the parent
+            Destroy(transform.parent.gameObject);
         }
     }
 }

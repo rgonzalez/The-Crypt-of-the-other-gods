@@ -30,6 +30,11 @@ public class EnemyHealth : MonoBehaviour
     private Collider collider;
     private Rigidbody rigidbody;
     public int experience = 0;
+
+    private AudioSource audioSource;
+
+    public AudioClip hurtAudio;
+    public AudioClip dieAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
         enemyIA = GetComponent<EnemyIA>();
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         Time.timeScale = 1f;
 
         if (w)
@@ -106,8 +112,18 @@ public class EnemyHealth : MonoBehaviour
                 {
                     room.NotifyDead();
                 }
+                if (audioSource && dieAudio)
+                {
+                    audioSource.PlayOneShot(dieAudio);
+                }
                 //the room must be set by the room itself
                 Die();
+            }
+        } else
+        {
+            if (audioSource && hurtAudio)
+            {
+                audioSource.PlayOneShot(hurtAudio);
             }
         }
 
