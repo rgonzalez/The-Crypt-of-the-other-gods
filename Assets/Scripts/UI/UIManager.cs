@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
 
     public void ConfigureHealth()
     {
+        bool beatActive = false;
         for (int i = 0; i < healthPanel.transform.childCount; i++)
         {
             GameObject heart = healthPanel.transform.GetChild(i).GetChild(0).gameObject;
@@ -111,12 +112,26 @@ public class UIManager : MonoBehaviour
             {
                 //there is more than this heart of life
                 heart.GetComponent<Image>().fillAmount = 1;
+
+                heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = false;
             }
             else
             {
                 int leftHeart = (actualHealth - (i * heartHealth));
                 heart.GetComponent<Image>().fillAmount = (float)leftHeart  / (float)heartHealth; // set the % of the heart image
+                if (leftHeart > 0)
+                {
+                    heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = true;
+                    beatActive = true;
+                } else
+                {
+                    heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = false;
+                }
             }
+        }
+        if (!beatActive)
+        {
+            healthPanel.transform.GetChild(healthPanel.transform.childCount - 1).GetComponent<HeartBeat>().isActive = true;
         }
     }
 
@@ -146,7 +161,7 @@ public class UIManager : MonoBehaviour
                     ammoInfo.info = ammoScriptableInfo;
                     // create the instances of the icon and equiped ammo in the canvas
                     ammoInfo.ammoIcon = Instantiate(ammoInfo.info.ammoIcon, allAmmoPanel.transform);
-                    ammoInfo.text = ammoInfo.ammoIcon.GetComponent<Text>();
+                    ammoInfo.text = ammoInfo.ammoIcon.transform.GetChild(0).GetComponent<Text>();
                     ammoInfo.text.text = InventoryManager.instance.GetAvailableAmmo(ammoInfo.info.ammoType).ToString();
                     ammoInfo.ammoUIEquiped = Instantiate(ammoInfo.info.ammoUIPrefab, equipedAmmoPanel.transform);
                     ammoInfo.equipedAmmoText = ammoInfo.ammoUIEquiped.GetComponent<Text>();

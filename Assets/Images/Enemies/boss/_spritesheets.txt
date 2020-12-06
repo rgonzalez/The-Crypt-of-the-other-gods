@@ -1,0 +1,2 @@
+boss_walk.png,320,320,4
+boss_death.png,320,320,4

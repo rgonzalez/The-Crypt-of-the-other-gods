@@ -92,6 +92,8 @@ public class Bullet : MonoBehaviour
             // we keep the same vertical value, with some recoilY, the bounces can be in discontrol bouncing to the ceiling
             transform.rotation = Quaternion.LookRotation(newDirection);
             actualBounces++;
+
+            Debug.Log("BOUNCE = " + actualBounces);
         } else 
         {
             // the actual bullet can do Damage, or can have a explosion Prefab to instantiate (in case of being a explosive bullet)

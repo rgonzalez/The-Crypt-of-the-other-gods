@@ -497,8 +497,8 @@ MonoBehaviour:
   attacking: 0
   agent: {fileID: 0}
   target: {fileID: 0}
-  shootRange: 5
-  followRange: 10
+  shootRange: 10
+  followRange: 15
   coolDownAttack: 3
   t: 4
   actualDistance: 0
@@ -593,6 +593,7 @@ MonoBehaviour:
   canvas: {fileID: 4694327190189977421}
   secondsShowHealth: 2
   blood: {fileID: 4776601782642394568}
+  enemyIA: {fileID: 0}
   experience: 0
 --- !u!114 &8747216015114259827
 MonoBehaviour:
@@ -606,8 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b15f97617e16144b4551c919ecaf79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireCD: 2
-  damage: 2
+  fireCD: 0.5
+  damage: 5
   target: {fileID: 0}
   nextFire: 0
   recoilX: 0
@@ -620,6 +621,7 @@ MonoBehaviour:
   numberOfBullets: 1
   usePhysics: 0
   bulletForce: 0
+  timeActiveAttack: 0.5
 --- !u!1 &4680652299978645806
 GameObject:
   m_ObjectHideFlags: 0

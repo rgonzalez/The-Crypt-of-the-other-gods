@@ -27,7 +27,8 @@ public class EnemyHealth : MonoBehaviour
     public ParticleSystem blood;
     public EnemyIA enemyIA;
     private NavMeshAgent agent;
-
+    private Collider collider;
+    private Rigidbody rigidbody;
     public int experience = 0;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,8 @@ public class EnemyHealth : MonoBehaviour
         AbstractWeapon w = transform.GetComponentInChildren<AbstractWeapon>();
         agent = GetComponent<NavMeshAgent>();
         enemyIA = GetComponent<EnemyIA>();
+        collider = GetComponent<Collider>();
+        rigidbody = GetComponent<Rigidbody>();
         Time.timeScale = 1f;
 
         if (w)
@@ -90,7 +93,8 @@ public class EnemyHealth : MonoBehaviour
             {
                 animator.SetBool("dead", true);
                 animator.SetBool("isMoving", false);
-            }           
+            }
+            if (canvas) canvas.SetActive(false);
             if (gameObject.CompareTag(Constants.TAG_ENEMY))
             {
                 if (ExperienceManager.instance && this.experience > 0)
@@ -138,6 +142,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (enemyIA) Destroy(enemyIA);
         if (agent) Destroy(agent);
+        if (collider) Destroy(collider);
+        if (canvas) Destroy(canvas);
+        if (rigidbody)
+        {
+            rigidbody.freezeRotation = true;
+            rigidbody.isKinematic = true;
+        }
         Destroy(this);
     }
 

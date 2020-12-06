@@ -44,31 +44,35 @@ public class RFX4_CameraShake : MonoBehaviour
     IEnumerator Shake()
     {
         var elapsed = 0.0f;
-        var camT = Camera.main.transform;
-        var originalCamRotation = camT.rotation.eulerAngles;
-        var direction = (transform.position - camT.position).normalized;
-        var time = 0f;
-        var randomStart = Random.Range(-1000.0f, 1000.0f);
-        var distanceDamper = 1 - Mathf.Clamp01((camT.position - transform.position).magnitude / DistanceForce);
-        Vector3 oldRotation = Vector3.zero;
-        while (elapsed < Duration && canUpdate) {
-            elapsed += Time.deltaTime;
-            var percentComplete = elapsed / Duration;
-            var damper = ShakeCurve.Evaluate(percentComplete) * distanceDamper;
-            time += Time.deltaTime * damper;
-            camT.position -= direction * Time.deltaTime * Mathf.Sin(time * Speed) * damper * Magnitude/2;
+        if (Camera.main)
+        {
+            var camT = Camera.main.transform;
+            var originalCamRotation = camT.rotation.eulerAngles;
+            var direction = (transform.position - camT.position).normalized;
+            var time = 0f;
+            var randomStart = Random.Range(-1000.0f, 1000.0f);
+            var distanceDamper = 1 - Mathf.Clamp01((camT.position - transform.position).magnitude / DistanceForce);
+            Vector3 oldRotation = Vector3.zero;
+            while (elapsed < Duration && canUpdate)
+            {
+                elapsed += Time.deltaTime;
+                var percentComplete = elapsed / Duration;
+                var damper = ShakeCurve.Evaluate(percentComplete) * distanceDamper;
+                time += Time.deltaTime * damper;
+                camT.position -= direction * Time.deltaTime * Mathf.Sin(time * Speed) * damper * Magnitude / 2;
 
-            var alpha = randomStart + Speed * percentComplete / 10;
-            var x = Mathf.PerlinNoise(alpha, 0.0f) * 2.0f - 1.0f;
-            var y = Mathf.PerlinNoise(1000 + alpha, alpha + 1000) * 2.0f - 1.0f;
-            var z = Mathf.PerlinNoise(0.0f, alpha) * 2.0f - 1.0f;
+                var alpha = randomStart + Speed * percentComplete / 10;
+                var x = Mathf.PerlinNoise(alpha, 0.0f) * 2.0f - 1.0f;
+                var y = Mathf.PerlinNoise(1000 + alpha, alpha + 1000) * 2.0f - 1.0f;
+                var z = Mathf.PerlinNoise(0.0f, alpha) * 2.0f - 1.0f;
 
-            if (Quaternion.Euler(originalCamRotation + oldRotation)!=camT.rotation)
-                originalCamRotation = camT.rotation.eulerAngles;
-            oldRotation = Mathf.Sin(time * Speed) * damper * Magnitude * new Vector3(0.5f + y, 0.3f + x, 0.3f + z) * RotationDamper;
-            camT.rotation = Quaternion.Euler(originalCamRotation + oldRotation);
+                if (Quaternion.Euler(originalCamRotation + oldRotation) != camT.rotation)
+                    originalCamRotation = camT.rotation.eulerAngles;
+                oldRotation = Mathf.Sin(time * Speed) * damper * Magnitude * new Vector3(0.5f + y, 0.3f + x, 0.3f + z) * RotationDamper;
+                camT.rotation = Quaternion.Euler(originalCamRotation + oldRotation);
 
-            yield return null;
+                yield return null;
+            }
         }
     }
 }

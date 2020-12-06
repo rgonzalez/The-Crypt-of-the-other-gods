@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserRifle
   m_EditorClassIdentifier: 
   prefabName: LaserRifle
-  weaponType: 8
+  weaponType: 9
   ammoType: 3
   weaponPrefab: {fileID: 212177662981016187, guid: d7a4d9685bc585343b86ec98f1799f6c,
     type: 3}

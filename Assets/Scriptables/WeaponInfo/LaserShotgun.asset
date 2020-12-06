@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserShotgun
   m_EditorClassIdentifier: 
   prefabName: LaserShotgun
-  weaponType: 9
+  weaponType: 10
   ammoType: 3
   weaponPrefab: {fileID: 212177662981016187, guid: b32e50aeed397534f89200c7f6e789fc,
     type: 3}

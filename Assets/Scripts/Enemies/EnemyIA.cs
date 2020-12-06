@@ -77,7 +77,7 @@ public class EnemyIA : MonoBehaviour
                 {
                     lookDirection = -1;
                 }
-                transform.localScale =  new Vector3(lookDirection,1,1);
+                transform.localScale =  new Vector3( Mathf.Abs(transform.localScale.x) * lookDirection, transform.localScale.y, transform.localScale.z);
             } else
             {
                 target = GameObject.FindGameObjectWithTag("Player");

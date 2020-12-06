@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a49c6e8bf02204395f699c45e8bd25, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: 
+  difficult: 0
+  waves:
+  - enemies:
+    - ammount: 1
+      enemy: {fileID: 4310804882260133153, guid: 529e8074675866742b2714c2e3ef2661,
+        type: 3}
+    - ammount: 1
+      enemy: {fileID: 4310804882260133153, guid: cd2c65874e0e83b45a272e52e09ac49a,
+        type: 3}
+  - enemies:
+    - ammount: 1
+      enemy: {fileID: 4310804882260133153, guid: 7beb7b74272b7f84d8839619a70c9cb2,
+        type: 3}

@@ -40,6 +40,7 @@ public class Health : MonoBehaviour
         {
             animator.SetBool("dead", false);
         }
+        StartCoroutine(InitializeHealthPanel());
 
     }
 
@@ -131,5 +132,12 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Time.timeScale = 0.0f;
         UIManager.instance.ShowDeadPanel();
+    }
+
+
+    IEnumerator InitializeHealthPanel()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        UpdateHealth();
     }
 }

@@ -11,7 +11,7 @@ public class RoomDistance
 
 public class LevelBuilder : MonoBehaviour
 {
-
+    public GameObject loading;
     public int keysToFinish = 1; //the number of keys to finish
 	public Room startRoomPrefab, endRoomPrefab;
 	public List<Room> roomPrefabs = new List<Room> ();
@@ -52,7 +52,8 @@ public class LevelBuilder : MonoBehaviour
         prevPlayer = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
         if (prevPlayer)
         {
-            prevPlayer.SetActive(false);
+            Destroy(prevPlayer);
+            prevPlayer = null;
         }
 		roomLayerMask = LayerMask.GetMask ("Room");
 		StartCoroutine ("GenerateLevel");
@@ -60,14 +61,14 @@ public class LevelBuilder : MonoBehaviour
 
 	IEnumerator GenerateLevel ()
 	{
-		WaitForSeconds startup = new WaitForSeconds (1);
+		//WaitForSeconds startup = new WaitForSeconds (1);
         // WaitForFixedUpdate interval = new WaitForFixedUpdate ();
         WaitForEndOfFrame interval = new WaitForEndOfFrame();
 
-        yield return startup;
-
-		// Place start room
-		PlaceStartRoom ();
+        //    yield return startup;
+        availableDoorways.Clear();
+        // Place start room
+        PlaceStartRoom ();
 		yield return interval;
 
 		// Random iterations
@@ -267,13 +268,19 @@ public class LevelBuilder : MonoBehaviour
 		if (colliders.Length > 0) {
 			// Ignore collisions with current room
 			foreach (Collider c in colliders) {
-				// if (c.transform.parent.gameObject.Equals (room.gameObject)) {
-                if (SomeParentIsSameRoom(c.transform.gameObject, room.gameObject)) { 
-					continue;
-				} else {
-					Debug.LogError ("Overlap detected");
-					return true;
-				}
+                if (!c.isTrigger) // triggers doesnt overlap
+                {
+                    // if (c.transform.parent.gameObject.Equals (room.gameObject)) {
+                    if (SomeParentIsSameRoom(c.transform.gameObject, room.gameObject))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Debug.LogError("Overlap detected");
+                        return true;
+                    }
+                }
 			}
 		}
 
@@ -482,7 +489,10 @@ public class LevelBuilder : MonoBehaviour
         if (shopCameraManager)
             shopCameraManager.gameObject.SetActive(true);
         yield return new WaitForEndOfFrame();
-
+        if (loading)
+        {
+            Destroy(loading);
+        }
  
     }
 
