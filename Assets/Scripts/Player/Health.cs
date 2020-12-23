@@ -71,16 +71,7 @@ public class Health : MonoBehaviour
             }
             if (gameObject.CompareTag(Constants.TAG_PLAYER))
             {
-                // Player Config
-                if (movePlayer) movePlayer.enabled = false;
-                if (playerWeapon) playerWeapon.enabled = false;
-                if (actualWeapon) actualWeapon.SetActive(false);
-                //stop the time
-                if (audioSource && dieAudio)
-                {
-                    audioSource.PlayOneShot(dieAudio);
-                }
-                StartCoroutine(ShowDeadPanel());
+                KillPlayer();
             }
         } else
         {
@@ -154,5 +145,20 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
         UpdateHealth();
+    }
+
+    void KillPlayer()
+    {
+        // Player Config
+        if (movePlayer) movePlayer.enabled = false;
+        if (playerWeapon) playerWeapon.enabled = false;
+        if (actualWeapon) actualWeapon.SetActive(false);
+        //stop the time
+        if (audioSource && dieAudio)
+        {
+            audioSource.PlayOneShot(dieAudio);
+        }
+        StartCoroutine(ShowDeadPanel());
+       
     }
 }

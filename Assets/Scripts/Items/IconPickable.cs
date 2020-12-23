@@ -14,7 +14,12 @@ public class IconPickable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position =  new Vector3(attachment.position.x, attachment.position.y + iconHeight, attachment.position.z);
-
+        if (attachment)
+        {
+            this.transform.position = new Vector3(attachment.position.x, attachment.position.y + iconHeight, attachment.position.z);
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 }

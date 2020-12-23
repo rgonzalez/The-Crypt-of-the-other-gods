@@ -524,7 +524,7 @@ NavMeshAgent:
   m_Height: 1.5
   m_BaseOffset: 0.75
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 0
 --- !u!136 &957203627028090165
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
   secondsShowHealth: 2
   blood: {fileID: 4776601782642394568}
   enemyIA: {fileID: 0}
-  experience: 0
+  experience: 30
   hurtAudio: {fileID: 8300000, guid: f0dab8ef7b0395648b733988690825af, type: 3}
   dieAudio: {fileID: 8300000, guid: 8ca2d52138a2ea44988e4925c05d74dd, type: 3}
 --- !u!114 &8747216015114259827

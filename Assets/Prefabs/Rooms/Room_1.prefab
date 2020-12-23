@@ -2633,7 +2633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7467958781426773879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6399996, y: 0.29, z: -1.811}
+  m_LocalPosition: {x: 1.6399996, y: 0.29, z: -1.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7467958781441776328}
@@ -2797,7 +2797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7467958781702563838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.45, y: 0.29, z: -1.811}
+  m_LocalPosition: {x: -2, y: 0.29, z: -1.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7467958781441776328}
@@ -2893,7 +2893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7467958781722159085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.64, y: 0.6, z: 0}
+  m_LocalPosition: {x: 1.13, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7467958781441776328}
@@ -3016,6 +3016,9 @@ MonoBehaviour:
   roomConfig: {fileID: 11400000, guid: 60e128ceefbc77b42b78ee11b2b77a6c, type: 2}
   spawns:
   - {fileID: 7467958780868154865}
+  - {fileID: 7467958781702563838}
+  - {fileID: 7467958781722159085}
+  - {fileID: 7467958781426773879}
   secondBetweenSpawns: 5
   secondsBetweenWaves: 5
   doors:

@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4310804882260133153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.34, z: -0.082938}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.329698, y: 2.329698, z: 2.329698}
   m_Children:
   - {fileID: 4681698566382414544}
@@ -523,7 +523,7 @@ NavMeshAgent:
   m_Height: 1.5
   m_BaseOffset: 0.75
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 0
 --- !u!136 &957203627028090165
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -594,7 +594,9 @@ MonoBehaviour:
   secondsShowHealth: 2
   blood: {fileID: 4776601782642394568}
   enemyIA: {fileID: 0}
-  experience: 0
+  experience: 50
+  hurtAudio: {fileID: 0}
+  dieAudio: {fileID: 0}
 --- !u!114 &8747216015114259827
 MonoBehaviour:
   m_ObjectHideFlags: 0

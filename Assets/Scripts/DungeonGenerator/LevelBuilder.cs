@@ -55,8 +55,19 @@ public class LevelBuilder : MonoBehaviour
         prevPlayer = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
         if (prevPlayer)
         {
-            Destroy(prevPlayer);
-            prevPlayer = null;
+            MovePlayer movePlayer = prevPlayer.GetComponent<MovePlayer>();
+            // check if the player is dead (maybe this level is loaded because is dead, or is a new level (the player completed the past level)
+            // if is from dead, we RESET the player, if not, we keep it
+            if (movePlayer.enabled)
+            {
+                //was a level change
+                prevPlayer.SetActive(false);
+            } else
+            {
+                //the player is dead
+                Destroy(prevPlayer);
+                prevPlayer = null;
+            }
         }
         audioSource = GetComponent<AudioSource>();
 		roomLayerMask = LayerMask.GetMask ("Room");
@@ -503,6 +514,10 @@ public class LevelBuilder : MonoBehaviour
             audioSource.Play();
             audioSource.loop = true;
         }
+        if (UIManager.instance)
+        {
+            UIManager.instance.ConfigureHealth();
+        }
  
     }
 
@@ -522,6 +537,31 @@ public class LevelBuilder : MonoBehaviour
         } else
         {
             return true;
+        }
+    }
+
+    // Player's Death: reset all the managers
+    public void DestroyManagers()
+    {
+        if (inventoryManager)
+        {
+            Destroy(inventoryManager.gameObject);
+            InventoryManager.instance = null;
+        }
+        if (uiManager)
+        {
+            Destroy(uiManager.gameObject);
+            UIManager.instance = null;
+        }
+        if (shopCameraManager)
+        {
+            Destroy(shopCameraManager.gameObject);
+            ShopMenuScript.instance = null;
+        }
+        if (weaponManager)
+        {
+            Destroy(weaponManager.gameObject);
+            WeaponSpawnManager.instance = null;
         }
     }
 }

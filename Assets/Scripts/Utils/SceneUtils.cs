@@ -11,8 +11,23 @@ public class SceneUtils : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    //reload the scene by death
     public void ReloadCurrentScene()
     {
+
+        // disable the inventory, weaponManager...
+        GameObject levelManager = GameObject.FindGameObjectWithTag(Constants.TAG_LEVELGENERATOR);
+        //detroy the managers to reset them
+        if (levelManager)
+        {
+            LevelBuilder levelBuilder = levelManager.GetComponent<LevelBuilder>();
+            if (levelBuilder)
+            {
+                //the levelGenerator can destroy all the managers
+                levelBuilder.DestroyManagers();
+            }
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

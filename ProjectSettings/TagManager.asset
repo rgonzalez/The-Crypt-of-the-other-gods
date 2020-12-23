@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Weapon
   - Destroyable
+  - LevelGenerator
   layers:
   - Default
   - TransparentFX
