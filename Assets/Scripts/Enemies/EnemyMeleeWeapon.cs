@@ -91,14 +91,11 @@ public class EnemyMeleeWeapon : EnemyWeapon
         shootPoint.gameObject.SetActive(false);
         //set the nextTime for attack (cooldown) afther teh attack is finished
         nextFire = Time.time + fireCD;
-        Debug.Log("next in " + nextFire);
         //end the attack, can move again
         if (enemyIa && enemyIa.canMove)
         {
-            Debug.Log("MOVE TRUE");
             enemyIa.moving = true; // is is a moving enemy, re-activate the moving skill
         }
-        Debug.Log("END ATTACK");
         if (enemyIa) this.enemyIa.attacking = false;
     }
 

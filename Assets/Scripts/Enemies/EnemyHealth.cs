@@ -105,6 +105,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 if (ExperienceManager.instance && this.experience > 0)
                 {
+                    Debug.Log("ADD exp");
                     ExperienceManager.instance.AddExperience(this.experience);
                 }
                 //EnemyConfig

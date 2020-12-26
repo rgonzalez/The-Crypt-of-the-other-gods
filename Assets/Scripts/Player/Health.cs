@@ -158,6 +158,11 @@ public class Health : MonoBehaviour
         {
             audioSource.PlayOneShot(dieAudio);
         }
+        //save the experience 
+        if (ExperienceManager.instance != null)
+        {
+            ExperienceManager.instance.SaveExp();
+        }
         StartCoroutine(ShowDeadPanel());
        
     }

@@ -51,7 +51,6 @@ public class InventoryManager : MonoBehaviour
         else
         {
             InventoryManager.instance = this;
-
             // create space for weapons
             player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
             //get the reloadBar Graphs
@@ -172,6 +171,7 @@ public class InventoryManager : MonoBehaviour
 
     public void EquipBasicWeapon()
     {
+        Debug.Log("EQUIP BASIC WEAPON");
         //if the player doesnt have weapon... equip a rifle
         if (actualWeapon == null)
         {

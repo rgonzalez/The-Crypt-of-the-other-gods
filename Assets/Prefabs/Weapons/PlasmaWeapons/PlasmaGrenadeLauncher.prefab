@@ -151,7 +151,7 @@ MonoBehaviour:
   perfectAmmo: 0
   recoilX: 0
   recoilY: 0
-  damage: 20
+  damage: 70
   perfectCritic: 150
   haveLaserSight: 0
   laserSightPrefab: {fileID: 0}

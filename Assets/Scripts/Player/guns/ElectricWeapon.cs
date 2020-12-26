@@ -57,7 +57,7 @@ public class ElectricWeapon : AbstractWeapon
             // the damage is calculated here, not inside the function because could be called on update... emptying the ammo
             if (perfectAmmo > 0)
             {
-                actualDamage = damage * perfectCritic;
+                actualDamage = (int)((float)damage * (float)((float)perfectCritic / (float)100));
                 perfectAmmo -= bulletsPerShoot;
             }
             else

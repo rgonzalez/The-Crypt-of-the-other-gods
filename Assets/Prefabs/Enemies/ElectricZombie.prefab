@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42e0196d82222049bc32043a67528e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  actualHealth: 100
+  maxHealth: 150
+  actualHealth: 150
   alive: 1
   room: {fileID: 0}
   healthBar: {fileID: 7835789790134161173}

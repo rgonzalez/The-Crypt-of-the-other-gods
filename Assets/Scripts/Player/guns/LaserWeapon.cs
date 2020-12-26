@@ -13,7 +13,7 @@ public class LaserWeapon : AbstractWeapon
     public float activeTime = 0.1f;
     private bool lasersActivated = false;
     private int actualDamage; // the damage that is doing the laser NOW 
-
+    private float nextTick = 0f;
     private List<GameObject> lasers = new List<GameObject>();
 
     protected override void OnStarting()
@@ -60,7 +60,7 @@ public class LaserWeapon : AbstractWeapon
             // the damage is calculated here, not inside the function because could be called on update... emptying the ammo
             if (perfectAmmo > 0)
             {
-                actualDamage = damage * perfectCritic;
+                actualDamage = (int)((float)damage * (float)((float)perfectCritic / (float)100));
                 perfectAmmo -= bulletsPerShoot;
             } else
             {
@@ -69,7 +69,7 @@ public class LaserWeapon : AbstractWeapon
             ActiveLasers(true); 
             StartCoroutine(DisableLasers());
             nextFire = Time.time + fireCD;
-
+            nextTick = 0f;
             UIManager.instance.Shoot(ammoType, bulletsPerShoot, ammo);
         }
     }
@@ -111,12 +111,14 @@ public class LaserWeapon : AbstractWeapon
                 l.transform.rotation = Quaternion.LookRotation(direction);
             }
         }
-        Debug.Log("laser " + index + " ->" + l.transform.rotation.ToString());
         l.SetActive(true);
         if (Physics.Raycast(startPos, l.transform.forward, out hit, Mathf.Infinity))
         {
-
-            hit.collider.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
+            if (nextTick < Time.time)
+            {
+                hit.collider.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
+                nextTick = Time.time + 1; // add 1 second to next damage
+            } 
             if (bouncesLeft > 0)
             {
                 //hit something, bounce

@@ -22,6 +22,15 @@ public class ButtonInfo
     public bool toShop = false; // is this weapon button available to shop (is unlocked?) if false, is a update button    
 }
 
+[Serializable]
+public class TabInfo
+{
+    public Button tabButton;
+    public Constants.AMMO_TYPE ammoType;
+    public bool selected = false;
+    public GameObject panel;
+}
+
 public class ShopMenuScript : MonoBehaviour
 {
     /// <summary>
@@ -39,6 +48,8 @@ public class ShopMenuScript : MonoBehaviour
     //the list of buttons to update, shop, and info, MUST BE filled in INSPECTOR
     [SerializeField]
     public List<ButtonInfo> buttonInfos = new List<ButtonInfo>();
+    [SerializeField]
+    public List<TabInfo> tabInfos = new List<TabInfo>();
 
     //vars set by the TableShop
     public GameObject spawnPoint;
@@ -53,8 +64,16 @@ public class ShopMenuScript : MonoBehaviour
     private WeaponInfoScriptable selectedWeaponInfo;
 
 
+    // 
+    public Sprite unselectedTabSprite;
+    public Sprite selectedTabSprite;
+    public Sprite selectedButtonSprite;
+    public Sprite unlockButtonSprite;
+    public Sprite shopButtonSprite;
 
     // Use this for initialization
+
+    private Camera playerCamera;
     void Start()
     {
         if (ShopMenuScript.instance == null)
@@ -89,7 +108,12 @@ public class ShopMenuScript : MonoBehaviour
     /// </summary>
     public void Close()
     {
-           SetShopMenu(false);
+        if (playerCamera == null)
+        {
+            playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
+        //playerCamera.enabled = true;
+        SetShopMenu(false);
         shopOpen = false;
     }
 
@@ -100,6 +124,11 @@ public class ShopMenuScript : MonoBehaviour
     /// <param name="charges">nº of weapons can spawn</param>
     public void OpenShop(GameObject spawnPoint, int charges, ShopTable shopTable)
     {
+        if (playerCamera == null)
+        {
+            playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
+      //  playerCamera.enabled = false;
         selectedWeapon = null;
         selectedWeaponInfo = null;
         foreach (WeaponToShow w in weaponsToShow)
@@ -116,6 +145,7 @@ public class ShopMenuScript : MonoBehaviour
         UpdateExpText();
         UpdateChargeText();
         DisableButtons();
+        SelectBulletPanel();
         SetShopMenu(true);
         shopOpen = true;
     }
@@ -244,9 +274,19 @@ public class ShopMenuScript : MonoBehaviour
             if (info.weaponType == wType)
             {
                 selectedWeaponInfo = info;
+                Debug.Log("SELECTED: " + selectedWeaponInfo.weaponType.ToString());
             }
         }
     } 
+
+    private void ResetImageButtons()
+    {
+        foreach(ButtonInfo buttonInfo in buttonInfos)
+        {
+            buttonInfo.shopButton.GetComponent<Image>().sprite = shopButtonSprite;
+            buttonInfo.updateButton.GetComponent<Image>().sprite = unlockButtonSprite;
+        }
+    }
 
     /// <summary>
     /// Update the status of all buttons depending if can buy or unlock the weapon
@@ -260,6 +300,8 @@ public class ShopMenuScript : MonoBehaviour
             buttonInfo.updateButton.onClick.RemoveAllListeners();
             buttonInfo.shopButton.onClick.AddListener(() =>
             { //SELECT A WEAPON TO BUY FUNCTION BUTTON
+                ResetImageButtons();
+                buttonInfo.shopButton.GetComponent<Image>().sprite = selectedButtonSprite;
                 if (this.charges > 0)
                 {
                     SetToShopButton();
@@ -272,8 +314,11 @@ public class ShopMenuScript : MonoBehaviour
 
             buttonInfo.updateButton.onClick.AddListener(() =>
             { //SELECT A WEAPON TO UNLOCK FUNCTION BUTTON
-                SetToUpdateButton();
+                ResetImageButtons();
+
+                buttonInfo.updateButton.GetComponent<Image>().sprite = selectedButtonSprite;
                 SelectWeapon(buttonInfo.wType);
+                SetToUpdateButton();
             });
         }
     }
@@ -296,7 +341,7 @@ public class ShopMenuScript : MonoBehaviour
         this.updateButton.gameObject.SetActive(true);
 
     }
-
+    // disable the shop/unlock buttons
     public void DisableButtons()
     {
         this.shopButton.gameObject.SetActive(false);
@@ -315,4 +360,42 @@ public class ShopMenuScript : MonoBehaviour
             buttonInfo.updateButton.gameObject.SetActive(!buttonInfo.toShop);
         }
     }
+
+    //interface for buttons 
+    public void SelectTab(Constants.AMMO_TYPE ammoType)
+    {
+        foreach(TabInfo tab in tabInfos)
+        {
+            if (ammoType == tab.ammoType)
+            {
+                tab.panel.SetActive(true);
+                tab.selected = true;
+                tab.tabButton.GetComponent<Image>().sprite = selectedTabSprite;
+                //autoselect the first button of the tab
+            } else
+            {
+                tab.panel.SetActive(false);
+                tab.selected = false;
+                tab.tabButton.GetComponent<Image>().sprite = unselectedTabSprite;
+            }
+        }
+    }
+
+    public void SelectBulletPanel()
+    {
+        SelectTab(Constants.AMMO_TYPE.BULLET);
+    }
+    public void SelectPlasmaPanel()
+    {
+        SelectTab(Constants.AMMO_TYPE.PLASMA);
+    }
+    public void SelectLaserPanel()
+    {
+        SelectTab(Constants.AMMO_TYPE.LASER);
+    }
+    public void SelectRocketPanel()
+    {
+        SelectTab(Constants.AMMO_TYPE.ROCKET);
+    }
+
 }

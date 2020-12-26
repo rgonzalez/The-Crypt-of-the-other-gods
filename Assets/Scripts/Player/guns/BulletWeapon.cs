@@ -71,7 +71,7 @@ public class BulletWeapon : AbstractWeapon
                     if (perfectAmmo > 0 ) 
                     {
                         //is a critical bullet
-                        bulletScript.damage = damage * perfectCritic;
+                        bulletScript.damage = (int)((float)damage * (float)((float)perfectCritic / (float)100));
                         perfectAmmo -= bulletsPerShoot;
                     } else
                     {

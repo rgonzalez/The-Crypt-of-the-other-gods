@@ -27,7 +27,13 @@ public class SceneUtils : MonoBehaviour
                 levelBuilder.DestroyManagers();
             }
         }
+        StartCoroutine(RestartLevel());
+    }
 
+    private IEnumerator RestartLevel()
+    {
+        yield return new WaitForSecondsRealtime(1.0f);
+        Debug.Log("RESTART LEVEL");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

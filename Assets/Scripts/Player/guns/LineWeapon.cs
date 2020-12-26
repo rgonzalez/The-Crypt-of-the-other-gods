@@ -61,10 +61,10 @@ public class LineWeapon : AbstractWeapon
             int actualDamage = damage;
             if (perfectAmmo > 0)
             {
-                actualDamage = damage * perfectCritic;
+                actualDamage = (int)((float)damage * (float)((float)perfectCritic / (float)100));
                 perfectAmmo -= bulletsPerShoot;
             }
-
+            Debug.Log("add Damage: " + actualDamage);
             Plane plane = new Plane(Vector3.up, transform.position);
             float distance;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -91,13 +91,13 @@ public class LineWeapon : AbstractWeapon
                     {
                        //  Debug.DrawRay(transform.position, newTarget, Color.yellow, 10f);
                         lr.SetPosition(1, hit.point);
-                        Debug.Log("Did Hit at " + hit.collider.name);                  
+
                         hit.collider.SendMessage("Damage", actualDamage, SendMessageOptions.DontRequireReceiver);
                     }
                     else
                     {
                          // Debug.DrawRay(transform.position, newTarget, Color.white, 10f);
-                        Debug.Log("Did not Hit " + hit.point);
+
                         Vector3 pos = (newTarget) * distance;
                         lr.SetPosition(1, pos);
                     }

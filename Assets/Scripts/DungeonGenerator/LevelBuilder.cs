@@ -486,7 +486,8 @@ public class LevelBuilder : MonoBehaviour
             player.transform.rotation = startRoom.playerStart.rotation;
         }
         yield return new WaitForEndOfFrame();
-
+        //load the Managers from the current map
+        LoadManagers();
         if (weaponManager)
             weaponManager.gameObject.SetActive(true);
         yield return new WaitForEndOfFrame();
@@ -521,6 +522,16 @@ public class LevelBuilder : MonoBehaviour
  
     }
 
+    void LoadManagers()
+    {
+        Debug.Log("loading inventory");
+        if (InventoryManager.instance != null)
+        {
+            Debug.Log("inventory found");
+            inventoryManager = InventoryManager.instance;
+        }
+    }
+
     public void PickKey()
     {
         pickedKeys++;
@@ -543,8 +554,10 @@ public class LevelBuilder : MonoBehaviour
     // Player's Death: reset all the managers
     public void DestroyManagers()
     {
+        Debug.Log("DESTROYING MANAGERS");
         if (inventoryManager)
         {
+            Debug.Log("inventoryDes");
             Destroy(inventoryManager.gameObject);
             InventoryManager.instance = null;
         }

@@ -14,6 +14,10 @@ public class SceneTriggerer : MonoBehaviour
             {
                 if (LevelBuilder.instance.AllKeysPicked())
                 {
+                    if (ExperienceManager.instance != null)
+                    {
+                        ExperienceManager.instance.SaveExp();
+                    }
                     LoadLevel();
                 }
             } else
