@@ -195,7 +195,7 @@ public class ShopMenuScript : MonoBehaviour
     {
         if (selectedWeapon != null && selectedWeaponInfo != null)
         {
-            if (selectedWeaponInfo.price < ExperienceManager.instance.actualExp)
+            if (selectedWeaponInfo.price <= ExperienceManager.instance.actualExp)
             {
                 // can unlock the weapon
                 ExperienceManager.instance.EnableWeapon(selectedWeaponInfo.weaponType);

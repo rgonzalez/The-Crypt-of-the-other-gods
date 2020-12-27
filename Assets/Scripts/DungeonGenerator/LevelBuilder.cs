@@ -518,6 +518,7 @@ public class LevelBuilder : MonoBehaviour
         if (UIManager.instance)
         {
             UIManager.instance.ConfigureHealth();
+            UIManager.instance.UpdateKeyNumber(0); // the player start at 0 keys
         }
  
     }
@@ -535,6 +536,10 @@ public class LevelBuilder : MonoBehaviour
     public void PickKey()
     {
         pickedKeys++;
+        if (UIManager.instance)
+        {
+            UIManager.instance.UpdateKeyNumber(pickedKeys);
+        }
     }
     /// <summary>
     /// Check if all the keys of this level are picked by the player

@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image centeredImage;
     public GameObject centralPanel;
+    public Text keyEquiped; // the text with nº of keys in the inventory
 
     // Start is called before the first frame update
     void Start()
@@ -338,6 +339,11 @@ public class UIManager : MonoBehaviour
 
             centeredText.text = "No se tienen todas las llaves para poder acceder";
         }
+    }
+
+    public void UpdateKeyNumber(int number)
+    {
+        keyEquiped.text = number.ToString();
     }
 
     public void CleanPanel()
