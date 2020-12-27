@@ -29,10 +29,13 @@ public class Pickable : MonoBehaviour
     public GameObject iconPrefab;
     private GameObject icon;
     public float iconHeight = 5f;
+    public AudioClip pickAudio;
+    protected AudioSource audioSource;
 
     // Use this for initialization
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(ActiveItem());
     }
 
@@ -81,6 +84,10 @@ public class Pickable : MonoBehaviour
         //now check what happens, if is a weapon, assign the prefab as a weapon for the user 
         // in the actual Space
         if (player != null) {
+            if (audioSource && pickAudio)
+            {
+                audioSource.PlayOneShot(pickAudio);
+            }
             switch (itemtype)
             {
                 case Constants.PICKABLE_TYPE.AMMO:

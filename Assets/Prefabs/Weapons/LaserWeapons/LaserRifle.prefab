@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   ammoType: 3
-  weaponType: 8
+  weaponType: 9
   fireCD: 4
   muzzleFlashPrefab: {fileID: 0}
   ammo: 3

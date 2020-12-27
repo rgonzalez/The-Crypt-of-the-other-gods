@@ -28,6 +28,10 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public int maxHealth = 100; // set by Health player script
     public int actualHealth = 100;
+
+    public bool heartMode = false; //set the hearts or bar
+    public Image healthBar; // the red health bar
+    public GameObject healthBarPanel; // the panel with the health red bar
     [SerializeField]
     private int heartHealth = 20; // how mucho health is a UI Heart
     [SerializeField]
@@ -54,10 +58,12 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Centered info in screen
     /// </summary>
+    /// 
     [SerializeField]
     private Text centeredText;
     [SerializeField]
     private Image centeredImage;
+    public GameObject centralPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -65,10 +71,23 @@ public class UIManager : MonoBehaviour
         if (UIManager.instance == null)
         {
             UIManager.instance = this;
+            if (heartMode)
+            {
+                healthPanel.SetActive(true);
+                healthBarPanel.SetActive(false);
+            } else
+            {
+                healthPanel.SetActive(false);
+                healthBarPanel.SetActive(true);
+            }
             // Start Health Config
             ConfigureMaxHealth();
             ConfigureHealth();
             PrepareAmmoUI();
+            if (centralPanel)
+            {
+                centralPanel.SetActive(false);
+            }
 
             //Ammo Config
         } else
@@ -88,50 +107,64 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ConfigureMaxHealth()
     {
-        // clean the panel of hearts
-        for (int i = 0; i < healthPanel.transform.childCount; i++)
+        if (heartMode)
         {
-            Destroy(healthPanel.transform.GetChild(i));
-        }
-        //now Clear, set the max Health 
-        int numHearts = maxHealth / heartHealth + (maxHealth % heartHealth); // just in case the division is not mod 0
-        for (int i = 0; i < numHearts; i++)
+            // clean the panel of hearts
+            for (int i = 0; i < healthPanel.transform.childCount; i++)
+            {
+                Destroy(healthPanel.transform.GetChild(i));
+            }
+            //now Clear, set the max Health 
+            int numHearts = maxHealth / heartHealth + (maxHealth % heartHealth); // just in case the division is not mod 0
+            for (int i = 0; i < numHearts; i++)
+            {
+                GameObject heart = Instantiate(heartPrefab, healthPanel.transform);
+                //the heart contains an image that can be filled depending the actual Health          
+            }
+        } else
         {
-            GameObject heart = Instantiate(heartPrefab, healthPanel.transform);
-            //the heart contains an image that can be filled depending the actual Health          
+            //health bar
+            healthBar.fillAmount = 1;
         }
     }
 
     public void ConfigureHealth()
     {
-        bool beatActive = false;
-        for (int i = 0; i < healthPanel.transform.childCount; i++)
+        if (heartMode)
         {
-            GameObject heart = healthPanel.transform.GetChild(i).GetChild(0).gameObject;
-            if (actualHealth >= ((i + 1) * heartHealth))
+            bool beatActive = false;
+            for (int i = 0; i < healthPanel.transform.childCount; i++)
             {
-                //there is more than this heart of life
-                heart.GetComponent<Image>().fillAmount = 1;
+                GameObject heart = healthPanel.transform.GetChild(i).GetChild(0).gameObject;
+                if (actualHealth >= ((i + 1) * heartHealth))
+                {
+                    //there is more than this heart of life
+                    heart.GetComponent<Image>().fillAmount = 1;
 
-                heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = false;
-            }
-            else
-            {
-                int leftHeart = (actualHealth - (i * heartHealth));
-                heart.GetComponent<Image>().fillAmount = (float)leftHeart  / (float)heartHealth; // set the % of the heart image
-                if (leftHeart > 0)
-                {
-                    heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = true;
-                    beatActive = true;
-                } else
-                {
                     heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = false;
                 }
+                else
+                {
+                    int leftHeart = (actualHealth - (i * heartHealth));
+                    heart.GetComponent<Image>().fillAmount = (float)leftHeart / (float)heartHealth; // set the % of the heart image
+                    if (leftHeart > 0)
+                    {
+                        heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = true;
+                        beatActive = true;
+                    }
+                    else
+                    {
+                        heart.transform.parent.gameObject.GetComponent<HeartBeat>().isActive = false;
+                    }
+                }
             }
-        }
-        if (!beatActive)
+            if (!beatActive)
+            {
+                healthPanel.transform.GetChild(healthPanel.transform.childCount - 1).GetComponent<HeartBeat>().isActive = true;
+            }
+        } else
         {
-            healthPanel.transform.GetChild(healthPanel.transform.childCount - 1).GetComponent<HeartBeat>().isActive = true;
+            healthBar.fillAmount = (float)actualHealth / (float)maxHealth;
         }
     }
 
@@ -259,17 +292,22 @@ public class UIManager : MonoBehaviour
     {
         if (WeaponSpawnManager.instance)
         {
+            if (centralPanel)
+            {
+                centralPanel.SetActive(true);
+            }
             WeaponInfoScriptable info = WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
             if (info)
             {
                 if (info.equipedWeaponIcon)
                 {
                     centeredImage.sprite = info.equipedWeaponIcon;
+                    centeredImage.preserveAspect = true;
                     centeredImage.gameObject.SetActive(true);
                 }
-                if (info.name != null)
+                if (info.prefabName != null)
                 {
-                    centeredText.text = info.name;
+                    centeredText.text = info.prefabName;
                 }
             }
         }
@@ -304,6 +342,10 @@ public class UIManager : MonoBehaviour
 
     public void CleanPanel()
     {
+        if (centralPanel)
+        {
+            centralPanel.SetActive(false);
+        }
         centeredImage.sprite = null;
         centeredImage.gameObject.SetActive(false);
         centeredText.text = "";

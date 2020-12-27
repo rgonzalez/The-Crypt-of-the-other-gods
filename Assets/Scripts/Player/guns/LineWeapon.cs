@@ -79,7 +79,11 @@ public class LineWeapon : AbstractWeapon
 
 
                 // now we have to cast a raycast per bullet (lineRenderer) with recoil
+                Debug.Log("worldPosition" + worldPosition);
+                Debug.Log("transform" + transform.position);
                 Vector3 target = worldPosition - transform.position; //original Target position
+                
+                Debug.Log("target" + target);
                 foreach (LineRenderer lr in lineRenderers)
                 {
                     lr.positionCount = 2;

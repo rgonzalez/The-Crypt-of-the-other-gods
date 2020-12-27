@@ -15,9 +15,9 @@ MonoBehaviour:
   difficult: 0
   waves:
   - enemies:
-    - ammount: 1
+    - ammount: 2
       enemy: {fileID: 4310804882260133153, guid: 529e8074675866742b2714c2e3ef2661,
         type: 3}
-    - ammount: 1
+    - ammount: 2
       enemy: {fileID: 4310804882260133153, guid: cd2c65874e0e83b45a272e52e09ac49a,
         type: 3}

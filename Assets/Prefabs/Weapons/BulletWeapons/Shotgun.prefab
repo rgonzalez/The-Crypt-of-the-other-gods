@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   ammoType: 0
-  weaponType: 0
+  weaponType: 1
   fireCD: 2
   muzzleFlashPrefab: {fileID: 100006, guid: b0a227fc2e558f241b1c747820ccc361, type: 3}
   ammo: 2
