@@ -61,6 +61,10 @@ public class Health : MonoBehaviour
     /// <param name="damage">The damage to apply to the current gameObject</param>
     public void Damage(int damage)
     {
+        if (actualHealth <=0)
+        {
+            return; // is already dead
+        }
        actualHealth -= damage;
         if (actualHealth <= 0) //DEAD CASE!
         {

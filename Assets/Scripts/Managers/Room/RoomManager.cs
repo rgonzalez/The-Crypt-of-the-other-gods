@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
     private bool activeRoom = true; // if the room is work, so the room can spawn
     private bool spawningRoom = false; //just a check var, maybe by error the user can enter twice in the trigger
 
-    public List<GameObject> doors = new List<GameObject>();
+    public List<UsableDoor> doors = new List<UsableDoor>();
 
     //actual Wave info
 
@@ -36,13 +36,36 @@ public class RoomManager : MonoBehaviour
 
     public GameObject SpawnEffect; //special effect for every spawn, can be changed to a list (random or by spawn) in a future
 
+    //list of cloths in the room
+    public List<Cloth> cloths = new List<Cloth>();
+
     // Use this for initialization
     void Start()
     {
         actualWave = 0;
         activeRoom = true;
+        cloths = new List<Cloth>(transform.parent.GetComponentsInChildren<Cloth>()); // the triggerRoom is inside the room, we must go up 1 level
+        //add the player capsulle to the system
+        GameObject player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+        Debug.Log("found cloths: " + cloths.Count);
+        if (player)
+        {
+            UpdateClothes(player.GetComponentInChildren<CapsuleCollider>());
+        }
     }
 
+
+    private void UpdateClothes(CapsuleCollider newCollider)
+    {
+        foreach (Cloth cloth in cloths)
+        {
+            //get the list of colliders of this cloth
+            List<CapsuleCollider> colliders = new List<CapsuleCollider>(cloth.capsuleColliders);
+            colliders.Add(newCollider);
+            cloth.capsuleColliders = colliders.ToArray();
+            Debug.Log("cloth collider:" + cloth.capsuleColliders.Length);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -126,6 +149,11 @@ public class RoomManager : MonoBehaviour
                     }
                     GameObject enemy = Instantiate(enemyConfig.enemy, spawns[indexSpawn].transform.position, Quaternion.Euler(Vector3.zero));
                     EnemyHealth healthEnemy = enemy.GetComponent<EnemyHealth>();
+                    CapsuleCollider enemyCollider = enemy.GetComponent<CapsuleCollider>();
+                    if (enemyCollider)
+                    {
+                        UpdateClothes(enemyCollider);
+                    }
                     healthEnemy.room = this;
                     Debug.Log("SPAWNED AT " + indexSpawn);
                     indexSpawn++;
@@ -162,10 +190,11 @@ public class RoomManager : MonoBehaviour
     //TODO
     private void OpenRoom()
     {
-        foreach(GameObject door in doors)
+        foreach(UsableDoor door in doors)
         {
             //TODO: animate door
-            door.SetActive(false);
+            //door.SetActive(false);
+            door.OpenDoor();
         }
         if (chest != null)
         {
@@ -175,10 +204,14 @@ public class RoomManager : MonoBehaviour
 
     private void CloseRoom()
     {
-        foreach (GameObject door in doors)
+        foreach (UsableDoor door in doors)
         {
             //TODO: animate door
-            door.SetActive(true);
+            // door.SetActive(true);
+            if (door) // maybe is a destroyed door (by a Quad/doorway)
+            {
+                door.CloseDoor();
+            }
         }
     }
 

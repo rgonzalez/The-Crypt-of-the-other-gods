@@ -1,9 +1,15 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {
+
+    //TEST PHYSICS PURPOSE
+    public Vector3 centerPhysics = Vector3.zero;
+    public Vector3 sizePhysics = Vector3.zero;
+
 
     public GameObject key;
     public GameObject keySpawn;
@@ -29,23 +35,37 @@ public class Room : MonoBehaviour
 
             // as the room is componed as top level gameObject, all the elements are childrens; just for check
             Vector3 center = Vector3.zero;
+            int elementsFound = 0;
+            /* foreach (Transform child in transform)
+             {
+                 Renderer renderer = child.gameObject.GetComponent<Renderer>();
+                 if (renderer)
+                 {
+                     center += renderer.bounds.center;
+                     elementsFound++;
+                 }
+             }
+             center /= elementsFound; //center is average center of children
 
-            foreach (Transform child in transform)
-            {
-                Renderer renderer = child.gameObject.GetComponent<Renderer>();
-                if (renderer)
-                    center += renderer.bounds.center;
-            }
-            center /= transform.childCount; //center is average center of children
+             //Now you have a center, calculate the bounds by creating a zero sized 'Bounds', 
+             Bounds bounds = new Bounds(center, Vector3.zero);
 
-            //Now you have a center, calculate the bounds by creating a zero sized 'Bounds', 
-            Bounds bounds = new Bounds(center, Vector3.zero);
+             foreach (Transform child in transform)
+             {
+                 Renderer renderer = child.gameObject.GetComponent<Renderer>();
+                 if (renderer)
+                 {
+                     Debug.Log("ADD " + renderer.name);
+                     bounds.Encapsulate(renderer.bounds);
+                 }
+             }*/
 
-            foreach (Transform child in transform)
-            {
-                Renderer renderer = child.gameObject.GetComponent<Renderer>();
-                if (renderer)
-                    bounds.Encapsulate(renderer.bounds);
+            //New system 
+            Bounds bounds = new Bounds(transform.position, Vector3.zero);
+            MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+            foreach(Renderer renderer in renderers)
+            {            
+                bounds.Encapsulate(renderer.bounds);
             }
             return bounds;
 
@@ -88,11 +108,10 @@ public class Room : MonoBehaviour
     // place the key in this room
     public void PlaceKey()
     {
-        Debug.Log("PLACE KEY AT " + gameObject.name);
+
         if (keySpawn && key)
         {
             Instantiate(key, keySpawn.transform);
-            Debug.Log("PLACED KEY " + gameObject.name);
         }
     }
 
@@ -111,7 +130,7 @@ public class Room : MonoBehaviour
 
     //if a room keeps doorways (not connected to other room) we must clean the DoorWay, but not the child, that can be a fake Wall or Door
     public void CleanDoorWays()
-    {
+    { //the doorways are the Quads, that have child static
         foreach (Doorway doorway in doorways)
         {
             if (doorway.gameObject.active == true)
@@ -123,10 +142,12 @@ public class Room : MonoBehaviour
                     for (int i = 0; i < doorway.transform.childCount; i++)
                     {
                         GameObject fakeWall = doorway.transform.GetChild(i).gameObject;
-                        fakeWall.transform.parent = this.transform;
+                        fakeWall.transform.parent = this.transform; //extract from the quad, now is a independent gameobject
                         fakeWall.gameObject.SetActive(true);
                     }
                 }
+                //the fakewall is ON, but now disable the real doors associated if exists
+                doorway.DestroyRealDoors();
             }
         }
     }
@@ -172,6 +193,12 @@ public class Room : MonoBehaviour
             }
         }
     }
+    private void OnDrawGizmos() {
 
+      /*  Gizmos.color = Color.red;
+        Handles.Label(transform.position, gameObject.name);
+        Gizmos.DrawIcon(centerPhysics, "alertDialog");
+        Gizmos.DrawWireCube(centerPhysics, sizePhysics);*/
+    }
 
 }

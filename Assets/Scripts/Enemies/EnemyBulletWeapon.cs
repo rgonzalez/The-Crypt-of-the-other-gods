@@ -40,7 +40,6 @@ public class EnemyBulletWeapon : EnemyWeapon
             Vector3 targetPos = transform.position - target.position;
             if (this.enemyIa && this.enemyIa.canMove)
             {
-                Debug.Log("MOVE FALSE");
                 this.enemyIa.moving = false; //while attacking cant move (if is a moving enemy)
             }
             for (int i = 0; i < numberOfBullets; i++)
@@ -76,10 +75,9 @@ public class EnemyBulletWeapon : EnemyWeapon
         //end the attack, can move again
         if (enemyIa && enemyIa.canMove)
         {
-            Debug.Log("MOVE TRUE");
+
             enemyIa.moving = true; // is is a moving enemy, re-activate the moving skill
         }
-        Debug.Log("END ATTACK");
         if (enemyIa) this.enemyIa.attacking = false;
     }
 

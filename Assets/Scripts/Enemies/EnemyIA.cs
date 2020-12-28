@@ -92,7 +92,7 @@ public class EnemyIA : MonoBehaviour
                 actualState = patrolingState;
             }
 
-            animator.SetBool("run", moving);           
+            animator.SetBool("run", moving && (agent.velocity.magnitude != 0f));           
             animator.SetBool("attack", attacking);
 
         }

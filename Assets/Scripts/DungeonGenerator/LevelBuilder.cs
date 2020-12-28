@@ -44,6 +44,7 @@ public class LevelBuilder : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip musicLevel;
 
+    public bool debugMode = true;
 
 	void Start ()
 	{
@@ -153,6 +154,7 @@ public class LevelBuilder : MonoBehaviour
     /// <returns>TRUE if placed, FALSE if there is not available rooms to place</returns>
 	bool PlaceRoom ()
 	{
+        Debug.Log("COLOCANDO NUEVA HABITACION");
         List<int> usedRooms = new List<int>(); // list of used rooms to dont pick again, keep the list of index used this iteration
         List<int> availableIndexes = new List<int>(); // is a list of index (in the roomPrefabs) to USE
         bool roomPlaced = false;
@@ -163,12 +165,13 @@ public class LevelBuilder : MonoBehaviour
         }
         while (availableIndexes.Count > 0)
         {
-           
+            Debug.Log("QUEDAN " + availableIndexes.Count + "HABITACIONES");
             int actualIndex = Random.Range(0, availableIndexes.Count);
             int actualRoomPrefabIndex = availableIndexes[actualIndex]; // initially the array can be 0,1,2,3,4,5,6... but when the rooms are being extracted, will be [0,4,6,7] for example
                                                                         // so if in an array [0,4,6,7] we get random 2, is 4 in the array (the 2 was wrong placed before..)
 
             Room currentRoom = Instantiate(roomPrefabs[actualRoomPrefabIndex]) as Room;
+            Debug.Log("trying room:" + currentRoom.name);
             currentRoom.transform.parent = this.transform;
 
             // Create doorway lists to loop over
@@ -189,10 +192,14 @@ public class LevelBuilder : MonoBehaviour
                     PositionRoomAtDoorway(ref currentRoom, currentDoorway, availableDoorway);
 
                     // Check room overlaps
+                    Debug.Log("check if collides " + currentRoom.name);
                     if (CheckRoomOverlap(currentRoom))
                     {
-                        //restart if overlap
-                        continue;
+                        if (!debugMode)
+                        {
+                            //restart the loop of doors if overlap
+                            continue;
+                        }
                     }
 
                     roomPlaced = true;
@@ -276,11 +283,26 @@ public class LevelBuilder : MonoBehaviour
     /// <returns>TRUE if overlap, FALSE if is a OK room</returns>
 	bool CheckRoomOverlap (Room room)
 	{
+        //before check , sync the physics..
+        Physics.SyncTransforms();
 		Bounds bounds = room.RoomBounds;
 		bounds.Expand (-0.1f);
 
 		Collider[] colliders = Physics.OverlapBox (bounds.center, bounds.size / 2, room.transform.rotation, roomLayerMask);
-		if (colliders.Length > 0) {
+        room.centerPhysics = bounds.center;
+        room.sizePhysics = bounds.size;
+
+        if (debugMode)
+        {
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = bounds.center;
+            cube.transform.localScale = bounds.size;
+            cube.name = "BOUNDS_TEST_" + room.name;
+            ///
+        }
+
+        Debug.Log(" Level bounds: " + room.centerPhysics + " - " + room.sizePhysics + "room at: " + room.gameObject.transform.position);
+        if (colliders.Length > 0) {
 			// Ignore collisions with current room
 			foreach (Collider c in colliders) {
                 if (!c.isTrigger) // triggers doesnt overlap
@@ -291,8 +313,13 @@ public class LevelBuilder : MonoBehaviour
                         continue;
                     }
                     else
-                    {
-                        Debug.LogError("Overlap detected");
+                    { 
+                        Debug.LogError("Overlap detected with " + c.name + " of " + c.transform.GetComponentInParent<Room>().gameObject.name);
+                        Collider[] originalCol = Physics.OverlapBox(c.transform.position, c.bounds.size / 2, Quaternion.identity, roomLayerMask);
+                        foreach(Collider oriCol in originalCol)
+                        {
+                            Debug.Log("HIT: " + oriCol.name + " of " + oriCol.transform.GetComponentInParent<Room>().gameObject.name);
+                        }
                         return true;
                     }
                 }
@@ -348,7 +375,10 @@ public class LevelBuilder : MonoBehaviour
 			// Check room overlaps
 			if (CheckRoomOverlap (endRoom)) {
                 // if the checkroomOverlap returns true, exit the loop and restart the system
-				continue;
+                if (!debugMode)
+                {
+                    continue;
+                }
 			}
 
 			roomPlaced = true;
