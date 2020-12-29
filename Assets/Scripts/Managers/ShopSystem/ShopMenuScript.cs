@@ -19,7 +19,21 @@ public class ButtonInfo
     public Button shopButton;
     public Button updateButton;
     public Constants.WEAPON_TYPE wType;
+    public Text priceText;
+    public float percentDamage;
+    public float percentFireRate;
+    public float percentClipAmmo;
+    public Image damageBar;
+    public Image fireRateBar;
+    public Image clipBar;
+    //unlock
+    public Image damageUnlockBar;
+    public Image fireRateUnlockBar;
+    public Image clipUnlockBar;
     public bool toShop = false; // is this weapon button available to shop (is unlocked?) if false, is a update button    
+    public Text descriptionText;
+    //audio description
+    public AudioClip audioDescription;
 }
 
 [Serializable]
@@ -37,6 +51,7 @@ public class ShopMenuScript : MonoBehaviour
     /// Manager that instances the menu Shop system
     /// </summary>
 
+    private AudioSource audioSource;
     public static ShopMenuScript instance;
     public Button shopButton;
     public Button updateButton;
@@ -56,8 +71,8 @@ public class ShopMenuScript : MonoBehaviour
     public int charges = 0; //ammount of weapons that can Spawn this shop, is set by the activated shop
     public TextMeshProUGUI chargesText; // the text of actualCharges
     public TextMeshProUGUI expText; // the text of actual experience
-    public Text actualWeaponPrice; 
-
+    public Text actualWeaponPrice;
+    public PanelInterface infoPanel;
 
     private ShopTable activeShop;
     private WeaponToShow selectedWeapon;
@@ -80,6 +95,7 @@ public class ShopMenuScript : MonoBehaviour
         {
             ShopMenuScript.instance = this;
             GeneratePickables();
+            audioSource = GetComponent<AudioSource>();
         } else
         {
             Destroy(this);
@@ -115,6 +131,8 @@ public class ShopMenuScript : MonoBehaviour
         //playerCamera.enabled = true;
         SetShopMenu(false);
         shopOpen = false;
+
+        UIManager.instance.RestoreWeaponCursor();
     }
 
     /// <summary>
@@ -136,6 +154,17 @@ public class ShopMenuScript : MonoBehaviour
             // hide all
             w.weapon.SetActive(false);
         }
+        foreach (ButtonInfo button in buttonInfos)
+        {
+            if (button.descriptionText) // disable all texts
+            {
+                button.descriptionText.gameObject.SetActive(false);
+            }
+        }
+        if (infoPanel)
+        {
+            infoPanel.ClosePanel();
+        }
         this.activeShop = shopTable;
         expText.text = ExperienceManager.instance.actualExp.ToString();
         this.charges = charges;
@@ -146,10 +175,39 @@ public class ShopMenuScript : MonoBehaviour
         UpdateChargeText();
         DisableButtons();
         SelectBulletPanel();
+        UpdateWeaponsStats();
         SetShopMenu(true);
         shopOpen = true;
+        UIManager.instance.SetMenuCursor();
     }
 
+
+    private void UpdateWeaponsStats()
+    {
+        foreach (ButtonInfo info in buttonInfos)
+        {
+            if (info.damageBar) info.damageBar.fillAmount = info.percentDamage / 100f;
+            if (info.damageUnlockBar) info.damageUnlockBar.fillAmount = info.percentDamage / 100f;
+
+            if (info.clipBar) info.clipBar.fillAmount = info.percentClipAmmo / 100f;
+            if (info.clipUnlockBar) info.clipUnlockBar.fillAmount = info.percentClipAmmo / 100f;
+
+
+            if (info.fireRateBar) info.fireRateBar.fillAmount = info.percentFireRate / 100f;
+            if (info.fireRateUnlockBar) info.fireRateUnlockBar.fillAmount = info.percentFireRate / 100f;
+
+            if (info.priceText)
+            {
+                foreach (WeaponInfoScriptable wType in WeaponSpawnManager.instance.weaponInfoList)
+                {
+                    if (info.wType == wType.weaponType)
+                    {
+                        info.priceText.text = wType.price.ToString() + " XP";
+                    }
+                }
+            }
+        }
+    }
 
     private void UpdateChargeText()
     {
@@ -257,6 +315,21 @@ public class ShopMenuScript : MonoBehaviour
 
     private void SelectWeapon(Constants.WEAPON_TYPE wType)
     {
+        //clean al descriptions
+        foreach (ButtonInfo info in buttonInfos)
+        {
+            if (info.descriptionText)
+            {
+                if (info.wType == wType)
+                {
+                    info.descriptionText.gameObject.SetActive(true);
+                } else
+                {
+                    info.descriptionText.gameObject.SetActive(false);
+                }
+
+            }
+        }
         foreach (WeaponToShow weapon in weaponsToShow)
         {
             if (weapon.wType == wType)
@@ -274,7 +347,6 @@ public class ShopMenuScript : MonoBehaviour
             if (info.weaponType == wType)
             {
                 selectedWeaponInfo = info;
-                Debug.Log("SELECTED: " + selectedWeaponInfo.weaponType.ToString());
             }
         }
     } 
@@ -302,6 +374,7 @@ public class ShopMenuScript : MonoBehaviour
             { //SELECT A WEAPON TO BUY FUNCTION BUTTON
                 ResetImageButtons();
                 buttonInfo.shopButton.GetComponent<Image>().sprite = selectedButtonSprite;
+         
                 if (this.charges > 0)
                 {
                     SetToShopButton();

@@ -240,7 +240,6 @@ public class InventoryManager : MonoBehaviour
             actualWeapon.SetActive(true);
             AbstractWeapon weapon = actualWeapon.GetComponent<AbstractWeapon>();
             ConfigReloadBar(weapon);
-
             //we must wait to the instance of UI is created, to this is in a coroutine
             StartCoroutine(EquipWeaponUI(weapon));
 

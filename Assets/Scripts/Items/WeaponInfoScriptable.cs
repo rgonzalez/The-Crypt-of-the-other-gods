@@ -14,4 +14,5 @@ public class WeaponInfoScriptable : ScriptableObject
     public GameObject pickableWeaponPrefab;
     public Sprite equipedWeaponIcon;
     public int price; // the price of the weapon to unlock it
+    public Texture2D cursor;
 }

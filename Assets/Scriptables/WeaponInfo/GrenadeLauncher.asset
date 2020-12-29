@@ -21,3 +21,4 @@ MonoBehaviour:
     type: 3}
   equipedWeaponIcon: {fileID: 21300000, guid: 15bbb23e19c50fe468e028b1845a3deb, type: 3}
   price: 20
+  cursor: {fileID: 2800000, guid: 1ec7193e84abb2841980071fa9ae2c1d, type: 3}

@@ -66,6 +66,12 @@ public class UIManager : MonoBehaviour
     public GameObject centralPanel;
     public Text keyEquiped; // the text with nº of keys in the inventory
 
+
+    //cursor
+    public Texture2D cursorMenu;
+    private Texture2D actualCursor; // the last weapon used
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,11 +103,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SetMenuCursor()
     {
-        
+        Cursor.SetCursor(cursorMenu, Vector2.zero, CursorMode.Auto);
     }
+
+    public void RestoreWeaponCursor()
+    {
+        if (actualCursor)
+        {
+            Cursor.SetCursor(actualCursor, new Vector2(actualCursor.width / 2, actualCursor.height / 2), CursorMode.Auto);
+        } else
+        {
+            //set default
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
     #region HEALTH
     /// <summary>
     /// Set the max Health image, NOTE: this doesnt adjust the real actual life aspect
@@ -173,6 +192,7 @@ public class UIManager : MonoBehaviour
     {
         if (deadPanel)
         {
+            SetMenuCursor();
             deadPanel.SetActive(true);
         }
     }
@@ -282,7 +302,14 @@ public class UIManager : MonoBehaviour
     {
         WeaponInfoScriptable info =  WeaponSpawnManager.instance.GetWeaponInfo(weaponType);
         if (info && equipedWeaponIcon)
+        {
             equipedWeaponIcon.sprite = info.equipedWeaponIcon;
+        }
+        if (info && info.cursor)
+        {
+            Cursor.SetCursor(info.cursor, new Vector2(info.cursor.width / 2, info.cursor.height / 2), CursorMode.Auto);
+            actualCursor = info.cursor;
+        }
     }
 
     /// <summary>

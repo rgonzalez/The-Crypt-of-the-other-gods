@@ -18,6 +18,7 @@ public class MenuSceneScript : MonoBehaviour
     public float offLight;
     public float minOnLight;
     public float minOffLight;
+    public Texture2D menuCursor;
 
     private float nextOff;
     private float nextOn;
@@ -50,6 +51,10 @@ public class MenuSceneScript : MonoBehaviour
             light = GetComponent<Light>();
         }
         nextOn = Random.Range(0, onLight);
+        if (menuCursor)
+        {
+            Cursor.SetCursor(menuCursor, Vector2.zero, CursorMode.Auto);
+        }
     }
 
     void Update()
