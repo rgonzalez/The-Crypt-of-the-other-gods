@@ -20,22 +20,24 @@ public class FinalDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (LevelBuilder.instance && other.CompareTag(Constants.TAG_PLAYER))
-        {
-            if (closed)
-            {
-                if (LevelBuilder.instance.AllKeysPicked())
+        if (other.CompareTag(Constants.TAG_PLAYER)) {
+            if (LevelBuilder.instance)
                 {
-                    closed = false;
-                    UIManager.instance.ShowKeysInfo(true);
-                    OpenDoor();
-                }
-                else
-                {
-                    UIManager.instance.ShowKeysInfo(false);
+                if (closed)
+                    {
+                        if (LevelBuilder.instance.AllKeysPicked())
+                        {
+                            closed = false;
+                            UIManager.instance.ShowKeysInfo(true);
+                            OpenDoor();
+                        }
+                        else
+                        {
+                            UIManager.instance.ShowKeysInfo(false);
+                        }
+                    }
                 }
             }
-        }
     }
 
     private void OnTriggerExit(Collider other)

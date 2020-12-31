@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 394e93ce356b57344903a08ff72fcab2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3358,6 +3358,7 @@ GameObject:
   - component: {fileID: 4018158768236876818}
   - component: {fileID: 8102458988834512027}
   - component: {fileID: 2393734315402641756}
+  - component: {fileID: 399672942}
   m_Layer: 5
   m_Name: descriptionPlasmaShotgun
   m_TagString: Untagged
@@ -3381,8 +3382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8102458988834512027
 CanvasRenderer:
@@ -3425,16 +3426,110 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Con la gran demanda de armamento, Miskatonic Corp comenz\xF3 el desarrollo
-    de nuevas tecnolog\xEDas que no requirieran de grandes espacios para el uso de
-    almacenamiento de la munici\xF3n. Por ello se cre\xF3 una nueva variante de armamento
-    basado en el plasma.\n\nAunque finalmente los costes de la munici\xF3n eran elevados,
-    la capacidad de rebote de los proyectiles hac\xEDan estos rifles especialmente
-    \xFAtiles en entornos cerrados controlados, para el control de pasillos, por
-    ejemplo. Con la experiencia adecuada, se pueden eliminar enemigos sin tener que
-    cruzar la puerta disparando al interior de la habitaci\xF3n.\n\n\"El olor a plasma
-    por la ma\xF1ana, es el olor de la victoria\" - Soldado Halpin Chalmers, tras
-    eliminar una tripulaci\xF3n de piratas espaciales desde un pasillo en L"
+  m_Text: "LA CAPACIDAD DE REBOTE DE LOS PROYECTILES DE PLASMA SE POPULARIZO EN COMBATES
+    EN ESTACIONES ESPACIALES, POR ELLO SE GENERO UNA MODIFICACION IGUAL QUE EN SU
+    VERSION DE BALAS, LA \"ESCOPETA DE PLASMA\".\r\n\r\nAUNQUE SE LE LLAMA COMUNMENTE
+    AS\xCD, REALMENTE ES UN CA\xD1ON QUE DISPARA 3 PROYECTILES EN TRIANGULO (NO UN
+    CONO), QUE AUMENTA LA EFECTIVIDAD DE LA LIMPIEZA DE HABITACIONES AL HABER HASTA
+    3 PROYECTILES REBOTANDO EN SIMULTANEO, ADEM\xC1S DE CONTAR CON UN CARGADOR MAS
+    AMPLIO.\r\n\r\n\r\n\"BUENO, MALO, SOY EL CHICO CON EL ARMA\" - SOLDADO CAPMBELL,
+    TRAS LA ELIMINACION DE UN GRUPO DE OCULTISTAS. "
+--- !u!82 &399672942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010553638912376414}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f5777762da8fac44bb7a649209701ecf, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1063323061756708044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5023,6 +5118,7 @@ GameObject:
   - component: {fileID: 1213741471810669039}
   - component: {fileID: 4337988343467398809}
   - component: {fileID: 8987781877699775926}
+  - component: {fileID: 525384428}
   m_Layer: 5
   m_Name: descriptionShotgun
   m_TagString: Untagged
@@ -5046,8 +5142,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4337988343467398809
 CanvasRenderer:
@@ -5090,14 +5186,110 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Con los crecientes conflictos en las estaciones espaciales, debido a las
-    revueltas. El uso de las escopetas se volvi\xF3 popular entre los agentes de
-    seguridad, donde comenzaba a primar la eliminaci\xF3n del objetivo por encima
-    de la seguridad del entorno.\n\nCon un sistema de modificaci\xF3n del rifle Miskatonic
-    MKII, los rifles se transformaron en escopetas capaz de disparar las balas del
-    rifle en un cono, como si de cartuchos se trataran, realizando un gran da\xF1o
-    en entornos cerrados y combate cercano.  \n\n\"\xA1Este es mi palo de fuego!\"
-    - Sargento Bratt, ante la muchedumbre que intentaba asaltar el puente de mando"
+  m_Text: "CON LOS CRECIENTES CONFLICTOS EN LAS ESTACIONES ESPACIALES, DEBIDO A LAS
+    REVUELTAS. EL USO DE LAS ESCOPETAS SE VOLVIO POPULAR ENTRE LOS AGENTES DE SEGURIDAD,
+    DONDE COMENZABA A PRIMAR LA ELIMINACI\xD3N DEL OBJETIVO POR ENCIMA DE LA SEGURIDAD
+    DEL ENTORNO.\r\n\r\nCON UN SISTEMA DE MODIFICACION DEL RIFLE MISKATONIC MKII,
+    LOS RIFLES SE TRANSFORMARON EN ESCOPETAS CAPAZ DE DISPARAR LAS BALAS DEL RIFLE
+    EN UN CONO, COMO SI DE CARTUCHOS SE TRATARAN, REALIZANDO UN GRAN DA\xD1O EN ENTORNOS
+    CERRADOS Y COMBATE CERCANO.  \r\n\r\n\"\xA1ESTE ES MI PALO DE FUEGO!\" - SARGENTO
+    BRATT, ANTE LA MUCHEDUMBRE QUE INTENTABA ASALTAR EL PUENTE DE MANDO"
+--- !u!82 &525384428
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2522138522305104654}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fd1c3c04f8a31d041a5910e6aaffb538, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2541064635019692099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6843,7 +7035,7 @@ GameObject:
   - component: {fileID: 3069472702711598994}
   - component: {fileID: 3069472702711599021}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7079,7 +7271,7 @@ GameObject:
   - component: {fileID: 3069472702743843753}
   - component: {fileID: 3069472702743843752}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7391,7 +7583,7 @@ GameObject:
   - component: {fileID: 3069472702782659018}
   - component: {fileID: 3069472702782659013}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7859,7 +8051,7 @@ GameObject:
   - component: {fileID: 3069472702853460685}
   - component: {fileID: 3069472702853460684}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8011,7 +8203,7 @@ GameObject:
   - component: {fileID: 3069472702881852642}
   - component: {fileID: 3069472702881852669}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9319,7 +9511,7 @@ GameObject:
   - component: {fileID: 3069472703072715026}
   - component: {fileID: 3069472703072715053}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9703,7 +9895,7 @@ GameObject:
   - component: {fileID: 3069472703104406573}
   - component: {fileID: 3069472703104406572}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12097,7 +12289,7 @@ GameObject:
   - component: {fileID: 3069472703293161995}
   - component: {fileID: 3069472703293161994}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12211,7 +12403,7 @@ GameObject:
   - component: {fileID: 3069472703308632536}
   - component: {fileID: 3069472703308632539}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12793,7 +12985,7 @@ GameObject:
   - component: {fileID: 3069472703378341814}
   - component: {fileID: 3069472703378341809}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14216,7 +14408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SHOP
+  m_Text: CREAR
 --- !u!1 &3069472703573316897
 GameObject:
   m_ObjectHideFlags: 0
@@ -14993,7 +15185,7 @@ GameObject:
   - component: {fileID: 3069472703702860389}
   - component: {fileID: 3069472703702860388}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15891,7 +16083,7 @@ GameObject:
   - component: {fileID: 3069472703822083923}
   - component: {fileID: 3069472703822083922}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16389,7 +16581,7 @@ GameObject:
   - component: {fileID: 3069472703886132038}
   - component: {fileID: 3069472703886132033}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16465,7 +16657,7 @@ GameObject:
   - component: {fileID: 3069472703891865484}
   - component: {fileID: 3069472703891865487}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16541,7 +16733,7 @@ GameObject:
   - component: {fileID: 3069472703899915182}
   - component: {fileID: 3069472703899915177}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16883,7 +17075,7 @@ GameObject:
   - component: {fileID: 3069472703931706018}
   - component: {fileID: 3069472703931706045}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17119,7 +17311,7 @@ GameObject:
   - component: {fileID: 3069472703974675960}
   - component: {fileID: 3069472703974675963}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18425,7 +18617,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: UPDATE
+  m_Text: DESBLOQUEAR
 --- !u!1 &3069472704138150474
 GameObject:
   m_ObjectHideFlags: 0
@@ -19037,7 +19229,7 @@ GameObject:
   - component: {fileID: 3069472704258283975}
   - component: {fileID: 3069472704258283974}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21248,7 +21440,7 @@ GameObject:
   - component: {fileID: 3069472704529237606}
   - component: {fileID: 3069472704529237601}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21836,7 +22028,7 @@ GameObject:
   - component: {fileID: 3069472704587499349}
   - component: {fileID: 3069472704587499348}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21912,7 +22104,7 @@ GameObject:
   - component: {fileID: 3069472704596406423}
   - component: {fileID: 3069472704596406422}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22182,7 +22374,7 @@ GameObject:
   - component: {fileID: 3069472704624252817}
   - component: {fileID: 3069472704624252816}
   m_Layer: 5
-  m_Name: ammoBar
+  m_Name: speedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23184,6 +23376,7 @@ GameObject:
   - component: {fileID: 2124819131603081976}
   - component: {fileID: 6468033447904268445}
   - component: {fileID: 2510586613090126721}
+  - component: {fileID: 683784640}
   m_Layer: 5
   m_Name: descriptionElectricGun
   m_TagString: Untagged
@@ -23207,8 +23400,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6468033447904268445
 CanvasRenderer:
@@ -23251,14 +23444,109 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "En la colonia penal de Tlaxcala Mining Company, se estaba desarrollando
-    un sistema portatil de ejecuci\xF3n de presos. Sin embargo, tras un mot\xEDn,
-    los guardias de seguridad consiguieron reducir la rebeli\xF3n gracias al uso
-    de dichos dispositivos como arma.\n\nEl electroca\xF1\xF3n, genera hasta 3 descargas
-    el\xE9ctricas (con da\xF1o en el tiempo) que ataca a los enemigos, gracias a
-    una mejora que localiza y define objetivos.\n\n\"Otras hace PUM PUM, esta hace
-    BIZZ BIZZ\" - Recluso reducido durante la revuelta (posible da\xF1os cerebrales
-    por electroca\xF1\xF3n)"
+  m_Text: "EN LA COLONIA PENAL DE TLAXCALA MINING COMPANY, SE ESTABA DESARROLLANDO
+    UN SISTEMA PORTATIL DE EJECUCION DE PRESOS. SIN EMBARGO, TRAS UN MOTIN, LOS GUARDIAS
+    DE SEGURIDAD CONSIGUIERON REDUCIR LA REBELION GRACIAS AL USO DE DICHOS DISPOSITIVOS
+    COMO ARMA.\r\n\r\nEL ELECTROCA\xD1ON, GENERA HASTA 3 DESCARGAS EL\xC9CTRICAS
+    (CON DA\xD1O EN EL TIEMPO) QUE ATACA A LOS ENEMIGOS, GRACIAS A UNA MEJORA QUE
+    LOCALIZA Y DEFINE OBJETIVOS.\r\n\r\n\"OTRAS HACE PUM PUM, ESTA HACE BIZZ BIZZ\"
+    - RECLUSO REDUCIDO DURANTE LA REVUELTA (POSIBLE DA\xD1OS CEREBRALES POR ELECTROCA\xD1ON)"
+--- !u!82 &683784640
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579503817208043316}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5d8d17de88535754dab6c5df8f3743b8, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3596700126526738220
 GameObject:
   m_ObjectHideFlags: 0
@@ -23468,6 +23756,7 @@ GameObject:
   - component: {fileID: 1805676408214333108}
   - component: {fileID: 2761477555805550238}
   - component: {fileID: 2307960203206379937}
+  - component: {fileID: 98279976}
   m_Layer: 5
   m_Name: descriptionGranadas
   m_TagString: Untagged
@@ -23491,8 +23780,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2761477555805550238
 CanvasRenderer:
@@ -23535,13 +23824,109 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pese a la continua mejora del departamento de tecnolog\xEDa armament\xEDstica,
-    muchos generales desconf\xEDan de los nuevos sistemas, por ello es que siempre
-    todo arsenal dispone de las viejas glorias de siglos pasados.\n\nEl detornador
-    de la granada se activa tras unos segundos o un n\xBA de rebotes programado,
-    generando una explosi\xF3n con un gran da\xF1o.\n\n\"Si la vida te da limones,
-    \xA1no hagas limonada! haz combustible para granadas y dev\xFAevelselo a la vida!\"
-    - Sargento Johnson, cargando un lanzagranadas en la toma de la ladera Kadath"
+  m_Text: "PESE A LA CONTINUA MEJORA DEL DEPARTAMENTO DE TECNOLOG\xCDA ARMAMENTISTICA,
+    MUCHOS GENERALES DESCONFIAN DE LOS NUEVOS SISTEMAS, POR ELLO ES QUE SIEMPRE TODO
+    ARSENAL DISPONE DE LAS VIEJAS GLORIAS DE SIGLOS PASADOS.\r\n\r\nEL DETORNADOR
+    DE LA GRANADA SE ACTIVA TRAS UNOS SEGUNDOS O UN NUMERO DE REBOTES PROGRAMADO,
+    GENERANDO UNA EXPLOSI\xD3N CON UN GRAN DA\xD1O.\r\n\r\n\"SI LA VIDA TE DA LIMONES,
+    \xA1NO HAGAS LIMONADA! HAZ COMBUSTIBLE PARA GRANADAS Y DEV\xDAEVELSELO A LA VIDA!\"
+    - SARGENTO JOHNSON, CARGANDO UN LANZAGRANADAS EN LA TOMA DE LA LADERA KADATH"
+--- !u!82 &98279976
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3776573440394341018}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0843c14829abdad4fa6a28885a392494, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3815714210660628633
 GameObject:
   m_ObjectHideFlags: 0
@@ -25751,6 +26136,7 @@ GameObject:
   - component: {fileID: 2927378408008097199}
   - component: {fileID: 4186977653873832915}
   - component: {fileID: 3798041171206356110}
+  - component: {fileID: 691740122}
   m_Layer: 5
   m_Name: descriptionLaserRifle
   m_TagString: Untagged
@@ -25774,8 +26160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4186977653873832915
 CanvasRenderer:
@@ -25818,17 +26204,113 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Aunque los ca\xF1ones l\xE1ser se utilizaban ya en las guerras, requer\xEDan
-    grandes cantidades de energ\xEDa y espacio, por lo que solo se utilizaban sobre
-    veh\xEDculos pesados.\nFue en las guerras de colonizaci\xF3n de Yuggoth donde
-    se vi\xF3 la efectividad de este arma y se desarroll\xF3 una variante personal.
-    Con una variaci\xF3n en el l\xE1ser, los ingenieros de Miskatonic Corp lograron
-    que el haz pudiera rebotar en cualquier superficie.\n\nCapaz de disparar un haz
-    l\xE1ser que dura unos segundos, mientras el disparo est\xE9 activo todo objetivo
-    situado enfrente se quemar\xE1 al instante. Sin embargo el sistema de rebote
-    del arma lo hace demasiado peligroso en pasillos.\n\n\"\xA1Les presento mi ca\xF1\xF3n
-    gauss!\xA1Hay muchos iguales pero el m\xEDo es \xE9ste!\" - Arthur Feldon\" -
-    Soldado Shepard, tras eliminar un pelot\xF3n en Yuggoth"
+  m_Text: "AUNQUE LOS CA\xD1ONES L\xC1SER SE UTILIZABAN YA EN LAS GUERRAS, REQUERIAN
+    GRANDES CANTIDADES DE ENERGIA Y ESPACIO, POR LO QUE SOLO SE UTILIZABAN SOBRE
+    VEHICULOS PESADOS.\r\nFUE EN LAS GUERRAS DE COLONIZACION DE YUGGOTH DONDE SE
+    VIO LA EFECTIVIDAD DE ESTE ARMA Y SE DESARROLLO UNA VARIANTE PERSONAL. CON UNA
+    VARIACION EN EL LASER, LOS INGENIEROS DE MISKATONIC CORP LOGRARON QUE EL HAZ
+    PUDIERA REBOTAR EN CUALQUIER SUPERFICIE.\r\n\r\nCAPAZ DE DISPARAR UN HAZ LASER
+    QUE DURA UNOS SEGUNDOS, MIENTRAS EL DISPARO ESTE ACTIVO TODO OBJETIVO SITUADO
+    ENFRENTE SE QUEMARA AL INSTANTE. SIN EMBARGO EL SISTEMA DE REBOTE DEL ARMA LO
+    HACE DEMASIADO PELIGROSO EN PASILLOS.\r\n\r\n\"\xA1LES PRESENTO MI CA\xD1ON GAUSS!\xA1HAY
+    MUCHOS IGUALES PERO EL M\xCDO ES \xC9STE!\"  - SOLDADO SHEPARD, TRAS ELIMINAR
+    UN PELOTON EN YUGGOTH"
+--- !u!82 &691740122
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950248868254342178}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c4f2140493ad05e4c91e79ce816691a7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6117477512518062598
 GameObject:
   m_ObjectHideFlags: 0
@@ -26073,6 +26555,7 @@ GameObject:
   - component: {fileID: 7030073016007214299}
   - component: {fileID: 3516222229734728096}
   - component: {fileID: 7316693817721983924}
+  - component: {fileID: 1602472154}
   m_Layer: 5
   m_Name: descriptionMchGun
   m_TagString: Untagged
@@ -26096,8 +26579,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3516222229734728096
 CanvasRenderer:
@@ -26140,15 +26623,111 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "La corporaci\xF3n Miskatonic vi\xF3 un gran potencial en su departamento
-    de armas con sus rifles de f\xE1cil producci\xF3n y ampli\xF3 su producci\xF3n
-    de armamento a los gobiernos, generando la ametralladora MKIII\n\nCon un cargador
-    amplio, y un ratio de disparo muy alto el usuario puede descargar una r\xE1faga
-    completa en cuesti\xF3n de segundos, eliminando el objetivo r\xE1pidamente. Gracias
-    a su dise\xF1o mejorado, el retroceso y dispersi\xF3n del arma son lo suficientemente
-    bajos como para considerarla una buena opci\xF3n.  \n\n\"\xA1Esta es la SMG MKIII 
-    'submachinegun', una m\xE1quina de matar, es el concepto\" - AtWood, ense\xF1ando
-    la nueva remesa en la presentaci\xF3n del nuevo arma"
+  m_Text: "LA CORPORACI\xD3N MISKATONIC VIO UN GRAN POTENCIAL EN SU DEPARTAMENTO
+    DE ARMAS CON SUS RIFLES DE FACIL PRODUCCI\xD3N Y AMPLIO SU PRODUCCION DE ARMAMENTO
+    A LOS GOBIERNOS, GENERANDO LA AMETRALLADORA MKIII\r\n\r\nCON UN CARGADOR AMPLIO,
+    Y UN RATIO DE DISPARO MUY ALTO EL USUARIO PUEDE DESCARGAR UNA RAFAGA COMPLETA
+    EN CUESTION DE SEGUNDOS, ELIMINANDO EL OBJETIVO RAPIDAMENTE. GRACIAS A SU DISE\xD1O
+    MEJORADO, EL RETROCESO Y DISPERSI\xD3N DEL ARMA SON LO SUFICIENTEMENTE BAJOS
+    COMO PARA CONSIDERARLA UNA BUENA OPCI\xD3N.  \r\n\r\n\"\xA1ESTA ES LA SMG MKIII 
+    'SUBMACHINEGUN', UNA M\xC1QUINA DE MATAR, ES EL CONCEPTO\" - ATWOOD, ENSE\xD1ANDO
+    LA NUEVA REMESA EN LA PRESENTACI\xD3N DEL NUEVO ARMA"
+--- !u!82 &1602472154
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6432611793884044270}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 016cfb94fe0ce1946b5f56b9fb140912, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6476139850549934598
 GameObject:
   m_ObjectHideFlags: 0
@@ -26674,6 +27253,7 @@ GameObject:
   - component: {fileID: 6111287539311710294}
   - component: {fileID: 9093671102701810623}
   - component: {fileID: 3287062834171165566}
+  - component: {fileID: 2028768117}
   m_Layer: 5
   m_Name: descriptionPlasmaMchGun
   m_TagString: Untagged
@@ -26697,8 +27277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9093671102701810623
 CanvasRenderer:
@@ -26741,17 +27321,113 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "El siguiente paso evolutivo en la carrera armament\xEDstica de Miskatonic
-    contra sus competidores, era obviamente la variante de la ametralladora en su
-    armamento de plasma, la MK47. Modificando los sistemas de refrigeraci\xF3n y
-    la capacidad de extracci\xF3n del cargador, la ametralladora pod\xEDa generar
-    proyectiles mas peque\xF1os y r\xE1pidos usando menos plasma, lo que permit\xEDa
-    aprovechar mejor un cargador.\n\nAunque esta variante del arma es muy efectiva,
-    resulta un peligro evidente en entornos muy cerrados, ya que el n\xFAmero de
-    proyectiles rebotando en salas es alto, y solo se recomienda su uso con r\xE1fagas
-    cortas.\n\n\"La MK47, la mejor sin ninguna duda. Si quieres cepillarte a todos
-    los ***** de una habitaci\xF3n, no aceptes imitaciones\" - General Jackson, presentaci\xF3n
-    del arma a la prensa"
+  m_Text: "EL SIGUIENTE PASO EVOLUTIVO EN LA CARRERA ARMAMENTISTICA DE MISKATONIC
+    CONTRA SUS COMPETIDORES, ERA OBVIAMENTE LA VARIANTE DE LA AMETRALLADORA EN SU
+    ARMAMENTO DE PLASMA, LA MK47. MODIFICANDO LOS SISTEMAS DE REFRIGERACION Y LA
+    CAPACIDAD DE EXTRACCION DEL CARGADOR, LA AMETRALLADORA PODIA GENERAR PROYECTILES
+    MAS PEQUE\xD1OS Y RAPIDOS USANDO MENOS PLASMA, LO QUE PERMITIA APROVECHAR MEJOR
+    UN CARGADOR.\r\n\r\nAUNQUE ESTA VARIANTE DEL ARMA ES MUY EFECTIVA, RESULTA UN
+    PELIGRO EVIDENTE EN ENTORNOS MUY CERRADOS, YA QUE EL NUMERO DE PROYECTILES REBOTANDO
+    EN SALAS ES ALTO, Y SOLO SE RECOMIENDA SU USO CON RAFAGAS CORTAS.\r\n\r\n\"LA
+    MK47, LA MEJOR SIN NINGUNA DUDA. SI QUIERES CEPILLARTE A TODOS LOS ***** DE UNA
+    HABITACION, NO ACEPTES IMITACIONES\" - GENERAL JACKSON, PRESENTACION DEL ARMA
+    A LA PRENSA"
+--- !u!82 &2028768117
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615265295503818447}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 566f956b36eca064a8ddddfd0f787649, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6655210307614082472
 GameObject:
   m_ObjectHideFlags: 0
@@ -27120,7 +27796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6667702485674746993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27226,8 +27902,9 @@ GameObject:
   - component: {fileID: 4734619653351021307}
   - component: {fileID: 7154955696708149067}
   - component: {fileID: 5285329163271855309}
+  - component: {fileID: 1177422796}
   m_Layer: 5
-  m_Name: descriptionShotgunRifle
+  m_Name: descriptionPlasmaRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27249,8 +27926,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7154955696708149067
 CanvasRenderer:
@@ -27293,14 +27970,112 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "La capacidad de rebote de los proyectiles de plasma se populariz\xF3 en
-    combates en estaciones espaciales, por ello se gener\xF3 una modificaci\xF3n
-    igual que en su versi\xF3n de balas, la \"escopeta de plasma\".\n\nAunque se
-    le llama com\xFAnmente as\xED, realmente es un ca\xF1\xF3n que dispara 3 proyectiles
-    en triangulo (no un cono), que aumenta la efectividad de la limpieza de habitaciones
-    al haber hasta 3 proyectiles rebotando en simult\xE1neo, adem\xE1s de contar
-    con un cargador mas amplio.\n\n\n\"Bueno, malo, soy el chico con el arma\" -
-    Soldado Capmbell, tras la eliminaci\xF3n de un grupo de ocultistas. "
+  m_Text: "CON LA GRAN DEMANDA DE ARMAMENTO, MISKATONIC CORP COMENZ\xD3 EL DESARROLLO
+    DE NUEVAS TECNOLOGIAS QUE NO REQUIRIERAN DE GRANDES ESPACIOS PARA EL USO DE ALMACENAMIENTO
+    DE LA MUNICI\xD3N. POR ELLO SE CREO UNA NUEVA VARIANTE DE ARMAMENTO BASADO EN
+    EL PLASMA.\r\n\r\nAUNQUE FINALMENTE LOS COSTES DE LA MUNICION ERAN ELEVADOS,
+    LA CAPACIDAD DE REBOTE DE LOS PROYECTILES HACIAN ESTOS RIFLES ESPECIALMENTE UTILES
+    EN ENTORNOS CERRADOS CONTROLADOS, PARA EL CONTROL DE PASILLOS, POR EJEMPLO. CON
+    LA EXPERIENCIA ADECUADA, SE PUEDEN ELIMINAR ENEMIGOS SIN TENER QUE CRUZAR LA
+    PUERTA DISPARANDO AL INTERIOR DE LA HABITACION.\r\n\r\n\"EL OLOR A PLASMA POR
+    LA MA\xD1ANA, ES EL OLOR DE LA VICTORIA\" - SOLDADO HALPIN CHALMERS, TRAS ELIMINAR
+    UNA TRIPULACION DE PIRATAS ESPACIALES DESDE UN PASILLO EN L"
+--- !u!82 &1177422796
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731986253182756424}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 91e8961fa3691744d99bf3e085e4b6f4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6761848254312873023
 GameObject:
   m_ObjectHideFlags: 0
@@ -27775,6 +28550,7 @@ GameObject:
   - component: {fileID: 5675792762820598272}
   - component: {fileID: 5624135943338919387}
   - component: {fileID: 4804083688173628774}
+  - component: {fileID: 1865714926}
   m_Layer: 5
   m_Name: InfoButton
   m_TagString: Untagged
@@ -27883,7 +28659,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5624135943338919387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1865714926}
+        m_TargetAssemblyTypeName: PanelInterface, Assembly-CSharp
+        m_MethodName: AlternateState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1865714926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315624000743622597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ac74224b0c26a4aa27047660512208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 7503639190995773055}
+  startClosed: 1
+  disableMainCanvas: 0
+  otherCanvas: {fileID: 0}
 --- !u!1 &7327432860643282901
 GameObject:
   m_ObjectHideFlags: 0
@@ -27895,6 +28699,7 @@ GameObject:
   - component: {fileID: 7680002384210644613}
   - component: {fileID: 466814521839605288}
   - component: {fileID: 6497870300754287674}
+  - component: {fileID: 201428675}
   m_Layer: 5
   m_Name: descriptionRifle
   m_TagString: Untagged
@@ -27918,8 +28723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &466814521839605288
 CanvasRenderer:
@@ -27962,13 +28767,109 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "El rifle Miskatonic MKII es el arma base de las fuerzas armadas. Con una
-    fiabilidad y estabilidad razonables, su producci\xF3n es muy barata, y se populariz\xF3
-    durante las grandes guerras del planeta Carcosa. \n\nCon un cargador lo suficientemente
-    amplio y un ratio de disparo aceptable, es un arma en la que confiar en caso
-    de luchas en espacios semicerrados.\n\n\"El rifle Miskatonic MKII fue en quien
-    \xFAnico pude confiar\" - Comandante Armitage, tras eliminar a los impostores
-    de su tripulaci\xF3n."
+  m_Text: "EL RIFLE MISKATONIC MKII ES EL ARMA BASE DE LAS FUERZAS ARMADAS. CON UNA
+    FIABILIDAD Y ESTABILIDAD RAZONABLES, SU PRODUCCION ES MUY BARATA, Y SE POPULARIZO
+    DURANTE LAS GRANDES GUERRAS DEL PLANETA CARCOSA. \r\n\r\nCON UN CARGADOR LO SUFICIENTEMENTE
+    AMPLIO Y UN RATIO DE DISPARO ACEPTABLE, ES UN ARMA EN LA QUE CONFIAR EN CASO
+    DE LUCHAS EN ESPACIOS SEMICERRADOS.\r\n\r\n\"EL RIFLE MISKATONIC MKII FUE EN
+    QUIEN \xDANICO PUDE CONFIAR\" - COMANDANTE ARMITAGE, TRAS ELIMINAR A LOS IMPOSTORES
+    DE SU TRIPULACION."
+--- !u!82 &201428675
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7327432860643282901}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9ec3e6a51fd67d04c807f6830149e678, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7503639190995773055
 GameObject:
   m_ObjectHideFlags: 0
@@ -28038,15 +28939,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9843137}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98cab4f0c23c0fd4aaaeb9ff6d01b9ed, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f1eb3bc1757484faca6e904e8438fa8f, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -28054,7 +28955,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3.84
+  m_PixelsPerUnitMultiplier: 1.45
 --- !u!1 &7521712153876922533
 GameObject:
   m_ObjectHideFlags: 0
@@ -28066,6 +28967,7 @@ GameObject:
   - component: {fileID: 3912151575893637813}
   - component: {fileID: 535032054925356849}
   - component: {fileID: 6477991497092260138}
+  - component: {fileID: 851473540}
   m_Layer: 5
   m_Name: descriptionPlasmaGrenadeLauncher
   m_TagString: Untagged
@@ -28089,8 +28991,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &535032054925356849
 CanvasRenderer:
@@ -28133,14 +29035,110 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Aunque los sistemas de refrigeraci\xF3n eran en su mayor\xEDa estables,
-    en \"pocas\" ocasiones los cargadores de plasma fre\xEDan a sus usuarios. Esto
-    abri\xF3 la idea de generar proyectiles que pudieran usar el plasma desestabilizado.\n\nPara
-    ello cada granada es un mini-cargador que desactiva su refrigeraci\xF3n autom\xE1ticamente,
-    liberando el plasma y generando un area que realiza da\xF1o prolongado en el
-    tiempo, \xFAtil para bloquear pasillos o entradas.\n\n\"Miskatonic Corp no se
-    hace responsable de las posibles quemaduras al usuario del arma\" - Manual de
-    uso del lanzagranadas de plasma\n"
+  m_Text: "AUNQUE LOS SISTEMAS DE REFRIGERACION ERAN EN SU MAYOR\xCDA ESTABLES, EN
+    \"POCAS\" OCASIONES LOS CARGADORES DE PLASMA FREIAN A SUS USUARIOS. ESTO ABRIO
+    LA IDEA DE GENERAR PROYECTILES QUE PUDIERAN USAR EL PLASMA DESESTABILIZADO.\r\n\r\nPARA
+    ELLO CADA GRANADA ES UN MINI-CARGADOR QUE DESACTIVA SU REFRIGERACION AUTOMATICAMENTE,
+    LIBERANDO EL PLASMA Y GENERANDO UN AREA QUE REALIZA DA\xD1O PROLONGADO EN EL
+    TIEMPO, \xDATIL PARA BLOQUEAR PASILLOS O ENTRADAS.\r\n\r\n\"MISKATONIC CORP NO
+    SE HACE RESPONSABLE DE LAS POSIBLES QUEMADURAS AL USUARIO DEL ARMA\" - MANUAL
+    DE USO DEL LANZAGRANADAS DE PLASMA\r\n"
+--- !u!82 &851473540
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521712153876922533}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f1dda505a4d2558439d2eb0f299e6351, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7606656039662847649
 GameObject:
   m_ObjectHideFlags: 0
@@ -28354,6 +29352,7 @@ GameObject:
   - component: {fileID: 2125628253621876023}
   - component: {fileID: 8763358377521381501}
   - component: {fileID: 8897210725166804886}
+  - component: {fileID: 1664083041}
   m_Layer: 5
   m_Name: descriptionCohetes
   m_TagString: Untagged
@@ -28377,8 +29376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8929, y: -12.7718}
-  m_SizeDelta: {x: 297.9871, y: 221.3113}
+  m_AnchoredPosition: {x: -14.898399, y: -11.0475}
+  m_SizeDelta: {x: 318.0028, y: 287.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8763358377521381501
 CanvasRenderer:
@@ -28421,13 +29420,109 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Al igual que los lanzagranadas, los lanzacohetes se resisten a dejar el
-    arsenal de los ejercitos gubernamentales. Aunque tambi\xE9n se proveen en los
-    ejercitos corporativos en menor medida, para casos de demolici\xF3n.\n\nCon un
-    detonador por impacto, mas te vale que el objetivo est\xE9 a unos metros de distancia
-    si no quieres acabar en el mismo estado que \xE9l.\n\n\"Ense\xF1emosles a esa
-    escoria como es el lado equivocado de un lanzacohetes\" - Soldado Bitterman,
-    en la represi\xF3n del levantamiento de la IA en Saturno"
+  m_Text: "AL IGUAL QUE LOS LANZAGRANADAS, LOS LANZACOHETES SE RESISTEN A DEJAR EL
+    ARSENAL DE LOS EJERCITOS GUBERNAMENTALES. AUNQUE TAMBIEN SE PROVEEN EN LOS EJERCITOS
+    CORPORATIVOS EN MENOR MEDIDA, PARA CASOS DE DEMOLICION.\r\n\r\nCON UN DETONADOR
+    POR IMPACTO, MAS TE VALE QUE EL OBJETIVO ESTE A UNOS METROS DE DISTANCIA SI NO
+    QUIERES ACABAR EN EL MISMO ESTADO QUE EL.\r\n\r\n\"ENSE\xD1EMOSLES A ESA ESCORIA
+    COMO ES EL LADO EQUIVOCADO DE UN LANZACOHETES\" - SOLDADO BITTERMAN, EN LA REPRESION
+    DEL LEVANTAMIENTO DE LA IA EN SATURNO"
+--- !u!82 &1664083041
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664243613464321922}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 74db5f6185142e54fa6b1feaeafd8c9a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.295
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7737222143253264219
 GameObject:
   m_ObjectHideFlags: 0

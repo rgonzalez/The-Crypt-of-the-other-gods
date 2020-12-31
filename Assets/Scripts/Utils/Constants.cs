@@ -9,6 +9,7 @@ public class Constants
     public static string TAG_PLAYER = "Player";
     public static string TAG_WEAPON = "Weapon";
     public static string TAG_LEVELGENERATOR = "LevelGenerator";
+    public static string TAG_CANVAS = "MainCanvas";
     public enum DIFICULT { EASY, NORMAL, HARD};
 
     public enum AMMO_TYPE { BULLET, PLASMA, ROCKET, LASER };

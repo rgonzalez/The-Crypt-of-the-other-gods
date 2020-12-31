@@ -71,7 +71,6 @@ public class EnemyBulletWeapon : EnemyWeapon
         shootPoint.gameObject.SetActive(false);
         //set the nextTime for attack (cooldown) afther teh attack is finished
         nextFire = Time.time + fireCD;
-        Debug.Log("next in " + nextFire);
         //end the attack, can move again
         if (enemyIa && enemyIa.canMove)
         {

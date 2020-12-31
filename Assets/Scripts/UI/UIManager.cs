@@ -356,6 +356,10 @@ public class UIManager : MonoBehaviour
     /// <param name="status"></param>
     public void ShowKeysInfo(bool status)
     {
+        if (centralPanel)
+        {
+            centralPanel.SetActive(true);
+        }
         if (status)
         {
             // the door is going to be open

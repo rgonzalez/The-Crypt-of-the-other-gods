@@ -31,13 +31,15 @@ public class RFX4_ShaderFloatCurve : MonoBehaviour {
     {
         startTime = Time.time;
         canUpdate = true;
+        if (props != null)
+        {
+            rend.GetPropertyBlock(props);
 
-        rend.GetPropertyBlock(props);
+            var eval = FloatCurve.Evaluate(0) * GraphIntensityMultiplier;
+            props.SetFloat(propertyID, eval);
 
-        var eval = FloatCurve.Evaluate(0) * GraphIntensityMultiplier;
-        props.SetFloat(propertyID, eval);
-
-        rend.SetPropertyBlock(props);
+            rend.SetPropertyBlock(props);
+        }
     }
 
     private void Update()

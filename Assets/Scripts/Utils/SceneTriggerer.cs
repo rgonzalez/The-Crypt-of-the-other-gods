@@ -3,6 +3,7 @@ using System.Collections;
 [RequireComponent(typeof(SceneUtils))]
 public class SceneTriggerer : MonoBehaviour
 {
+    public bool destroyAllManagers = false; //check to true if want destroy all managers
     public string nextScene;
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +33,10 @@ public class SceneTriggerer : MonoBehaviour
         if (LevelBuilder.instance)
         {
             nextScene = LevelBuilder.instance.nextLevel;
+            if (destroyAllManagers)
+            {
+                LevelBuilder.instance.DestroyManagers();
+            }
         }
         GetComponent<SceneUtils>().ChangeScene(nextScene);
     }

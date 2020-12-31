@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Destroyable
   - LevelGenerator
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

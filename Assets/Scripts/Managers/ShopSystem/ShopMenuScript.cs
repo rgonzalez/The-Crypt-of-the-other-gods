@@ -32,8 +32,6 @@ public class ButtonInfo
     public Image clipUnlockBar;
     public bool toShop = false; // is this weapon button available to shop (is unlocked?) if false, is a update button    
     public Text descriptionText;
-    //audio description
-    public AudioClip audioDescription;
 }
 
 [Serializable]
@@ -50,6 +48,8 @@ public class ShopMenuScript : MonoBehaviour
     /// <summary>
     /// Manager that instances the menu Shop system
     /// </summary>
+
+    public bool locked = false; // if locked, the shopTables cant Shop, for tutorial
 
     private AudioSource audioSource;
     public static ShopMenuScript instance;
@@ -225,21 +225,24 @@ public class ShopMenuScript : MonoBehaviour
     /// </summary>
     public void CreateWeapon()
     {
-        if (selectedWeapon != null)
+        if (!this.locked) //create if not locked system
         {
-            if (charges > 0)
+            if (selectedWeapon != null)
             {
-                if (activeShop != null && spawnPoint != null)
+                if (charges > 0)
                 {
-                    WeaponSpawnManager.instance.InstantiateWeapon(spawnPoint.transform, true, selectedWeapon.wType, null);
-                    charges--;
-                    this.activeShop.charges--;
-                    UpdateChargeText();
-                    if (this.charges <= 0)
+                    if (activeShop != null && spawnPoint != null)
                     {
-                        shopButton.gameObject.SetActive(false);
+                        WeaponSpawnManager.instance.InstantiateWeapon(spawnPoint.transform, true, selectedWeapon.wType, null);
+                        charges--;
+                        this.activeShop.charges--;
+                        UpdateChargeText();
+                        if (this.charges <= 0)
+                        {
+                            shopButton.gameObject.SetActive(false);
+                        }
+                        // this.Close();
                     }
-                   // this.Close();
                 }
             }
         }
@@ -251,28 +254,30 @@ public class ShopMenuScript : MonoBehaviour
     /// </summary>
     public void UnlockWeapon()
     {
-        if (selectedWeapon != null && selectedWeaponInfo != null)
-        {
-            if (selectedWeaponInfo.price <= ExperienceManager.instance.actualExp)
-            {
-                // can unlock the weapon
-                ExperienceManager.instance.EnableWeapon(selectedWeaponInfo.weaponType);
-                ExperienceManager.instance.actualExp -= selectedWeaponInfo.price;
-                ExperienceManager.instance.SaveExp();
-                ExperienceManager.instance.SaveAvailability(selectedWeaponInfo.weaponType);
-                expText.text = ExperienceManager.instance.actualExp.ToString();
-                //pass to purchase the actual item:
-                if (this.charges > 0)
+        if (!this.locked) { // if is not locked (the ship system) unlock the pweaon
+                if (selectedWeapon != null && selectedWeaponInfo != null)
                 {
-                    SetToShopButton();
-                } else
-                {
-                    DisableButtons();
+                    if (selectedWeaponInfo.price <= ExperienceManager.instance.actualExp)
+                    {
+                        // can unlock the weapon
+                        ExperienceManager.instance.EnableWeapon(selectedWeaponInfo.weaponType);
+                        ExperienceManager.instance.actualExp -= selectedWeaponInfo.price;
+                        ExperienceManager.instance.SaveExp();
+                        ExperienceManager.instance.SaveAvailability(selectedWeaponInfo.weaponType);
+                        expText.text = ExperienceManager.instance.actualExp.ToString();
+                        //pass to purchase the actual item:
+                        if (this.charges > 0)
+                        {
+                            SetToShopButton();
+                        } else
+                        {
+                            DisableButtons();
+                        }
+                        UpdateButtonStatus();
+                        UpdateButtonsUI();
+                    }
                 }
-                UpdateButtonStatus();
-                UpdateButtonsUI();
             }
-        }
     }
 
     ///

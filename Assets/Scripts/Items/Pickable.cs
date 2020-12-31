@@ -169,7 +169,8 @@ public class Pickable : MonoBehaviour
                 {
                     weaponType = prefabAttached.GetComponent<AbstractWeapon>().weaponType;
                 }
-                UIManager.instance.ShowWeaponInfo(weaponType);
+                if (UIManager.instance)
+                 UIManager.instance.ShowWeaponInfo(weaponType);
             }
         }
     }
@@ -180,7 +181,7 @@ public class Pickable : MonoBehaviour
         {
             player = null;
             touching = false;
-            if (itemtype == Constants.PICKABLE_TYPE.WEAPON)
+            if (itemtype == Constants.PICKABLE_TYPE.WEAPON && UIManager.instance)
                 UIManager.instance.ClearWeaponInfo();
         }
     }

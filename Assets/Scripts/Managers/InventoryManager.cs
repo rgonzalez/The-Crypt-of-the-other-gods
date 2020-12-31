@@ -5,6 +5,7 @@ using static Constants;
 
 public class InventoryManager : MonoBehaviour
 {
+    public bool autoEquipWeapon = true; //check if equip basic weapon when the manager start (if OFF is for tutorial)
     public Constants.WEAPON_TYPE basicWeapon; // the basic weapon equiped if the user starts empty
     public GameObject emptyPickable;
     /// <summary>
@@ -61,7 +62,10 @@ public class InventoryManager : MonoBehaviour
             activeRange = reloadBar.transform.Find("activeSprite").GetComponent<SpriteRenderer>();
             perfectRange = reloadBar.transform.Find("perfectSprite").GetComponent<SpriteRenderer>();
             ConfigInitialWeapons(); //configure initial weapons and systems
-            EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
+            if (autoEquipWeapon)
+            {
+                EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
+            }
             DontDestroyOnLoad(this.gameObject);
         }
     }
@@ -69,7 +73,8 @@ public class InventoryManager : MonoBehaviour
     //every loaded level, just refresh the UI with the actual weapon
     private void OnLevelWasLoaded(int level)
     {
-        StartCoroutine(EquipWeaponUI(actualWeapon.GetComponent<AbstractWeapon>()));
+        if (actualWeapon)
+          StartCoroutine(EquipWeaponUI(actualWeapon.GetComponent<AbstractWeapon>()));
     }
 
     /// <summary>
