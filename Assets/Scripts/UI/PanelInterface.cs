@@ -47,7 +47,7 @@ public class PanelInterface : MonoBehaviour
     }
     public void ClosePanel()
     {
-
+        Debug.Log("closing panel");
         if (UIManager.instance)
         {
             UIManager.instance.RestoreWeaponCursor();
@@ -57,8 +57,12 @@ public class PanelInterface : MonoBehaviour
         {
             otherCanvas.SetActive(true);
         }
+        Debug.Log("time scale");
         Time.timeScale = 1;
+
+        Debug.Log("panel false");
         panel.SetActive(false);
+        Debug.Log("closed panel");
     }
 
     public void AlternateState()

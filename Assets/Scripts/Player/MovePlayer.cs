@@ -158,7 +158,10 @@ public class MovePlayer : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
-
+        if (ShopMenuScript.instance && ShopMenuScript.instance.shopOpen)
+        {
+            return;
+        } 
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         controller.Move(moveDirection * Time.deltaTime * playerSpeed);
 
