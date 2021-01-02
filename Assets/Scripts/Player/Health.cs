@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
 
     public AudioClip hurtAudio;
     public AudioClip dieAudio;
+    public AudioClip healAudio;
 
     private AudioSource audioSource;
 
@@ -100,6 +101,7 @@ public class Health : MonoBehaviour
     {
         if (actualHealth < maxHealth)
         {
+            if (audioSource && healAudio) audioSource.PlayOneShot(healAudio);
             actualHealth += heal;
             if (actualHealth > maxHealth)
             {

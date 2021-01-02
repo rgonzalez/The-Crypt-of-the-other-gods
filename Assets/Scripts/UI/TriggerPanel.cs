@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerPanel : MonoBehaviour
 {
     public PanelInterface panel;
+    public bool panelByUIManager = false; //only for maincanvas
     public bool active = true; //is active by default?
     public bool reusable = false; // must be disabled or can enter multiple times
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class TriggerPanel : MonoBehaviour
     {
         if (other.CompareTag(Constants.TAG_PLAYER))
         {
-            Debug.Log("touch player " + this.name);
+            Debug.Log("touch player " + panel);
             if (panel)
             {
 

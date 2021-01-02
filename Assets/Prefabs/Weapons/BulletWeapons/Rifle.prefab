@@ -73,7 +73,8 @@ MonoBehaviour:
   perfectReload: 0.5
   failedReload: 5
   shootAudio: {fileID: 8300000, guid: 6f18c5bd8455f6e4793b1c7820e29ad8, type: 3}
-  reloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
+  reloadAudio: {fileID: 8300000, guid: 3c18fddd2163f5b4a8b98534765c112c, type: 3}
+  endReloadAudio: {fileID: 8300000, guid: 37f753059e1e5974aaab5b8e4835b1cc, type: 3}
   equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
   lineRendererPrefab: {fileID: 5968842818105738113, guid: 7e77780b062c145408bf701136b1d30a,
     type: 3}

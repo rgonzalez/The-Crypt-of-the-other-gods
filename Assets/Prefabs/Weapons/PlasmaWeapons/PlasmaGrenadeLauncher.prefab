@@ -171,9 +171,10 @@ MonoBehaviour:
   activeReloadEnd: 4
   perfectReload: 2
   failedReload: 5
-  shootAudio: {fileID: 8300000, guid: 7483b62f552afd541a630a4fc4c024b6, type: 3}
+  shootAudio: {fileID: 8300000, guid: b3e1eb6b62ad763468ada393eca2a8d3, type: 3}
   reloadAudio: {fileID: 8300000, guid: a9cad2098e544a24d96cd94cc80eab22, type: 3}
-  equipAudio: {fileID: 0}
+  endReloadAudio: {fileID: 8300000, guid: df8e09a53659fa24e9009353e9096394, type: 3}
+  equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
   bulletPrefab: {fileID: 2970268838045224165, guid: 65d06a5de6e151c48bed35637993f16f,
     type: 3}
   numberOfBullets: 1

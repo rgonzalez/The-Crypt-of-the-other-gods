@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTimeAlive: 15
-  damage: 1
+  damage: 5
   speed: 10
   bounces: 2
   explosionPrefab: {fileID: 0}

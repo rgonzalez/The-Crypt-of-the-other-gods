@@ -46,12 +46,7 @@ public class RoomManager : MonoBehaviour
         activeRoom = true;
         cloths = new List<Cloth>(transform.parent.GetComponentsInChildren<Cloth>()); // the triggerRoom is inside the room, we must go up 1 level
         //add the player capsulle to the system
-        GameObject player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
-        Debug.Log("found cloths: " + cloths.Count);
-        if (player)
-        {
-            UpdateClothes(player.GetComponentInChildren<CapsuleCollider>());
-        }
+       
     }
 
 
@@ -77,6 +72,14 @@ public class RoomManager : MonoBehaviour
         // move the doors instead of activate
         if (activeRoom && other.CompareTag(Constants.TAG_PLAYER))
         {
+            GameObject player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+         
+            if (player)
+            {
+                CapsuleCollider col = player.GetComponentInChildren<CapsuleCollider>();
+                Debug.Log("get user collider");
+                UpdateClothes(col);
+            }
             if (!spawningRoom)
             {
                 spawningRoom = true;

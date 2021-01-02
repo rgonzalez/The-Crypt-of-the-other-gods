@@ -61,6 +61,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     // Audios
     public AudioClip shootAudio;
     public AudioClip reloadAudio;
+    public AudioClip endReloadAudio;
     public AudioClip equipAudio;
 
     //internal variables
@@ -259,6 +260,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
                 perfectAmmo = 0;
             }
         }
+        if (endReloadAudio) audioSource.PlayOneShot(endReloadAudio);
         weaponStatus = RELOADSTATE.READY;
         UIManager.instance.ReloadAmmo(ammoType, maxClip, ammo, perfectAmmo);
         reloadBar.SetActive(false);       

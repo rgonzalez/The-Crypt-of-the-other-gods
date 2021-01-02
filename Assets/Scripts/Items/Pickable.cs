@@ -84,10 +84,7 @@ public class Pickable : MonoBehaviour
         //now check what happens, if is a weapon, assign the prefab as a weapon for the user 
         // in the actual Space
         if (player != null) {
-            if (audioSource && pickAudio)
-            {
-                audioSource.PlayOneShot(pickAudio);
-            }
+    
             switch (itemtype)
             {
                 case Constants.PICKABLE_TYPE.AMMO:
@@ -107,9 +104,17 @@ public class Pickable : MonoBehaviour
     void AddAmmo()
     {
         InventoryManager.instance.AddAmmoToInventory(ammo, ammoType);
+        PlayAudio();
         Destroy(gameObject);
     }
 
+    private void PlayAudio()
+    {
+        if (audioSource && pickAudio)
+        {
+            audioSource.PlayOneShot(pickAudio);
+        }
+    }
     void AddHealth()
     {
         if (player)
@@ -120,6 +125,7 @@ public class Pickable : MonoBehaviour
                 bool wasHealed = health.Heal(this.health);
                 if (wasHealed)
                 {
+                    PlayAudio();
                     //only detroy if the heal was sucesful
                     Destroy(gameObject);
                 }

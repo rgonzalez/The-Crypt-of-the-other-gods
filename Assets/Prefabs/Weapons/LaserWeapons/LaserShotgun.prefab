@@ -168,8 +168,9 @@ MonoBehaviour:
   activeReloadEnd: 4
   perfectReload: 2
   failedReload: 5
-  shootAudio: {fileID: 8300000, guid: 32e7b9cb8238d3646b81da47f4f6f0fe, type: 3}
+  shootAudio: {fileID: 8300000, guid: 7545273616263644abf04f1b6d840d9e, type: 3}
   reloadAudio: {fileID: 8300000, guid: b6f34e2cf8e18f24391e6ce517bd3cf9, type: 3}
+  endReloadAudio: {fileID: 8300000, guid: d9ae86557ffdbec44a74d559e129664b, type: 3}
   equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
   electricPrefab: {fileID: 178460, guid: a84cb58ef7faa67488076810242453b9, type: 3}
   distance: 5

@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
 
+    public StartPanel panelStart;
+
     /// <summary>
     /// HEALTH CONFIGURATION
     /// </summary>

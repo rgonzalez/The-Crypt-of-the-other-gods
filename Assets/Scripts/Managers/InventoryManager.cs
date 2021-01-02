@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour
     public int laser = 0;
 
     public int maxWeapons = 2;
+    public AudioSource audioSource;
+    public AudioClip pickAudio;
 
     private bool usingObject = false;
 
@@ -66,6 +68,7 @@ public class InventoryManager : MonoBehaviour
             {
                 EquipBasicWeapon(); // equip a basic weapon if the player doesnt have anything
             }
+            audioSource = GetComponent<AudioSource>();
             DontDestroyOnLoad(this.gameObject);
         }
     }
@@ -306,6 +309,7 @@ public class InventoryManager : MonoBehaviour
         int actualAmmo = GetAvailableAmmo(ammoType);
         actualAmmo += ammo;
         SetAvailableAmmo(ammoType, actualAmmo);
+        if (audioSource && pickAudio) audioSource.PlayOneShot(pickAudio);
         UIManager.instance.UpdateAmmoBagInfo(ammoType, actualAmmo);
     }
 

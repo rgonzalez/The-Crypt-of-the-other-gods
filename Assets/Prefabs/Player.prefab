@@ -207,6 +207,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   hurtAudio: {fileID: 8300000, guid: 8ec762df0c73a02468697b6607677bd6, type: 3}
   dieAudio: {fileID: 8300000, guid: 4b0af7d5b189b3f4aa45ed1e43db71ff, type: 3}
+  healAudio: {fileID: 8300000, guid: c81f86b6ac9e5d84dbb53f2c7d5c0457, type: 3}
 --- !u!82 &3520443750193527721
 AudioSource:
   m_ObjectHideFlags: 0

@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1709478, y: 54.887913, z: 1.2158116}
-  m_Center: {x: 0.00061370264, y: 26.943954, z: -0.021390038}
+  m_Size: {x: 1.1709478, y: 31.31503, z: 1.2158116}
+  m_Center: {x: 0.00061370264, y: 15.157512, z: -0.021390038}
 --- !u!208 &2617610639332414316
 NavMeshObstacle:
   m_ObjectHideFlags: 0
