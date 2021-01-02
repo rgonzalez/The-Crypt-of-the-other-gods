@@ -172,6 +172,7 @@ MonoBehaviour:
   reloadAudio: {fileID: 8300000, guid: b6f34e2cf8e18f24391e6ce517bd3cf9, type: 3}
   endReloadAudio: {fileID: 8300000, guid: d9ae86557ffdbec44a74d559e129664b, type: 3}
   equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
+  emptyAudio: {fileID: 8300000, guid: c814990ecf07d3e4995bbd32d02c0392, type: 3}
   electricPrefab: {fileID: 178460, guid: a84cb58ef7faa67488076810242453b9, type: 3}
   distance: 5
   maxEnemies: 3

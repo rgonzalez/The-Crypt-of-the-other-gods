@@ -7428,6 +7428,7 @@ GameObject:
   - component: {fileID: 1548489283}
   - component: {fileID: 1548489288}
   - component: {fileID: 1548489289}
+  - component: {fileID: 1548489284}
   m_Layer: 0
   m_Name: EXIT
   m_TagString: Untagged
@@ -7527,6 +7528,18 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!114 &1548489284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548489282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717084b6ceb1dc348a798f82157f8820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1548489286
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9194,7 +9207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9b140d1ef626948a9a517382926b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Rooms
+  scene: Intro
 --- !u!1 &1938635735
 GameObject:
   m_ObjectHideFlags: 0

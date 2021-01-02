@@ -35,9 +35,11 @@ public class SceneTriggerer : MonoBehaviour
             nextScene = LevelBuilder.instance.nextLevel;
             if (destroyAllManagers)
             {
-                LevelBuilder.instance.DestroyManagers();
+                GetComponent<SceneUtils>().LoadNewLevel(nextScene);
+            } else
+            {
+                GetComponent<SceneUtils>().ChangeScene(nextScene);
             }
         }
-        GetComponent<SceneUtils>().ChangeScene(nextScene);
     }
 }

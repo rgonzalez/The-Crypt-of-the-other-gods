@@ -63,6 +63,7 @@ public  abstract class AbstractWeapon : MonoBehaviour
     public AudioClip reloadAudio;
     public AudioClip endReloadAudio;
     public AudioClip equipAudio;
+    public AudioClip emptyAudio;
 
     //internal variables
     protected GameObject muzzleFlash;
@@ -168,6 +169,11 @@ public  abstract class AbstractWeapon : MonoBehaviour
                 if (ammo > 0)
                 {
                     Shoot();
+                } else
+                {
+                    // if (audioSource && emptyAudio) audioSource.PlayOneShot(emptyAudio);
+                    reload = true;
+                    firing = false;
                 }
             }
             if (reload)

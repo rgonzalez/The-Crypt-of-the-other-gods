@@ -84,10 +84,13 @@ public class RoomManager : MonoBehaviour
             {
                 spawningRoom = true;
                 CloseRoom();
-                // choose a random config of enemies
-                roomConfig = roomConfigs[Random.Range(0,roomConfigs.Count-1)];
-                // start spawn ticks until all enemies or the actual wave is dead
-                ConfigWave(true);
+                if (roomConfigs.Count > 0)
+                {
+                    // choose a random config of enemies
+                    roomConfig = roomConfigs[Random.Range(0, roomConfigs.Count - 1)];
+                    // start spawn ticks until all enemies or the actual wave is dead
+                    ConfigWave(true);
+                }
             }
         }
     }
@@ -197,7 +200,10 @@ public class RoomManager : MonoBehaviour
         {
             //TODO: animate door
             //door.SetActive(false);
-            door.OpenDoor();
+            if (door)
+            {
+                door.OpenDoor();
+            }
         }
         if (chest != null)
         {

@@ -6710,6 +6710,12 @@ PrefabInstance:
       objectReference: {fileID: 7179816498489114855}
     - target: {fileID: 6791456972741660503, guid: da0c40ced916e25468ada2ae9e527acb,
         type: 3}
+      propertyPath: endRoomPrefab
+      value: 
+      objectReference: {fileID: 7758021359873610235, guid: a9776e593ad57ef43894d38302b90667,
+        type: 3}
+    - target: {fileID: 6791456972741660503, guid: da0c40ced916e25468ada2ae9e527acb,
+        type: 3}
       propertyPath: weaponManager
       value: 
       objectReference: {fileID: 7570937727254583070}

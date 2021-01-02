@@ -75,6 +75,7 @@ MonoBehaviour:
   reloadAudio: {fileID: 8300000, guid: a860515d8e2140743bbbf0c047cb7a27, type: 3}
   endReloadAudio: {fileID: 8300000, guid: 7038edc7946badf4cae893f9c60c8dc5, type: 3}
   equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
+  emptyAudio: {fileID: 8300000, guid: c814990ecf07d3e4995bbd32d02c0392, type: 3}
   lineRendererPrefab: {fileID: 5968842818105738113, guid: 7e77780b062c145408bf701136b1d30a,
     type: 3}
   numberOfLines: 4

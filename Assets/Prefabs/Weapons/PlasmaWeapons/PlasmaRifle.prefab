@@ -171,6 +171,7 @@ MonoBehaviour:
   reloadAudio: {fileID: 8300000, guid: 44921569519ef8f41b0344fcb1e72278, type: 3}
   endReloadAudio: {fileID: 8300000, guid: b651f035ce2424440aef40779b449738, type: 3}
   equipAudio: {fileID: 8300000, guid: 0a03964cb451b454097735f659fed8b0, type: 3}
+  emptyAudio: {fileID: 8300000, guid: c814990ecf07d3e4995bbd32d02c0392, type: 3}
   bulletPrefab: {fileID: 2416640270222668430, guid: d9fd433642a4d4f49a62ae9e940699d2,
     type: 3}
   numberOfBullets: 1
