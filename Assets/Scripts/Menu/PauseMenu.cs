@@ -16,8 +16,17 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
-            optionPanel.OpenPanel();
+            if (optionPanel.panel.active)
+            {
+                //is active
+                Time.timeScale = 1;
+                optionPanel.ClosePanel();
+            }
+            else
+            {
+                Time.timeScale = 0;
+                optionPanel.OpenPanel();
+            }
         }
     }
 }

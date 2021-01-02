@@ -504,8 +504,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4551913291838719278}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ChangeScene
+        m_TargetAssemblyTypeName: SceneUtils, Assembly-CSharp
+        m_MethodName: LoadNewLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
