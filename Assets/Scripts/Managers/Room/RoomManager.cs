@@ -30,6 +30,8 @@ public class RoomManager : MonoBehaviour
     private int maxEnemiesWave = 0;
     private int enemiesLeft = 0;
 
+    private bool started = false; // if the room is already active
+
     //is a chest when the waves ends? must be a child inside the room, so we can configure it
     //must be disabled at start
     public GameObject chest;
@@ -72,24 +74,29 @@ public class RoomManager : MonoBehaviour
         // move the doors instead of activate
         if (activeRoom && other.CompareTag(Constants.TAG_PLAYER))
         {
-            GameObject player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
-         
-            if (player)
+            if (!started)
             {
-                CapsuleCollider col = player.GetComponentInChildren<CapsuleCollider>();
-                Debug.Log("get user collider");
-                UpdateClothes(col);
-            }
-            if (!spawningRoom)
-            {
-                spawningRoom = true;
-                CloseRoom();
-                if (roomConfigs.Count > 0)
+                started = true;
+                Debug.Log("ENTER TRIGGER");
+                GameObject player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+
+                if (player)
                 {
-                    // choose a random config of enemies
-                    roomConfig = roomConfigs[Random.Range(0, roomConfigs.Count - 1)];
-                    // start spawn ticks until all enemies or the actual wave is dead
-                    ConfigWave(true);
+                    CapsuleCollider col = player.GetComponentInChildren<CapsuleCollider>();
+                    Debug.Log("get user collider");
+                    UpdateClothes(col);
+                }
+                if (!spawningRoom)
+                {
+                    spawningRoom = true;
+                    CloseRoom();
+                    if (roomConfigs.Count > 0)
+                    {
+                        // choose a random config of enemies
+                        roomConfig = roomConfigs[Random.Range(0, roomConfigs.Count - 1)];
+                        // start spawn ticks until all enemies or the actual wave is dead
+                        ConfigWave(true);
+                    }
                 }
             }
         }
